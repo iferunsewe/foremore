@@ -1,5 +1,5 @@
 
-<%= form_with(model: delivery) do |form| %>
+<%= form_with(model: delivery, id: "delivery-form") do |form| %>
   <% if delivery.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(delivery.errors.count, "error") %> prohibited this delivery from being saved:</h2>
@@ -13,30 +13,41 @@
   <% end %>
   <div class="container">
     <div class="row">
-      <div class="col">
-        <div class="form-group mb-3">
-          <%= button_tag t("delivery.form.integrations.orders-button-label"), type: 'button', class: 'btn btn-primary' %>
+      <div class="col-8">
+        <div class="form-group mb-3 button-and-explainer">
+          <div class="d-grid gap-2 col-6 mx-auto mb-2">
+            <%= button_tag t("delivery.form.integrations.orders-button-label"), type: 'button', class: 'btn btn-primary semi-bold' %>
+          </div>
           <div class="form-text mb-2"><%=  t("delivery.form.integrations.explainer") %></div>
         </div>
 
         <div class="form-group mb-3">
-          <h3><%= t("delivery.form.address.heading") %></h3>
+          <h4><%= t("delivery.form.address.heading") %></h4>
 
           <div>
-            <p><%= t("delivery.form.address.pickup-label") %>: <%= @pickup_address.one_line %><p>
+            <p><span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <%= @pickup_address.one_line %><p>
           </div>
 
-          <div>
-            <%= form.text_field :delivery_address, placeholder: t("delivery.form.address.delivery-placeholder"), class: 'form-control mb-2' %>
-          </div>
+          <div class="col-6">
+            <div>
+              <%= form.text_field :delivery_address, placeholder: t("delivery.form.address.delivery-placeholder"), class: 'form-control mb-2' %>
+            </div>
 
-          <div>
-            <%= form.text_area :address_notes, placeholder: t("delivery.form.address.notes-placeholder"), class: 'form-control mb-2' %>
+            <div>
+              <%= form.text_area :address_notes, placeholder: t("delivery.form.address.notes-placeholder"), class: 'form-control mb-2' %>
+            </div>
           </div>
         </div>
 
         <div class="form-group mb-3">
-          <h3><%= t("delivery.form.item-details.heading") %></h3>
+          <h4><%= t("delivery.form.item-details.heading") %></h4>
+
+          <div class="form-group mb-3 button-and-explainer">
+            <div class="d-grid gap-2 col-6 mx-auto mb-2">
+              <%= button_tag t("delivery.form.item-details.inventory-button-label"), type: 'button', class: 'btn btn-primary semi-bold' %>
+            </div>
+            <div class="form-text mb-2"><%=  t("delivery.form.item-details.inventory-explainer") %></div>
+          </div>
 
           <div>
             <%= form.text_area :description, placeholder: t("delivery.form.item-details.description-placeholder"), class: 'form-control mb-2' %>
@@ -46,48 +57,60 @@
             <%= form.text_field :order_reference, placeholder: t("delivery.form.item-details.reference-placeholder"), class: 'form-control mb-2' %>
           </div>
 
-          <div>
-            <%= form.label :weight, t("delivery.form.item-details.weight-label"), style: "display: block", class: 'form-label' %>
-            <%= form.radio_button :weight, 1 %>
-            <%= form.label :weight_1, "< 15", class: 'form-label' %>
-            <%= form.radio_button :weight, 2 %>
-            <%= form.label :weight_2, "15 - 300", class: 'form-label' %>
-            <%= form.radio_button :weight, 3 %>
-            <%= form.label :weight_3, "300 - 800", class: 'form-label' %>
-          </div>
+          <div class="row">
+            <div class="col-6">
+              <h5><%= t("delivery.form.item-details.weight-label") %></h5>
+              <div class="d-flex justify-content-around" role="group">
+                <%= form.radio_button :weight, 1, class: "btn-check" %>
+                <%= form.label :weight_1, "< 15", class: 'btn btn-outline-primary btn-radio' %>
 
-          <div>
-            <%= form.label :length, t("delivery.form.item-details.length-label"), style: "display: block" %>
-            <%= form.radio_button :length, 1 %>
-            <%= form.label :length_1, "< 1.4", class: 'form-label' %>
-            <%= form.radio_button :length, 2 %>
-            <%= form.label :length_2, "1.4 - 2.2", class: 'form-label' %>
-            <%= form.radio_button :length, 3 %>
-            <%= form.label :length_3, "2.2 - 3.4", class: 'form-label' %>
-            <%= form.radio_button :length, 4 %>
-            <%= form.label :length_4, "3.4 - 4.4", class: 'form-label' %>
+                <%= form.radio_button :weight, 2, class: "btn-check" %>
+                <%= form.label :weight_2, "15 - 300", class: 'btn btn-outline-primary btn-radio' %>
+
+                <%= form.radio_button :weight, 3, class: "btn-check" %>
+                <%= form.label :weight_3, "300 - 800", class: 'btn btn-outline-primary btn-radio' %>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <h5><%= t("delivery.form.item-details.length-label") %></h5>
+              <div class="d-flex justify-content-around" role="group">
+                <%= form.radio_button :length, 1, class: "btn-check" %>
+                <%= form.label :length_1, "< 1.4", class: 'btn btn-outline-primary btn-radio' %>
+
+                <%= form.radio_button :length, 2, class: "btn-check" %>
+                <%= form.label :length_2, "1.4 - 2.2", class: 'btn btn-outline-primary btn-radio' %>
+
+                <%= form.radio_button :length, 3, class: "btn-check" %>
+                <%= form.label :length_3, "2.2 - 3.4", class: 'btn btn-outline-primary btn-radio' %>
+
+                <%= form.radio_button :length, 4, class: "btn-check" %>
+                <%= form.label :length_4, "3.4 - 4.4", class: 'btn btn-outline-primary btn-radio' %>
+              </div>
+            </div>  
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col-4">
         <div class="form-group mb-3">
-          <h3><%= t("delivery.form.delivery-type.heading") %></h3>
+          <h4><%= t("delivery.form.delivery-type.heading") %></h4>
 
-          <div>
-            <%= form.radio_button :type, Delivery.types["instant"] %>
-            <%= form.label :type_instant, "ASAP", class: 'form-label' %>
-            <%= form.radio_button :type, Delivery.types["scheduled"] %>
-            <%= form.label :type_scheduled, "Scheduled", class: 'form-label' %>
+          <div class="d-flex justify-content-around mb-3" role="group">
+            <%= form.radio_button :type, Delivery.types["instant"], class: "btn-check" %>
+            <%= form.label :type_0, "ASAP", class: 'btn btn-outline-primary btn-radio col-4' %>
+            
+            <%= form.radio_button :type, Delivery.types["scheduled"], class: "btn-check" %>
+            <%= form.label :type_1, "Scheduled", class: 'btn btn-outline-primary btn-radio col-4' %>
           </div>
 
           <div>
-            <%= form.label :scheduled_date, t("delivery.form.delivery-type.scheduled-date.heading"), style: "display: block", class: 'form-label' %>
-            <%= form.datetime_local_field :scheduled_date, value: DateTime.now.strftime('%Y-%m-%dT%H:%M'), class: 'form-control mb-2' %>
+            <%= form.label :scheduled_date, t("delivery.form.delivery-type.scheduled-date.heading"), style: "display: block", class: 'form-label semi-bold' %>
+            <%= form.datetime_local_field :scheduled_date, value: DateTime.now.strftime('%Y-%m-%dT%H:%M'), class: 'form-control mb-2', disabled: true %>
           </div>
         </div>
 
         <div class="form-group mb-3">
-          <h3><%=  t("delivery.form.contact-information.heading") %></h3>
+          <h4><%=  t("delivery.form.contact-information.heading") %></h4>
           <div class="form-text mb-2"><%=  t("delivery.form.contact-information.explainer") %></div>
           <%= form.text_field :recipient_name, placeholder: t("delivery.form.contact-information.name-placeholder"), class: 'form-control mb-2' %>
           <%= form.text_field :recipient_email, placeholder: t("delivery.form.contact-information.email-placeholder"), class: 'form-control mb-2' %>
@@ -95,7 +118,7 @@
         </div>
 
         <div class="form-group mb-3">
-          <%= form.label :other_notes, style: "display: block", class: 'form-label' %>
+          <%= form.label :other_notes, style: "display: block", class: 'form-label semi-bold' %>
           <%= form.text_area :other_notes, placeholder: t("delivery.form.other-notes.placeholder"), class: 'form-control mb-2' %>
         </div>
 

@@ -43,6 +43,8 @@ en:
         notes-placeholder: "Enter any notes for the pick up and delivery e.g. floor level, parking available, leave at the door etc..."
       item-details:
         heading: "Item Details"
+        inventory-button-label: "Select from inventory"
+        inventory-explainer: "Choose an item from your inventory to add to the order"
         description-placeholder: "What are we picking up?"
         reference-placeholder: "Enter a order reference"
         weight-label: "Weight (kg)"
