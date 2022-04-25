@@ -16,12 +16,24 @@ body {
   position: fixed;
   width: 10%;
   padding-top: 5%;
-  .nav-item{
-    height: 15%;
-
-    .nav-link {
+  .nav-item {
+    .nav-link.flex-column {
       color: #F7E2B5;
+      text-align: center;
     }
+
+    i {
+      color: #F7E2B5;
+      font-size: 1.25rem;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  .nav-item.active {
+    background: #06158F;
   }
 }
 

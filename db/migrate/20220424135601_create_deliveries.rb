@@ -4,7 +4,7 @@ class CreateDeliveries < ActiveRecord::Migration[7.0]
       t.integer :status
       t.integer :pickup_address_id
       t.integer :delivery_address
-      t.integer :type
+      t.integer :delivery_type
       t.integer :weight
       t.integer :length
       t.string :order_reference
