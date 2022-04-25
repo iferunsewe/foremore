@@ -6,6 +6,31 @@ body {
   --bs-body-font-size: 0.875rem;
 }
 
+#main {
+  padding-left: 8%;
+}
+
+.nav.flex-column {
+  background: #06158F80;
+  height: 100%; /* Full height */
+  position: fixed;
+  width: 10%;
+  padding-top: 5%;
+  .nav-item{
+    height: 15%;
+
+    .nav-link {
+      color: #F7E2B5;
+    }
+  }
+}
+
+.nav.flex-row.header {
+  padding-left: 12%;
+  padding-right: 2%;
+  padding-top: 2%;
+}
+
 #delivery-form {
   .btn {
     border-radius: 0.75rem;

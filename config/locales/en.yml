@@ -32,6 +32,8 @@
 en:
   hello: "Hello world"
   delivery:
+    new-link: "Book"
+    all-link: "Deliveries"
     form:
       integrations:
         orders-button-label: "Select order"
