@@ -23,12 +23,11 @@
 
         <div class="form-group mb-3">
           <h4><%= t("delivery.form.address.heading") %></h4>
-
-          <div>
-            <p><span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <%= @pickup_address.one_line %><p>
-          </div>
-
           <div class="col-6">
+            <div>
+              <p><span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <%= @pickup_address.one_line %><p>
+            </div>
+          
             <div>
               <%= form.text_field :delivery_address, placeholder: t("delivery.form.address.delivery-placeholder"), class: 'form-control mb-2' %>
             </div>
@@ -96,16 +95,16 @@
           <h4><%= t("delivery.form.delivery-type.heading") %></h4>
 
           <div class="d-flex justify-content-around mb-3" role="group">
-            <%= form.radio_button :type, Delivery.types["instant"], class: "btn-check" %>
-            <%= form.label :type_0, "ASAP", class: 'btn btn-outline-primary btn-radio col-4' %>
+            <%= form.radio_button :type, Delivery.types["instant"], class: "btn-check", checked: true %>
+            <%= form.label :type_0, "ASAP", class: 'btn btn-outline-primary btn-radio col-4', data: {bs_toggle: "collapse", bs_target: "#collapseExample.show"}, aria: { expanded: "false", controls: "collapseExample"} %>
             
             <%= form.radio_button :type, Delivery.types["scheduled"], class: "btn-check" %>
-            <%= form.label :type_1, "Scheduled", class: 'btn btn-outline-primary btn-radio col-4' %>
+            <%= form.label :type_1, "Scheduled", class: 'btn btn-outline-primary btn-radio col-4', data: {bs_toggle: "collapse", bs_target: "#collapseExample:not(.show)"}, aria: { expanded: "false", controls: "collapseExample"} %>
           </div>
 
-          <div>
+          <div class="collapse" id="collapseExample">
             <%= form.label :scheduled_date, t("delivery.form.delivery-type.scheduled-date.heading"), style: "display: block", class: 'form-label semi-bold' %>
-            <%= form.datetime_local_field :scheduled_date, value: DateTime.now.strftime('%Y-%m-%dT%H:%M'), class: 'form-control mb-2', disabled: true %>
+            <%= form.datetime_local_field :scheduled_date, value: DateTime.now.strftime('%Y-%m-%dT%H:%M'), class: 'form-control mb-2' %>
           </div>
         </div>
 
@@ -122,8 +121,8 @@
           <%= form.text_area :other_notes, placeholder: t("delivery.form.other-notes.placeholder"), class: 'form-control mb-2' %>
         </div>
 
-        <div>
-          <%= form.submit t("delivery.form.submit-button-label"), class: "btn btn-success" %>
+        <div class="row d-flex justify-content-center">
+          <%= form.submit t("delivery.form.submit-button-label"), class: "btn btn-success col-6 semi-bold" %>
         </div>
       </div>
     </div>
