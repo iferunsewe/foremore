@@ -1,12 +1,12 @@
 class CreateDeliveries < ActiveRecord::Migration[7.0]
   def change
     create_table :deliveries do |t|
-      t.integer :status
+      t.integer :status, default: 0
       t.integer :pickup_address_id
-      t.integer :delivery_address
+      t.string :delivery_address
       t.integer :delivery_type
-      t.integer :weight
-      t.integer :length
+      t.integer :weight_class
+      t.integer :length_class
       t.string :order_reference
       t.text :other_notes
       t.string :address_notes
