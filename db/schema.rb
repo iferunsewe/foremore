@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_24_153417) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_24_141400) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,20 +25,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_24_153417) do
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.integer "status"
+    t.integer "status", default: 0
     t.integer "pickup_address_id"
-    t.integer "delivery_address_id"
-    t.integer "type"
-    t.float "weight"
-    t.float "length"
+    t.string "delivery_address"
+    t.integer "delivery_type"
+    t.integer "weight_class"
+    t.integer "length_class"
     t.string "order_reference"
     t.text "other_notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "address_notes"
     t.string "recipient_name"
     t.string "recipient_email"
-    t.string "recipient_number"
+    t.string "recipient_phone"
+    t.datetime "scheduled_date"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -6,27 +6,32 @@
 
   <p>
     <strong>Pickup address:</strong>
-    <%= delivery.pickup_address_id %>
+    <%= delivery.pickup_address.one_line %>
   </p>
 
   <p>
     <strong>Delivery address:</strong>
-    <%= delivery.delivery_address_id %>
+    <%= delivery.delivery_address %>
   </p>
 
   <p>
-    <strong>Type:</strong>
-    <%= delivery.type %>
+    <strong>Address notes:</strong>
+    <%= delivery.address_notes %>
+  </p>
+  
+  <p>
+    <strong>Item description:</strong>
+    <%= delivery.description %>
   </p>
 
   <p>
-    <strong>Weight:</strong>
-    <%= delivery.weight %>
+    <strong>Weight class:</strong>
+    <%= delivery.weight_class %>
   </p>
 
   <p>
-    <strong>Length:</strong>
-    <%= delivery.length %>
+    <strong>Length class:</strong>
+    <%= delivery.length_class %>
   </p>
 
   <p>
@@ -35,8 +40,35 @@
   </p>
 
   <p>
+    <strong>Type:</strong>
+    <%= delivery.delivery_type %>
+  </p>
+
+  <p>
+    <strong>Scheduled for:</strong>
+    <%= delivery.scheduled_date %>
+  </p>
+
+  <p>
+    <strong>Recipient</strong>
+    Name: <%= delivery.recipient_name %>
+    Phone number: <%= delivery.recipient_phone %>
+    Email: <%= delivery.recipient_email %>
+  </p>
+
+  <p>
     <strong>Other notes:</strong>
     <%= delivery.other_notes %>
+  </p>
+
+  <p>
+    <strong>Created at:</strong>
+    <%= delivery.created_at %>
+  </p>
+
+  <p>
+    <strong>Updated at:</strong>
+    <%= delivery.updated_at %>
   </p>
 
 </div>

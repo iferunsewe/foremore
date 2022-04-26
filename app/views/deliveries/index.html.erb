@@ -1,12 +1,62 @@
-<h1>Deliveries</h1>
-
 <div id="deliveries">
-  <% @deliveries.each do |delivery| %>
-    <%= render delivery %>
-    <p>
-      <%= link_to "Show this delivery", delivery %>
-    </p>
-  <% end %>
+  <table class="table table-hover table-borderless">
+    <thead>
+      <tr>
+        <th scope="col">
+          <div class="th-inner">
+            #
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Created at
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Delivery Address
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Status
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Delivered at
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Rating
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Actions
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @deliveries.each do |delivery| %>
+        <tr>
+          <th scope="row"><%= link_to delivery.id, delivery_path(delivery) %></th>
+          <td><%= delivery.created_at.strftime('%Y-%m-%dT%H:%M') %></td>
+          <td><%= delivery.delivery_address %></td>
+          <td><%= delivery.status.capitalize %></td>
+          <td></td>
+          <td></td>
+          <td>
+            <%= link_to edit_delivery_path(delivery) do %>
+              <i class="bi bi-pencil-fill"></i>
+              Edit
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+    
 </div>
-
-<%= link_to "New delivery", new_delivery_path %>

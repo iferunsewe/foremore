@@ -10,6 +10,22 @@ body {
   padding-left: 8%;
 }
 
+table {
+  th {
+    padding: 5px;
+    .th-inner {
+      background: #2C25D20D;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
 .nav.flex-column {
   background: #06158F80;
   height: 100%; /* Full height */
@@ -94,6 +110,16 @@ body {
   ::placeholder {
     color: #8F8F8F;
     font-size: 0.75em;
+  }
+
+  .form-floating {
+    label {
+      color: #8F8F8F;
+      --bs-body-font-family: "Montserrat";
+      font-weight: 600;
+      padding: 1.25rem 0.75rem;
+      font-size: 0.75rem;
+    }
   }
 
   input:not([type=submit]), textarea {

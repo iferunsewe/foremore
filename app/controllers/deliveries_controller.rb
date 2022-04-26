@@ -13,7 +13,6 @@ class DeliveriesController < ApplicationController
   # GET /deliveries/new
   def new
     @delivery = Delivery.new
-    @pickup_address = Address.find(1)
   end
 
   # GET /deliveries/1/edit
@@ -22,7 +21,7 @@ class DeliveriesController < ApplicationController
 
   # POST /deliveries or /deliveries.json
   def create
-    @delivery = Delivery.new(delivery_params)
+    @delivery = Delivery.new(delivery_params_to_i)
 
     respond_to do |format|
       if @delivery.save
@@ -38,7 +37,7 @@ class DeliveriesController < ApplicationController
   # PATCH/PUT /deliveries/1 or /deliveries/1.json
   def update
     respond_to do |format|
-      if @delivery.update(delivery_params)
+      if @delivery.update(delivery_params_to_i)
         format.html { redirect_to delivery_url(@delivery), notice: "Delivery was successfully updated." }
         format.json { render :show, status: :ok, location: @delivery }
       else
@@ -66,6 +65,20 @@ class DeliveriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def delivery_params
-      params.require(:delivery).permit(:status, :pickup_address_id, :delivery_address_id, :type, :weight, :length, :order_reference, :other_notes)
+      params.require(:delivery).permit(
+        :status, :pickup_address_id, :delivery_address,
+        :delivery_type, :weight_class, :length_class,
+        :order_reference, :other_notes, :scheduled_date,
+        :description, :address_notes, :recipient_name,
+        :recipient_email, :recipient_phone
+      )
+    end
+
+    def delivery_params_to_i
+      delivery_params.merge(
+        delivery_type: delivery_params[:delivery_type].to_i,
+        weight_class: delivery_params[:weight_class].to_i,
+        length_class: delivery_params[:length_class].to_i
+      )
     end
 end

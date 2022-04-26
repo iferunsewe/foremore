@@ -5,7 +5,8 @@
       <p><%=  t("delivery.new-link") %></p>
     <% end %>
   </li>
-  <li class="nav-item flex-column <%= current_page?(deliveries_path) ? "active" : "" %>"">
+  <% %>
+  <li class="nav-item flex-column <%= is_deliveries_path_active? ? "active" : "" %>"">
     <%= link_to(deliveries_path, class: 'nav-link flex-column') do %>
       <i class="bi bi-truck"></i>
       <p><%=  t("delivery.list-link") %></p>

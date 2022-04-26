@@ -25,15 +25,18 @@
           <h4><%= t("delivery.form.address.heading") %></h4>
           <div class="col-6">
             <div>
-              <p><span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <%= @pickup_address.one_line %><p>
+              <% pickup_address = Address.find(1)%>
+              <p><span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <%= pickup_address.one_line %><p>
+              <%= form.hidden_field :pickup_address_id, value: pickup_address.id %>
             </div>
           
-            <div>
-              <%= form.text_field :delivery_address, placeholder: t("delivery.form.address.delivery-placeholder"), class: 'form-control mb-2' %>
+            <div class="form-floating mb-2">
+              <%= form.text_field :delivery_address, placeholder: t("delivery.form.address.delivery-placeholder"), class: 'form-control' %>
+              <%= form.label :delivery_address %>
             </div>
 
-            <div>
-              <%= form.text_area :address_notes, placeholder: t("delivery.form.address.notes-placeholder"), class: 'form-control mb-2' %>
+            <div class="mb-2">
+              <%= form.text_area :address_notes, placeholder: t("delivery.form.address.notes-placeholder"), class: 'form-control' %>
             </div>
           </div>
         </div>
@@ -52,39 +55,40 @@
             <%= form.text_area :description, placeholder: t("delivery.form.item-details.description-placeholder"), class: 'form-control mb-2' %>
           </div>
 
-          <div>
-            <%= form.text_field :order_reference, placeholder: t("delivery.form.item-details.reference-placeholder"), class: 'form-control mb-2' %>
+          <div class="form-floating mb-2">
+            <%= form.text_field :order_reference, placeholder: t("delivery.form.item-details.reference-placeholder"), class: 'form-control' %>
+            <%= form.label :order_reference %>
           </div>
 
           <div class="row">
             <div class="col-6">
               <h5><%= t("delivery.form.item-details.weight-label") %></h5>
               <div class="d-flex justify-content-around" role="group">
-                <%= form.radio_button :weight, 1, class: "btn-check" %>
-                <%= form.label :weight_1, "< 15", class: 'btn btn-outline-primary btn-radio' %>
+                <%= form.radio_button :weight_class, Delivery.weight_classes["< 15"], class: "btn-check", checked: delivery.weight_class == "< 15" %>
+                <%= form.label :weight_class_0, "< 15", class: 'btn btn-outline-primary btn-radio' %>
 
-                <%= form.radio_button :weight, 2, class: "btn-check" %>
-                <%= form.label :weight_2, "15 - 300", class: 'btn btn-outline-primary btn-radio' %>
+                <%= form.radio_button :weight_class, Delivery.weight_classes["15 - 300"], class: "btn-check", checked: delivery.weight_class == "15 - 300" %>
+                <%= form.label :weight_class_1, "15 - 300", class: 'btn btn-outline-primary btn-radio' %>
 
-                <%= form.radio_button :weight, 3, class: "btn-check" %>
-                <%= form.label :weight_3, "300 - 800", class: 'btn btn-outline-primary btn-radio' %>
+                <%= form.radio_button :weight_class, Delivery.weight_classes["300 - 800"], class: "btn-check", checked: delivery.weight_class == "300 - 800" %>
+                <%= form.label :weight_class_2, "300 - 800", class: 'btn btn-outline-primary btn-radio' %>
               </div>
             </div>
 
             <div class="col-6">
               <h5><%= t("delivery.form.item-details.length-label") %></h5>
               <div class="d-flex justify-content-around" role="group">
-                <%= form.radio_button :length, 1, class: "btn-check" %>
-                <%= form.label :length_1, "< 1.4", class: 'btn btn-outline-primary btn-radio' %>
+                <%= form.radio_button :length_class, Delivery.length_classes["< 1.4"], class: "btn-check", checked: delivery.length_class == "< 1.4" %>
+                <%= form.label :length_class_0, "< 1.4", class: 'btn btn-outline-primary btn-radio' %>
 
-                <%= form.radio_button :length, 2, class: "btn-check" %>
-                <%= form.label :length_2, "1.4 - 2.2", class: 'btn btn-outline-primary btn-radio' %>
+                <%= form.radio_button :length_class, Delivery.length_classes["1.4 - 2.2"], class: "btn-check", checked: delivery.length_class == "1.4 - 2.2" %>
+                <%= form.label :length_class_1, "1.4 - 2.2", class: 'btn btn-outline-primary btn-radio' %>
 
-                <%= form.radio_button :length, 3, class: "btn-check" %>
-                <%= form.label :length_3, "2.2 - 3.4", class: 'btn btn-outline-primary btn-radio' %>
+                <%= form.radio_button :length_class, Delivery.length_classes["2.2 - 3.4"], class: "btn-check", checked: delivery.length_class == "2.2 - 3.4" %>
+                <%= form.label :length_class_2, "2.2 - 3.4", class: 'btn btn-outline-primary btn-radio' %>
 
-                <%= form.radio_button :length, 4, class: "btn-check" %>
-                <%= form.label :length_4, "3.4 - 4.4", class: 'btn btn-outline-primary btn-radio' %>
+                <%= form.radio_button :length_class, Delivery.length_classes["3.4 - 4.4"], class: "btn-check", checked: delivery.length_class == "3.4 - 4.4" %>
+                <%= form.label :length_class_3, "3.4 - 4.4", class: 'btn btn-outline-primary btn-radio' %>
               </div>
             </div>  
           </div>
@@ -95,10 +99,10 @@
           <h4><%= t("delivery.form.delivery-type.heading") %></h4>
 
           <div class="d-flex justify-content-around mb-3" role="group">
-            <%= form.radio_button :delivery_type, Delivery.delivery_types["instant"], class: "btn-check", checked: true %>
+            <%= form.radio_button :delivery_type, Delivery.delivery_types["instant"], class: "btn-check", checked: delivery.delivery_type == "instant" %>
             <%= form.label :delivery_type_0, "ASAP", class: 'btn btn-outline-primary btn-radio col-4', data: {bs_toggle: "collapse", bs_target: "#collapseExample.show"}, aria: { expanded: "false", controls: "collapseExample"} %>
             
-            <%= form.radio_button :delivery_type, Delivery.delivery_types["scheduled"], class: "btn-check" %>
+            <%= form.radio_button :delivery_type, Delivery.delivery_types["scheduled"], class: "btn-check", checked: delivery.delivery_type == "scheduled" %>
             <%= form.label :delivery_type_1, "Scheduled", class: 'btn btn-outline-primary btn-radio col-4', data: {bs_toggle: "collapse", bs_target: "#collapseExample:not(.show)"}, aria: { expanded: "false", controls: "collapseExample"} %>
           </div>
 
@@ -111,9 +115,18 @@
         <div class="form-group mb-3">
           <h4><%=  t("delivery.form.contact-information.heading") %></h4>
           <div class="form-text mb-2"><%=  t("delivery.form.contact-information.explainer") %></div>
-          <%= form.text_field :recipient_name, placeholder: t("delivery.form.contact-information.name-placeholder"), class: 'form-control mb-2' %>
-          <%= form.text_field :recipient_email, placeholder: t("delivery.form.contact-information.email-placeholder"), class: 'form-control mb-2' %>
-          <%= form.text_field :recipient_phone, placeholder: t("delivery.form.contact-information.phone-placeholder"), class: 'form-control mb-2' %>
+          <div class="form-floating mb-2">
+            <%= form.text_field :recipient_name, placeholder: t("delivery.form.contact-information.name-placeholder"), class: 'form-control' %>
+            <%= form.label :recipient_name, t("delivery.form.contact-information.name-placeholder") %>
+          </div>
+          <div class="form-floating mb-2">
+            <%= form.text_field :recipient_email, placeholder: t("delivery.form.contact-information.email-placeholder"), class: 'form-control' %>
+            <%= form.label :recipient_email, t("delivery.form.contact-information.email-placeholder") %>
+          </div>
+          <div class="form-floating mb-2">
+            <%= form.text_field :recipient_phone, placeholder: t("delivery.form.contact-information.phone-placeholder"), class: 'form-control' %>
+            <%= form.label :recipient_phone, t("delivery.form.contact-information.phone-placeholder") %>
+          </div>
         </div>
 
         <div class="form-group mb-3">
