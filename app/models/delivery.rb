@@ -6,5 +6,12 @@ class Delivery < ApplicationRecord
   enum weight_class: ["< 15", "15 - 300", "300 - 800"]
   enum length_class: ["< 1.4", "1.4 - 2.2", "2.2 - 3.4", "3.4 - 4.4"]
 
-  validates_presence_of :pickup_address, :delivery_type, :weight_class, :length_class, :status
+  validates_presence_of :pickup_address, :delivery_address, :delivery_type, :weight_class, :length_class, :status
+
+  geocoded_by :delivery_address, latitude: :delivery_latitude, longitude: :delivery_longitude
+  after_validation :geocode
+
+  def pickup_address_one_line
+    raise
+  end
 end

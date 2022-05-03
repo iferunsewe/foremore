@@ -1,4 +1,3 @@
-
 <%= form_with(model: delivery, id: "delivery-form") do |form| %>
   <% if delivery.errors.any? %>
     <div style="color: red">
@@ -18,28 +17,35 @@
         
         <div class="form-group mb-3 button-and-explainer">
           <div class="d-grid gap-2 col-6 mx-auto mb-2">
-            <%= button_tag t("delivery.form.integrations.orders-button-label"), type: 'button', class: 'btn btn-primary semi-bold' %>
+            <%= button_tag t("delivery.form.integrations.orders-button-label"), type: 'button', class: 'btn btn-primary semi-bold', disabled: true %>
           </div>
           <div class="form-text mb-2"><%=  t("delivery.form.integrations.explainer_html") %></div>
         </div>
 
         <div class="form-group mb-3">
           <h4><%= t("delivery.form.address.heading") %></h4>
-          <div class="col-6">
-            <div>
-              <% pickup_address = Address.find(1)%>
-              <p><span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <%= pickup_address.one_line %><p>
-              <%= form.hidden_field :pickup_address_id, value: pickup_address.id %>
-            </div>
-          
-            <div class="form-floating mb-2">
-              <%= form.text_field :delivery_address, placeholder: t("delivery.form.address.delivery-placeholder"), class: 'form-control' %>
-              <%= form.label :delivery_address %>
-            </div>
+          <div class="row">
+            <div class="col-6 d-inline-block">
+              <div>
+                <% pickup_address = Address.find(1)%>
+                <p><span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <%= pickup_address.one_line %><p>
+                <%= form.hidden_field :pickup_address_id, value: pickup_address.id %>
+              </div>
+            
+              <div class="form-floating mb-2">
+                <%= form.text_field :delivery_address, placeholder: t("delivery.form.address.delivery-placeholder"), class: 'form-control' %>
+                <%= form.label :delivery_address %>
+              </div>
 
-            <div class="mb-2">
-              <%= form.text_area :address_notes, placeholder: t("delivery.form.address.notes-placeholder"), class: 'form-control' %>
+              <div class="mb-2">
+                <%= form.text_area :address_notes, placeholder: t("delivery.form.address.notes-placeholder"), class: 'form-control' %>
+              </div>
             </div>
+            <% if @delivery.persisted? %>
+              <div class="col-6 d-inline-block">
+                <%= image_tag google_map(center: @delivery.delivery_address) %>
+              </div>
+            <% end %>
           </div>
         </div>
 
@@ -48,7 +54,7 @@
 
           <div class="form-group mb-3 button-and-explainer">
             <div class="d-grid gap-2 col-6 mx-auto mb-2">
-              <%= button_tag t("delivery.form.item-details.inventory-button-label"), type: 'button', class: 'btn btn-primary semi-bold' %>
+              <%= button_tag t("delivery.form.item-details.inventory-button-label"), type: 'button', class: 'btn btn-primary semi-bold', disabled: true %>
             </div>
             <div class="form-text mb-2"><%=  t("delivery.form.item-details.inventory-explainer_html") %></div>
           </div>

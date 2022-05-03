@@ -8,3 +8,19 @@
 
 Address.create!(street: 'Berkenwoudestraat 22', city: 'Rotterdam', postcode: '3076 JA', country: 'Netherlands', company_name: 'Simonis')
 Address.create!(street: 'Walhallalaan 82', city: 'Rotterdam', postcode: '3072 EX', country: 'Netherlands')
+Delivery.create!(
+  pickup_address: Address.first,
+  delivery_address: Address.last.one_line,
+  delivery_type: 'instant',
+  weight_class: '< 15',
+  length_class: '2.2 - 3.4',
+  status: 'pending',
+  order_reference: "234567",
+  other_notes: "Here are some other notes",
+  address_notes: "Leave at the door",
+  recipient_name: "John Doe",
+  recipient_email: "johndoe@email.com",
+  recipient_phone: "07842551878",
+  scheduled_date: DateTime.now,
+  description: "2x Plasterboards"
+)
