@@ -37,7 +37,7 @@ en:
     form:
       integrations:
         orders-button-label: "Select order"
-        explainer: "Select an order from your ERP system or a CSV to prefill this form"
+        explainer_html: "<b>Coming soon!</b> Select an order from your ERP system or a CSV to prefill this form"
       address:
         heading: "Address"
         pickup-label: "Pick up from"
@@ -46,7 +46,7 @@ en:
       item-details:
         heading: "Item Details"
         inventory-button-label: "Select from inventory"
-        inventory-explainer: "Choose an item from your inventory to add to the order"
+        inventory-explainer_html: "<b>Coming soon!</b> Choose an item from your inventory to add to the order"
         description-placeholder: "What are we picking up?"
         reference-placeholder: "Order reference"
         weight-label: "Weight (kg)"
