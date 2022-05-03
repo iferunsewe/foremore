@@ -42,7 +42,7 @@
               </div>
             </div>
             <% if @delivery.persisted? %>
-              <% iframe_source = google_map(pickup_address: @delivery.pickup_address.one_line, delivery_address: @delivery.delivery_address) %>
+              <% iframe_source = google_map(pickup_address: @delivery.pickup_address.to_coordinates_s, delivery_address: @delivery.delivery_address) %>
             <% else %>
               <% iframe_source = google_map(pickup_address: pickup_address.one_line) %>
             <% end %>

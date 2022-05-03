@@ -11,7 +11,7 @@ class Delivery < ApplicationRecord
   geocoded_by :delivery_address, latitude: :delivery_latitude, longitude: :delivery_longitude
   after_validation :geocode
 
-  def pickup_address_one_line
-    raise
+  def to_coordinates_s
+    to_coordinates.join(',')
   end
 end

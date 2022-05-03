@@ -8,4 +8,8 @@ class Address < ApplicationRecord
     return [street, city, postcode].join(', ') if company_name.nil?
     [company_name, street, city, postcode].join(', ')
   end
+
+  def to_coordinates_s
+    to_coordinates.join(',')
+  end
 end
