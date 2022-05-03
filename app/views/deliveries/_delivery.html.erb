@@ -1,7 +1,7 @@
 <div id="<%= dom_id delivery %>">
   <p>
     <strong>Status:</strong>
-    <%= delivery.status %>
+    <%= delivery.status.capitalize %>
   </p>
 
   <p>
@@ -41,7 +41,7 @@
 
   <p>
     <strong>Type:</strong>
-    <%= delivery.delivery_type %>
+    <%= delivery.delivery_type.capitalize %>
   </p>
 
   <p>
@@ -50,10 +50,10 @@
   </p>
 
   <p>
-    <strong>Recipient</strong>
-    Name: <%= delivery.recipient_name %>
-    Phone number: <%= delivery.recipient_phone %>
-    Email: <%= delivery.recipient_email %>
+    <strong>Recipient:</strong><br/>
+    <strong>Name:</strong> <%= delivery.recipient_name %><br/>
+    <strong>Phone number:</strong> <%= delivery.recipient_phone %><br/>
+    <strong>Email:</strong> <%= delivery.recipient_email %><br/>
   </p>
 
   <p>
