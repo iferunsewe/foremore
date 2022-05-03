@@ -142,4 +142,10 @@ table {
   #delivery_address_notes{
     min-height: calc(6.5em + 0.75rem + 2px);
   }
+
+  .map {
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+  }
 }
