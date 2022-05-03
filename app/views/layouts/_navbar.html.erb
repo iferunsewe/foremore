@@ -1,5 +1,5 @@
 <ul class="nav flex-column">
-  <li class="nav-item flex-column <%= current_page?(new_delivery_path) ? "active" : "" %>">
+  <li class="nav-item flex-column <%= is_new_deliveries_path_active? ? "active" : "" %>">
     <%= link_to(new_delivery_path, class: 'nav-link flex-column') do %>
       <i class="bi bi-pencil-fill"></i>
       <p><%=  t("delivery.new-link") %></p>

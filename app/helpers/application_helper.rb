@@ -8,4 +8,8 @@ module ApplicationHelper
       false
     end
   end
+
+  def is_new_deliveries_path_active?
+    current_page?(new_delivery_path) || current_page?(root_path)
+  end
 end
