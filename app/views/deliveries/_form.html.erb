@@ -28,7 +28,7 @@
               <h4><%= t("delivery.form.address.heading") %></h4>
               <div>
                 <% pickup_address = Address.find(1)%>
-                <p><span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <%= pickup_address.one_line %><p>
+                <p><span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <span id="delivery_pickup_address"><%= pickup_address.one_line %></span><p>
                 <%= form.hidden_field :pickup_address_id, value: pickup_address.id %>
               </div>
             
@@ -41,13 +41,7 @@
                 <%= form.text_area :address_notes, placeholder: t("delivery.form.address.notes-placeholder"), class: 'form-control' %>
               </div>
             </div>
-            <% if @delivery.persisted? %>
-              <% iframe_source = google_map(pickup_address: @delivery.pickup_address.one_line, delivery_address: @delivery.delivery_address) %>
-            <% else %>
-              <% iframe_source = google_map(pickup_address: pickup_address.one_line) %>
-            <% end %>
             <div class="col-6 d-inline-block">
-              
               <h4><%=  t("delivery.form.contact-information.heading") %></h4>
               <div class="form-text mb-2"><%=  t("delivery.form.contact-information.explainer") %></div>
               <div class="form-floating mb-2">
@@ -144,8 +138,14 @@
       <div class="col-6">
         <div class="sticky-top">
           <div class="form-group mb-5 map-container">
+            <% if @delivery.persisted? %>
+              <% iframe_source = google_map(pickup_address: @delivery.pickup_address.one_line, delivery_address: @delivery.delivery_address) %>
+            <% else %>
+              <% iframe_source = google_map(pickup_address: pickup_address.one_line) %>
+            <% end %>
             <iframe
               class="map"
+              id="google-embed-map"
               src=<%= iframe_source %>
               >
             </iframe>
