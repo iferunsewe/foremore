@@ -7,4 +7,8 @@ module DeliveriesHelper
     end
     url.gsub(/\s+/, '%20')
   end
+
+  def google_map_fallback_url(pickup_address:)
+    "https://www.google.com/maps/embed/v1/place?key=#{ENV['GOOGLE_API_KEY']}&q=#{pickup_address}"
+  end
 end

@@ -147,6 +147,7 @@
               class="map"
               id="google-embed-map"
               src=<%= iframe_source %>
+              data-fallback-url= <%= google_map_fallback_url(pickup_address: pickup_address.one_line) %>
               >
             </iframe>
           </div>

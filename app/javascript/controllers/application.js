@@ -14,10 +14,13 @@ function updateMapFromDeliveryAddress() {
   deliveryAddressEle.addEventListener("change", function(e) {
     const deliveryAddress = this.value
     const map = document.getElementById("google-embed-map")
-    let newMapUrl = new URL(map.src);
-    newMapUrl.searchParams.set('destination', deliveryAddress);
-    newMapUrl.searchParams.delete('zoom')
-    console.log(newMapUrl.toString())
+    if (deliveryAddress !== undefined && deliveryAddress !== "") {
+      var newMapUrl = new URL(map.src);
+      newMapUrl.searchParams.set('destination', deliveryAddress);
+      newMapUrl.searchParams.delete('zoom')
+    } else {
+      var newMapUrl = map.getAttribute('data-fallback-url');
+    }
     map.src = newMapUrl.toString()
   });
 }
