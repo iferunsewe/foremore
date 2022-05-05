@@ -38,3 +38,5 @@
 /.env
 
 /package-lock.json
+
+/app/.DS_Store
