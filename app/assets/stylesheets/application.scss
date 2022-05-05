@@ -6,8 +6,9 @@ body {
   --bs-body-font-size: 0.875rem;
 }
 
-#main {
-  padding-left: 8%;
+.foremore-logo {
+  width: 100%;
+  height: auto;
 }
 
 table {
@@ -18,6 +19,9 @@ table {
       text-align: center;
       padding: 10px;
       border-radius: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
@@ -38,6 +42,7 @@ table {
   width: 10%;
   padding-top: 5%;
   .nav-item {
+    width: 100%;
     .nav-link.flex-column {
       color: #F7E2B5;
       text-align: center;
@@ -158,5 +163,59 @@ table {
 
   .gm-style .directions-card-medium-large {
     display: none !important;
+  }
+}
+
+#mobile-header {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  #desktop-header, #desktop-nav {
+    display: none;
+  }
+
+  #mobile-header {
+    display: block;
+  }
+
+
+  #mobile-header {
+    .bi-list {
+      font-size: 2.25rem;
+      color: #06158F;
+    }
+
+    li a i {
+      margin-right: 0.5rem;
+    }
+
+    .nav-item.active {
+      width: 100%;
+      background: #06158F;
+    }
+
+    .nav-item {
+      height: 3rem;
+      padding-left: 1.25rem;
+
+      .nav-link {
+        color: #F7E2B5;
+        align-items: center;
+        height: 100%;
+      }
+    }
+
+    #navbarTogglerDemo02 {
+      margin-left: -0.75rem;
+      margin-right: -0.75rem;
+      background: #06158F80;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #main {
+    padding-left: 8%;
   }
 }

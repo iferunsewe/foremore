@@ -1,6 +1,8 @@
-<ul class="nav flex-row header mb-5 justify-content-between">
+<ul class="nav flex-row header mb-5 justify-content-between" id="desktop-header">
   <li class="nav-item">
-    <%= image_tag "logo.png", alt: "Foremore", class: "logo" %>
+    <%= link_to(root_path, class: 'nav-link') do %>
+      <%= image_tag "logo.png", alt: "Foremore", class: "logo" %>
+    <% end %>
   </li>
 
   <li class="nav-item">
@@ -10,3 +12,32 @@
     <p>Berkenwoudestraat 22, 3076 JA Rotterdam</p>
   </li>
 </ul>
+
+<nav class="navbar navbar-light mb-4" id="mobile-header">
+  <div class="container-fluid">
+    <%= link_to(root_path, class: 'nav-link') do %>
+      <%= image_tag "hat-logo-small.png", alt: "Foremore", class: "logo foremore-logo" %>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-lg-0">
+        <li class="nav-item <%= is_new_deliveries_path_active? ? "active" : "" %>">
+          <%= link_to(new_delivery_path, class: 'nav-link d-flex') do %>
+            <i class="bi bi-pencil-fill mr-3"></i>
+            <span class="ml-3"><%=  t("delivery.new-link") %></span>
+          <% end %>
+        </li>
+        <li class="nav-item <%= is_deliveries_path_active? ? "active" : "" %>"">
+          <%= link_to(deliveries_path, class: 'nav-link d-flex') do %>
+            <i class="bi bi-truck mr-3"></i>
+            <span class="ml-3"><%=  t("delivery.list-link") %></span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

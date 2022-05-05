@@ -12,7 +12,7 @@
   <% end %>
   <div class="container">
     <div class="row">
-      <div class="col-6">
+      <div class="col-md-6 col-sm-12">
         <%= form.hidden_field :status, value: "pending" %>
         
         <div class="form-group mb-3 button-and-explainer">
@@ -24,7 +24,7 @@
 
         <div class="form-group mb-3">
           <div class="row">
-            <div class="col-6 d-inline-block">
+            <div class="col-md-6 col-sm-12 d-inline-block">
               <h4><%= t("delivery.form.address.heading") %></h4>
               <div>
                 <% pickup_address = Address.find(1)%>
@@ -41,7 +41,7 @@
                 <%= form.text_area :address_notes, placeholder: t("delivery.form.address.notes-placeholder"), class: 'form-control' %>
               </div>
             </div>
-            <div class="col-6 d-inline-block">
+            <div class="col-md-6 col-sm-12 d-inline-block">
               <h4><%=  t("delivery.form.contact-information.heading") %></h4>
               <div class="form-text mb-2"><%=  t("delivery.form.contact-information.explainer") %></div>
               <div class="form-floating mb-2">
@@ -97,7 +97,7 @@
           </div>
 
           <div class="row">
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12 mb-3 mb-md-0">
               <%= form.label :weight_class, t("delivery.form.item-details.weight-label"),  style: "display: block", class: 'form-label semi-bold' %>
               <div class="d-flex justify-content-around" role="group">
                 <%= form.radio_button :weight_class, Delivery.weight_classes["< 15"], class: "btn-check", checked: delivery.weight_class == "< 15" %>
@@ -111,7 +111,7 @@
               </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-md-6 col-sm-12 mb-3 mb-md-0">
               <%= form.label :length_class, t("delivery.form.item-details.length-label"),  style: "display: block", class: 'form-label semi-bold' %>
               <div class="d-flex justify-content-around" role="group">
                 <%= form.radio_button :length_class, Delivery.length_classes["< 1.4"], class: "btn-check", checked: delivery.length_class == "< 1.4" %>
@@ -135,7 +135,7 @@
           <%= form.text_area :other_notes, placeholder: t("delivery.form.other-notes.placeholder"), class: 'form-control mb-2' %>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-md-6 col-sm-12">
         <div class="sticky-top">
           <div class="form-group mb-5 map-container">
             <% if @delivery.persisted? %>
