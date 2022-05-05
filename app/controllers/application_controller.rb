@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!
   # Helps to give a default location in development
   # See: http://hankstoever.com/posts/11-Pro-Tips-for-Using-Geocoder-with-Rails
   def location

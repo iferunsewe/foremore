@@ -10,6 +10,6 @@ module ApplicationHelper
   end
 
   def is_new_deliveries_path_active?
-    current_page?(new_delivery_path) || current_page?(root_path)
+    current_page?(new_delivery_path)
   end
 end
