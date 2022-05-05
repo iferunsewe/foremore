@@ -26,6 +26,14 @@ function updateMapFromDeliveryAddress() {
   });
 }
 
+function initMapsAutocomplete() {
+  let deliveryAddressEle = document.getElementById("delivery_delivery_address")
+  if (!deliveryAddressEle) return;
+  new google.maps.places.Autocomplete(deliveryAddressEle);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   updateMapFromDeliveryAddress()
+
+  google.maps.event.addDomListener(window, 'load', initMapsAutocomplete);
 })
