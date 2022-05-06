@@ -1,6 +1,6 @@
 <ul class="nav flex-row header mb-5 justify-content-between" id="desktop-header">
   <li class="nav-item">
-    <%= link_to(authenticated_root_path, class: 'nav-link') do %>
+    <%= link_to(authenticated_root_path, class: 'nav-link logo-container') do %>
       <%= image_tag "logo.png", alt: "Foremore", class: "logo" %>
     <% end %>
   </li>
@@ -8,11 +8,6 @@
   <li>
     <% if user_signed_in? %>
       Logged in as <strong><%= current_user.email %></strong>.
-      <%= link_to 'Edit profile', edit_user_registration_path %> |
-      <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
-    <% else %>
-      <%= link_to "Sign up", new_user_registration_path %> |
-      <%= link_to "Login", new_user_session_path %>
     <% end %>
   </li>
 
@@ -25,32 +20,46 @@
     <% end %>
   </li>
 </ul>
-
 <nav class="navbar navbar-light mb-4" id="mobile-header">
   <div class="container-fluid">
-    <%= link_to(authenticated_root_path, class: 'nav-link') do %>
-      <%= image_tag "hat-logo-small.png", alt: "Foremore", class: "logo foremore-logo" %>
+    <%= link_to(authenticated_root_path, class: 'nav-link logo-container') do %>
+      <%= image_tag "logo.png", alt: "Foremore", class: "logo foremore-logo" %>
     <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="bi bi-list"></i>
-    </button>
+    <% if user_signed_in? %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav me-auto mb-lg-0">
-        <li class="nav-item <%= is_new_deliveries_path_active? ? "active" : "" %>">
-          <%= link_to(new_delivery_path, class: 'nav-link d-flex') do %>
-            <i class="bi bi-pencil-fill mr-3"></i>
-            <span class="ml-3"><%=  t("delivery.new-link") %></span>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-lg-0">
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <div class="d-flex align-items-center h-100">
+                <span>Logged in as <strong><%= current_user.email %></strong>.</span>
+              </div>
+            </li>
           <% end %>
-        </li>
-        <li class="nav-item <%= is_deliveries_path_active? ? "active" : "" %>"">
-          <%= link_to(deliveries_path, class: 'nav-link d-flex') do %>
-            <i class="bi bi-truck mr-3"></i>
-            <span class="ml-3"><%=  t("delivery.list-link") %></span>
-          <% end %>
-        </li>
-      </ul>
-    </div>
+          <li class="nav-item <%= is_new_deliveries_path_active? ? "active" : "" %>">
+            <%= link_to(new_delivery_path, class: 'nav-link d-flex') do %>
+              <i class="bi bi-pencil-fill mr-3"></i>
+              <span class="ml-3"><%=  t("delivery.new-link") %></span>
+            <% end %>
+          </li>
+          <li class="nav-item <%= is_deliveries_path_active? ? "active" : "" %>"">
+            <%= link_to(deliveries_path, class: 'nav-link d-flex') do %>
+              <i class="bi bi-truck mr-3"></i>
+              <span class="ml-3"><%=  t("delivery.list-link") %></span>
+            <% end %>
+          </li>
+          <li class="nav-item <%= is_settings_path_active? ? "active" : "" %>">
+            <%= link_to(edit_user_registration_path, class: 'nav-link d-flex') do %>
+              <i class="bi bi-gear mr-3"></i>
+              <span class="ml-3"><%=  t("settings.list-link") %></span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
   </div>
 </nav>

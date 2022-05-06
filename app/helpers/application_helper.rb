@@ -12,4 +12,8 @@ module ApplicationHelper
   def is_new_deliveries_path_active?
     current_page?(new_delivery_path)
   end
+
+  def is_settings_path_active?
+    current_page?(edit_user_registration_path)
+  end
 end

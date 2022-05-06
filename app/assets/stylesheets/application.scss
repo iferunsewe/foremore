@@ -14,9 +14,15 @@ body {
   }
 }
 
-.foremore-logo {
-  width: 100%;
-  height: auto;
+#desktop-header {
+  .logo-container {
+    padding: 0;
+  }
+
+  .foremore-logo {
+    width: 100%;
+    height: auto;
+  }
 }
 
 table {
@@ -216,6 +222,15 @@ table {
       margin-left: -0.75rem;
       margin-right: -0.75rem;
       background: #06158F80;
+    }
+
+    .logo-container {
+      padding-left: 0;
+    }
+  
+    .foremore-logo {
+      width: 100%;
+      height: auto;
     }
   }
 }
