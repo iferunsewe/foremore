@@ -170,6 +170,10 @@ table {
   display: none;
 }
 
+.error-list {
+  list-style: none;
+}
+
 @media only screen and (max-width: 768px) {
   #desktop-header, #desktop-nav {
     display: none;

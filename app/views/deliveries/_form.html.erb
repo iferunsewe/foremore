@@ -64,7 +64,11 @@
           <h4 class="mb-3"><%= t("delivery.form.delivery-type.heading") %></h4>
 
           <div class="d-flex justify-content-around mb-3" role="group">
-            <%= form.radio_button :delivery_type, Delivery.delivery_types["instant"], class: "btn-check", checked: delivery.delivery_type == "instant" %>
+            <% if delivery.persisted? %>
+              <%= form.radio_button :delivery_type, Delivery.delivery_types["instant"], class: "btn-check", checked: delivery.delivery_type == "instant" %>
+            <% else %>
+              <%= form.radio_button :delivery_type, Delivery.delivery_types["instant"], class: "btn-check", checked: true %>
+            <% end %>
             <%= form.label :delivery_type_0, "ASAP", class: 'btn btn-outline-primary btn-radio col-4', data: {bs_toggle: "collapse", bs_target: "#collapseExample.show"}, aria: { expanded: "false", controls: "collapseExample"} %>
             
             <%= form.radio_button :delivery_type, Delivery.delivery_types["scheduled"], class: "btn-check", checked: delivery.delivery_type == "scheduled" %>
