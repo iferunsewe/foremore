@@ -10,8 +10,19 @@ class Delivery < ApplicationRecord
 
   geocoded_by :delivery_address, latitude: :delivery_latitude, longitude: :delivery_longitude
   after_validation :geocode
+  after_update :update_delivered_at, if: :status_changed_to_delivered?
 
   def to_coordinates_s
     to_coordinates.join(',')
+  end
+
+  private
+
+  def update_delivered_at
+    update(delivered_at: DateTime.now)
+  end
+
+  def status_changed_to_delivered?
+    !saved_change_to_status.nil? && saved_change_to_status[1] == "delivered"
   end
 end
