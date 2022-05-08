@@ -128,6 +128,7 @@ table {
   ::placeholder {
     color: #8F8F8F;
     font-size: 0.75em;
+    opacity: 0.65;
   }
 
   .form-floating {
@@ -136,7 +137,7 @@ table {
       --bs-body-font-family: "Montserrat";
       font-weight: 600;
       padding: 1.25rem 0.75rem;
-      font-size: 0.75rem;
+      font-size: 0.875rem;
     }
   }
 

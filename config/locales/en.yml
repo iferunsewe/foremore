@@ -43,7 +43,7 @@ en:
       address:
         heading: "Address"
         pickup-label: "Pick up from"
-        delivery-placeholder: "Delivery address"
+        delivery-placeholder: "Enter a delivery address"
         notes-placeholder: "Enter any notes for the pick up and delivery e.g. floor level, parking available, leave at the door etc..."
       map:
         estimated-time_html: <b>Latest delivery by:</b>

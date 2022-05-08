@@ -34,7 +34,7 @@
             
               <div class="form-floating mb-2">
                 <%= form.text_field :delivery_address, placeholder: "", class: 'form-control' %>
-                <%= form.label :delivery_address %>
+                <%= form.label :delivery_address, t("delivery.form.address.delivery-placeholder") %>
               </div>
 
               <div class="mb-2">
@@ -49,11 +49,11 @@
                 <%= form.label :recipient_name, t("delivery.form.contact-information.name-placeholder") %>
               </div>
               <div class="form-floating mb-2">
-                <%= form.text_field :recipient_email, class: 'form-control' %>
+                <%= form.email_field :recipient_email, class: 'form-control' %>
                 <%= form.label :recipient_email, t("delivery.form.contact-information.email-placeholder") %>
               </div>
               <div class="form-floating mb-2">
-                <%= form.text_field :recipient_phone, class: 'form-control' %>
+                <%= form.telephone_field :recipient_phone, class: 'form-control' %>
                 <%= form.label :recipient_phone, t("delivery.form.contact-information.phone-placeholder") %>
               </div>
             </div>
