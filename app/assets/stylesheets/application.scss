@@ -187,12 +187,21 @@ table {
     display: none;
   }
 
-  #mobile-header {
-    display: block;
+  #main .map-container {
+    height: 40vh;
+    background: #F2F4F8;
   }
 
+  #delivery-form .sticky-top {
+    top: 8%;
+  }
 
   #mobile-header {
+    background: #F2F4F8;
+    display: block;
+    padding-bottom: 0px;
+    z-index: 1050;
+
     .bi-list {
       font-size: 2.25rem;
       color: #06158F;
@@ -238,5 +247,14 @@ table {
 @media only screen and (min-width: 768px) {
   #main {
     padding-left: 8%;
+  }
+}
+
+@media only screen and (max-width: 280px) {
+  #mobile-header{
+    .logo-container {
+      flex: 0 0 auto;
+      width: 66.66666667%;
+    }
   }
 }

@@ -12,11 +12,11 @@
   <% end %>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-sm-12">
+      <div class="col-md-6 col-sm-12 order-2 order-md-1">
         <%= form.hidden_field :status, value: "pending" %>
         
         <div class="form-group mb-3 button-and-explainer">
-          <div class="d-grid gap-2 col-6 mx-auto mb-2">
+          <div class="d-grid gap-2 col-12 col-md-6 mx-auto mb-2">
             <%= button_tag t("delivery.form.integrations.orders-button-label"), type: 'button', class: 'btn btn-primary semi-bold', disabled: true %>
           </div>
           <div class="form-text mb-2"><%=  t("delivery.form.integrations.explainer_html") %></div>
@@ -85,7 +85,7 @@
           <h4><%= t("delivery.form.item-details.heading") %></h4>
 
           <div class="form-group mb-3 button-and-explainer">
-            <div class="d-grid gap-2 col-6 mx-auto mb-2">
+            <div class="d-grid gap-2 col-12 col-md-6 mx-auto mb-2">
               <%= button_tag t("delivery.form.item-details.inventory-button-label"), type: 'button', class: 'btn btn-primary semi-bold', disabled: true %>
             </div>
             <div class="form-text mb-2"><%=  t("delivery.form.item-details.inventory-explainer_html") %></div>
@@ -138,8 +138,12 @@
           <h4 class="mb-3">Any other notes</h4>
           <%= form.text_area :other_notes, placeholder: t("delivery.form.other-notes.placeholder"), class: 'form-control mb-2' %>
         </div>
+
+        <div class="row d-md-none d-flex justify-content-center mb-3">
+          <%= form.submit t("delivery.form.submit-button-label"), class: "btn btn-success col-12 semi-bold" %>
+        </div>
       </div>
-      <div class="col-md-6 col-sm-12">
+      <div class="col-md-6 col-sm-12 order-1 order-md-2 sticky-top">
         <div class="sticky-top">
           <div class="form-group mb-5 map-container">
             <% if @delivery.persisted? %>
@@ -157,7 +161,7 @@
             </iframe>
           </div>
 
-          <div class="row d-flex justify-content-center">
+          <div class="row d-none d-md-flex justify-content-center">
             <%= form.submit t("delivery.form.submit-button-label"), class: "btn btn-success col-6 semi-bold" %>
           </div>
         </div>

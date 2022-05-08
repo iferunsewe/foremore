@@ -1,17 +1,17 @@
 <ul class="nav flex-row header mb-5 justify-content-between" id="desktop-header">
-  <li class="nav-item">
+  <li class="nav-item col-4">
     <%= link_to(authenticated_root_path, class: 'nav-link logo-container') do %>
       <%= image_tag "logo.png", alt: "Foremore", class: "logo" %>
     <% end %>
   </li>
 
-  <li>
+  <li class="nav-item col-4">
     <% if user_signed_in? %>
       Logged in as <strong><%= current_user.email %></strong>.
     <% end %>
   </li>
 
-  <li class="nav-item">
+  <li class="nav-item col-4">
     <% if user_signed_in? %>
       <div class="d-flex justify-content-end">
         <%= image_tag "simonis-logo.png", alt: "Simonis", class: "logo" %>
@@ -20,7 +20,7 @@
     <% end %>
   </li>
 </ul>
-<nav class="navbar navbar-light mb-4" id="mobile-header">
+<nav class="navbar navbar-light mb-4 sticky-top" id="mobile-header">
   <div class="container-fluid">
     <%= link_to(authenticated_root_path, class: 'nav-link logo-container') do %>
       <%= image_tag "logo.png", alt: "Foremore", class: "logo foremore-logo" %>
