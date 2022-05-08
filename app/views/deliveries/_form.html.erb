@@ -33,7 +33,7 @@
               </div>
             
               <div class="form-floating mb-2">
-                <%= form.text_field :delivery_address, placeholder: "", class: 'form-control' %>
+                <%= form.text_field :delivery_address, placeholder: "", class: 'form-control', required: true %>
                 <%= form.label :delivery_address, t("delivery.form.address.delivery-placeholder") %>
               </div>
 
@@ -46,7 +46,7 @@
               <div class="form-text mb-2"><%=  t("delivery.form.contact-information.explainer") %></div>
               <div class="form-floating mb-2">
                 <%= form.text_field :recipient_name, class: 'form-control' %>
-                <%= form.label :recipient_name, t("delivery.form.contact-information.name-placeholder") %>
+                <%= form.label :recipient_name, t("delivery.form.contact-information.name-placeholder"), required: true %>
               </div>
               <div class="form-floating mb-2">
                 <%= form.email_field :recipient_email, class: 'form-control' %>
@@ -54,7 +54,7 @@
               </div>
               <div class="form-floating mb-2">
                 <%= form.telephone_field :recipient_phone, class: 'form-control' %>
-                <%= form.label :recipient_phone, t("delivery.form.contact-information.phone-placeholder") %>
+                <%= form.label :recipient_phone, t("delivery.form.contact-information.phone-placeholder"), required: true %>
               </div>
             </div>
           </div>
@@ -105,7 +105,11 @@
             <div class="col-md-6 col-sm-12 mb-3 mb-md-0">
               <%= form.label :weight_class, t("delivery.form.item-details.weight-label"),  style: "display: block", class: 'form-label semi-bold' %>
               <div class="d-flex justify-content-around" role="group">
-                <%= form.radio_button :weight_class, Delivery.weight_classes["< 15"], class: "btn-check", checked: delivery.weight_class == "< 15" %>
+                <% if delivery.persisted? %>
+                  <%= form.radio_button :weight_class, Delivery.weight_classes["< 15"], class: "btn-check", checked: delivery.weight_class == "< 15" %>
+                <% else %>
+                  <%= form.radio_button :weight_class, Delivery.weight_classes["< 15"], class: "btn-check", checked: true %>
+                <% end %>
                 <%= form.label :weight_class_0, "< 15", class: 'btn btn-outline-primary btn-radio' %>
 
                 <%= form.radio_button :weight_class, Delivery.weight_classes["15 - 300"], class: "btn-check", checked: delivery.weight_class == "15 - 300" %>
@@ -119,7 +123,11 @@
             <div class="col-md-6 col-sm-12 mb-3 mb-md-0">
               <%= form.label :length_class, t("delivery.form.item-details.length-label"),  style: "display: block", class: 'form-label semi-bold' %>
               <div class="d-flex justify-content-around" role="group">
-                <%= form.radio_button :length_class, Delivery.length_classes["< 1.4"], class: "btn-check", checked: delivery.length_class == "< 1.4" %>
+                <% if delivery.persisted? %>
+                  <%= form.radio_button :length_class, Delivery.length_classes["< 1.4"], class: "btn-check", checked: delivery.length_class == "< 1.4" %>
+                <% else %>
+                  <%= form.radio_button :length_class, Delivery.length_classes["< 1.4"], class: "btn-check", checked: true %>
+                <% end %>
                 <%= form.label :length_class_0, "< 1.4", class: 'btn btn-outline-primary btn-radio' %>
 
                 <%= form.radio_button :length_class, Delivery.length_classes["1.4 - 2.2"], class: "btn-check", checked: delivery.length_class == "1.4 - 2.2" %>
