@@ -7,12 +7,6 @@
 
   <li class="nav-item col-4">
     <% if user_signed_in? %>
-      Logged in as <strong><%= current_user.email %></strong>.
-    <% end %>
-  </li>
-
-  <li class="nav-item col-4">
-    <% if user_signed_in? %>
       <div class="d-flex justify-content-end">
         <%= image_tag "simonis-logo.png", alt: "Simonis", class: "logo" %>
       </div>
@@ -35,13 +29,12 @@
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-lg-0">
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <div class="d-flex align-items-center h-100">
-                <span>Logged in as <strong><%= current_user.email %></strong>.</span>
-              </div>
-            </li>
-          <% end %>
+          <li class="nav-item">
+            <%= link_to(edit_user_registration_path, class: 'nav-link d-flex') do %>
+              <i class="bi bi-person-circle mr-3"></i>
+              <span class="overflow-ellipsis"><%= current_user&.first_name || 'User' %></span>
+            <% end %>
+          </li>
           <li class="nav-item <%= is_new_deliveries_path_active? ? "active" : "" %>">
             <%= link_to(new_delivery_path, class: 'nav-link d-flex') do %>
               <i class="bi bi-pencil-fill mr-3"></i>

@@ -18,4 +18,10 @@
       <p><%=  t("settings.list-link") %></p>
     <% end %>
   </li>
+  <li class="nav-item flex-column text-center mt-auto">
+    <%= link_to(edit_user_registration_path, class: 'nav-link flex-column') do %>
+      <i class="bi bi-person-circle"></i>
+      <p class="overflow-ellipsis"><%= current_user&.first_name || 'User' %></p>
+    <% end %>
+  </li>
 </ul>
