@@ -17,8 +17,8 @@ function updateMapFromDeliveryAddress() {
   });
 }
 
-function updateMapFromDeliveryAddressOnInit(deliveryAddress) {
-  const deliveryAddress = document.getElementById("delivery_delivery_address").value
+function updateMapFromDeliveryAddressOnInit(deliveryAddressValue) {
+  const deliveryAddress = (deliveryAddressValue || document.getElementById("delivery_delivery_address").value)
   if(!deliveryAddress || deliveryAddress == "") return;
   const pickupAddress = document.getElementById("delivery_pickup_address").innerText
   const map = document.getElementById("google-embed-map")
