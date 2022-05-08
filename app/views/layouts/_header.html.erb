@@ -11,7 +11,7 @@
         <%= image_tag "simonis-logo.png", alt: "Simonis", class: "logo" %>
       </div>
       <div class="d-flex justify-content-end">
-        <p>Berkenwoudestraat 22, 3076 JA Rotterdam</p>
+        <p class="overflow-ellipsis">Berkenwoudestraat 22, 3076 JA Rotterdam</p>
       </div>
     <% end %>
   </li>
@@ -38,19 +38,19 @@
           <li class="nav-item <%= is_new_deliveries_path_active? ? "active" : "" %>">
             <%= link_to(new_delivery_path, class: 'nav-link d-flex') do %>
               <i class="bi bi-pencil-fill mr-3"></i>
-              <span class="ml-3"><%=  t("delivery.new-link") %></span>
+              <span class="ml-3 overflow-ellipsis"><%=  t("delivery.new-link") %></span>
             <% end %>
           </li>
           <li class="nav-item <%= is_deliveries_path_active? ? "active" : "" %>"">
             <%= link_to(deliveries_path, class: 'nav-link d-flex') do %>
               <i class="bi bi-truck mr-3"></i>
-              <span class="ml-3"><%=  t("delivery.list-link") %></span>
+              <span class="ml-3 overflow-ellipsis"><%=  t("delivery.list-link") %></span>
             <% end %>
           </li>
           <li class="nav-item <%= is_settings_path_active? ? "active" : "" %>">
             <%= link_to(edit_user_registration_path, class: 'nav-link d-flex') do %>
               <i class="bi bi-gear mr-3"></i>
-              <span class="ml-3"><%=  t("settings.list-link") %></span>
+              <span class="ml-3 overflow-ellipsis"><%=  t("settings.list-link") %></span>
             <% end %>
           </li>
         </ul>
