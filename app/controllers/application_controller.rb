@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
       @location
     end
   end
+
+  def after_sign_in_path_for(resource)
+    authenticated_root_path # your path
+  end
 end
