@@ -75,9 +75,9 @@
             <%= form.label :delivery_type_1, "Scheduled", class: 'btn btn-outline-primary btn-radio col-4 semi-bold', data: {bs_toggle: "collapse", bs_target: "#collapseExample:not(.show)"}, aria: { expanded: "false", controls: "collapseExample"} %>
           </div>
 
-          <div class="collapse" id="collapseExample">
+          <div class="collapse <%= delivery&.delivery_type == "scheduled" ? "show" : "" %>" id="collapseExample">
             <%= form.label :scheduled_date, t("delivery.form.delivery-type.scheduled-date.heading"), style: "display: block", class: 'form-label semi-bold' %>
-            <%= form.datetime_local_field :scheduled_date, value: DateTime.now.strftime('%Y-%m-%dT%H:%M'), class: 'form-control mb-2' %>
+            <%= form.datetime_local_field :scheduled_date, value: DateTime.now.strftime('%Y-%m-%d %H:%M'), class: 'form-control mb-2' %>
           </div>
         </div>
 

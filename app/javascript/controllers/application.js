@@ -13,18 +13,26 @@ function updateMapFromDeliveryAddress() {
   if (!deliveryAddressEle) return;
   deliveryAddressEle.addEventListener("change", function(e) {
     const deliveryAddress = this.value
-    const pickupAddress = document.getElementById("delivery_pickup_address").innerText
-    const map = document.getElementById("google-embed-map")
-    if (!map) return;
-    var googleApiKey = map.getAttribute('data-google-api-key');
-    if (deliveryAddress !== undefined && deliveryAddress !== "") {
-      var newMapUrl = `https://www.google.com/maps/embed/v1/directions?key=${googleApiKey}&origin=${pickupAddress}&destination=${deliveryAddress}&mode=bicycling`
-    } else {
-      var newMapUrl = `https://www.google.com/maps/embed/v1/place?key=${googleApiKey}&q=${pickupAddress}`
-    }
-    map.src = newMapUrl.toString()
+    updateMapFromDeliveryAddressOnInit(deliveryAddress)
   });
 }
+
+function updateMapFromDeliveryAddressOnInit(deliveryAddress) {
+  const deliveryAddress = document.getElementById("delivery_delivery_address").value
+  if(!deliveryAddress || deliveryAddress == "") return;
+  const pickupAddress = document.getElementById("delivery_pickup_address").innerText
+  const map = document.getElementById("google-embed-map")
+  if (!map) return;
+  var googleApiKey = map.getAttribute('data-google-api-key');
+  if (deliveryAddress !== undefined && deliveryAddress !== "") {
+    var newMapUrl = `https://www.google.com/maps/embed/v1/directions?key=${googleApiKey}&origin=${pickupAddress}&destination=${deliveryAddress}&mode=bicycling`
+  } else {
+    var newMapUrl = `https://www.google.com/maps/embed/v1/place?key=${googleApiKey}&q=${pickupAddress}`
+  }
+  map.src = newMapUrl.toString()
+}
+
+
 
 function initMapsAutocomplete() {
   let deliveryAddressEle = document.getElementById("delivery_delivery_address")
@@ -33,6 +41,7 @@ function initMapsAutocomplete() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  updateMapFromDeliveryAddressOnInit()
   updateMapFromDeliveryAddress()
 
   google.maps.event.addDomListener(window, 'load', initMapsAutocomplete);

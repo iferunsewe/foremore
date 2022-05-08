@@ -3,7 +3,7 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries or /deliveries.json
   def index
-    @deliveries = Delivery.all
+    @deliveries = Delivery.all.order(created_at: :desc)
   end
 
   # GET /deliveries/1 or /deliveries/1.json
@@ -12,7 +12,11 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries/new
   def new
-    @delivery = Delivery.new
+    if params[:old_delivery_id] && old_delivery = Delivery.find(params[:old_delivery_id])
+      @delivery = old_delivery.dup
+    else
+      @delivery = Delivery.new
+    end
   end
 
   # GET /deliveries/1/edit
