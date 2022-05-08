@@ -33,7 +33,7 @@
               </div>
             
               <div class="form-floating mb-2">
-                <%= form.text_field :delivery_address, placeholder: t("delivery.form.address.delivery-placeholder"), class: 'form-control' %>
+                <%= form.text_field :delivery_address, placeholder: "", class: 'form-control' %>
                 <%= form.label :delivery_address %>
               </div>
 
@@ -45,15 +45,15 @@
               <h4><%=  t("delivery.form.contact-information.heading") %></h4>
               <div class="form-text mb-2"><%=  t("delivery.form.contact-information.explainer") %></div>
               <div class="form-floating mb-2">
-                <%= form.text_field :recipient_name, placeholder: t("delivery.form.contact-information.name-placeholder"), class: 'form-control' %>
+                <%= form.text_field :recipient_name, class: 'form-control' %>
                 <%= form.label :recipient_name, t("delivery.form.contact-information.name-placeholder") %>
               </div>
               <div class="form-floating mb-2">
-                <%= form.text_field :recipient_email, placeholder: t("delivery.form.contact-information.email-placeholder"), class: 'form-control' %>
+                <%= form.text_field :recipient_email, class: 'form-control' %>
                 <%= form.label :recipient_email, t("delivery.form.contact-information.email-placeholder") %>
               </div>
               <div class="form-floating mb-2">
-                <%= form.text_field :recipient_phone, placeholder: t("delivery.form.contact-information.phone-placeholder"), class: 'form-control' %>
+                <%= form.text_field :recipient_phone, class: 'form-control' %>
                 <%= form.label :recipient_phone, t("delivery.form.contact-information.phone-placeholder") %>
               </div>
             </div>
@@ -91,13 +91,14 @@
             <div class="form-text mb-2"><%=  t("delivery.form.item-details.inventory-explainer_html") %></div>
           </div>
 
-          <div>
-            <%= form.text_area :description, placeholder: t("delivery.form.item-details.description-placeholder"), class: 'form-control mb-2' %>
+          <div class="form-floating mb-2">
+            <%= form.text_area :description, class: 'form-control mb-2' %>
+            <%= form.label :description, t("delivery.form.item-details.description-placeholder") %>
           </div>
 
           <div class="form-floating mb-2">
-            <%= form.text_field :order_reference, placeholder: t("delivery.form.item-details.reference-placeholder"), class: 'form-control' %>
-            <%= form.label :order_reference %>
+            <%= form.text_field :order_reference, class: 'form-control' %>
+            <%= form.label :order_reference, t("delivery.form.item-details.reference-placeholder") %>
           </div>
 
           <div class="row">
