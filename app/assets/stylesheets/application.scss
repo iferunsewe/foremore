@@ -12,6 +12,75 @@ body {
     background-color: #F7E2B5;
     border-color: #F7E2B5;
   }
+
+  .form-control {
+    border: 1px solid transparent;
+  }
+
+  input:not([type=submit]), textarea {
+    background: #2C25D20D;
+  }
+
+  .btn {
+    border-radius: 0.75rem;
+    filter: drop-shadow(0px 8.49949px 33.9979px rgba(0, 0, 0, 0.12));
+  }
+
+  .btn-check:checked + .btn-outline-primary, 
+  .btn-check:active + .btn-outline-primary,
+  .btn-outline-primary:active,
+  .btn-outline-primary.active,
+  .btn-outline-primary.dropdown-toggle.show {
+    color: #06158F;
+    background-color: #F7E2B5;
+    border-color: #F7E2B5;
+  }
+
+  .btn-outline-primary {
+    color: #06158F;
+    border-color: transparent;
+    background: #F7E2B557;
+  }
+
+  .btn-radio {
+    font-size: 0.75rem
+  }
+
+  .btn-success {
+    color: #06158F;
+    background: #87E57866;
+    border-color: transparent;
+  }
+
+  h4, h5, .bold {
+    --bs-body-font-family: "Montserrat";
+    font-weight: 700;
+  }
+
+  .semi-bold, ::placeholder {
+    --bs-body-font-family: "Montserrat";
+    font-weight: 600;
+  }
+
+  ::placeholder {
+    color: #8F8F8F;
+    font-size: 0.75em;
+    opacity: 0.65;
+  }
+
+  .form-floating {
+    label {
+      color: #8F8F8F;
+      --bs-body-font-family: "Montserrat";
+      font-weight: 600;
+      padding: 1.25rem 0.75rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  .button-and-explainer {
+    text-align: center;
+  }
 }
 
 #desktop-header {
@@ -90,75 +159,6 @@ table {
 }
 
 #delivery-form {
-  .btn {
-    border-radius: 0.75rem;
-    filter: drop-shadow(0px 8.49949px 33.9979px rgba(0, 0, 0, 0.12));
-  }
-
-  .btn-check:checked + .btn-outline-primary, 
-  .btn-check:active + .btn-outline-primary,
-  .btn-outline-primary:active,
-  .btn-outline-primary.active,
-  .btn-outline-primary.dropdown-toggle.show {
-    color: #06158F;
-    background-color: #F7E2B5;
-    border-color: #F7E2B5;
-  }
-
-  .btn-outline-primary {
-    color: #06158F;
-    border-color: transparent;
-    background: #F7E2B557;
-  }
-
-  .btn-radio {
-    font-size: 0.75rem
-  }
-
-  .btn-success {
-    color: #06158F;
-    background: #87E57866;
-    border-color: transparent;
-  }
-
-  h4, h5, .bold {
-    --bs-body-font-family: "Montserrat";
-    font-weight: 700;
-  }
-
-  .semi-bold, ::placeholder {
-    --bs-body-font-family: "Montserrat";
-    font-weight: 600;
-  }
-
-  ::placeholder {
-    color: #8F8F8F;
-    font-size: 0.75em;
-    opacity: 0.65;
-  }
-
-  .form-floating {
-    label {
-      color: #8F8F8F;
-      --bs-body-font-family: "Montserrat";
-      font-weight: 600;
-      padding: 1.25rem 0.75rem;
-      font-size: 0.875rem;
-    }
-  }
-
-  input:not([type=submit]), textarea {
-    background: #2C25D20D;
-  }
-
-  .button-and-explainer {
-    text-align: center;
-  }
-
-  .form-control {
-    border: 1px solid transparent;
-  }
-
   #delivery_address_notes{
     min-height: calc(6.5em + 0.75rem + 2px);
   }
