@@ -1,0 +1,12 @@
+<tr>
+  <td><%= team.created_at.strftime('%Y-%m-%d %H:%M') %></td>
+  <td><%= team.address.one_line %></td>
+  <td><%= team.company.name %></td>
+  <td><%= team.employees_count %></td>
+  <td>
+     <%= link_to edit_team_path(team), data: { turbo: false } do %>
+        <i class="bi bi-pencil-fill"></i>
+        Edit
+      <% end %>
+  </td>
+</tr>

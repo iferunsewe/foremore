@@ -3,4 +3,8 @@ class Team < ApplicationRecord
   has_many :users
   has_one :address, dependent: :destroy
   accepts_nested_attributes_for :address, allow_destroy: true
+
+  def employees_count
+    users.count
+  end
 end

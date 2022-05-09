@@ -1,14 +1,40 @@
-
-
 <h1>Teams</h1>
 
 <div id="teams">
-  <% @teams.each do |team| %>
-    <%= render team %>
-    <p>
-      <%= link_to "Show this team", team %>
-    </p>
-  <% end %>
+  <table class="table table-hover table-borderless table-responsive">
+    <thead>
+      <tr>
+        <th scope="col">
+          <div class="th-inner">
+            Joined
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Address
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Company
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            No. of Employees
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Actions
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @teams.each do |team| %>
+        <%= render partial: "teams/teams_table_row", locals: { team: team } %>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New team", new_team_path %>
