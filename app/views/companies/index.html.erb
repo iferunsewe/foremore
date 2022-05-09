@@ -1,14 +1,40 @@
-
-
 <h1>Companies</h1>
 
 <div id="companies">
-  <% @companies.each do |company| %>
-    <%= render company %>
-    <p>
-      <%= link_to "Show this company", company %>
-    </p>
-  <% end %>
+  <table class="table table-hover table-borderless table-responsive">
+    <thead>
+      <tr>
+        <th scope="col">
+          <div class="th-inner">
+            Joined
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Name
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Tax Id
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Teams
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Actions
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @companies.each do |company| %>
+        <%= render partial: "companies/companies_table_row", locals: { company: company } %>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New company", new_company_path %>

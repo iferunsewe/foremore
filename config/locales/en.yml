@@ -70,4 +70,7 @@ en:
       other-notes:
         placeholder: 'Enter any other notes about the delivery'
       submit-button-label: "Book"
-
+  team:
+    list-link: 'Team'
+  company:
+    list-link: 'Companies'

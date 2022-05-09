@@ -1,0 +1,16 @@
+<tr>
+  <td><%= company.created_at.strftime('%Y-%m-%d %H:%M') %></td>
+  <td><%= company.name %></td>
+  <td><%= company.tax_id %></td>
+  <td>
+    <% company.teams.each do |team| %>
+      <%= link_to team.address.one_line, edit_team_path(team) %>
+    <% end %>
+  </td>
+  <td>
+     <%= link_to edit_company_path(company), data: { turbo: false } do %>
+        <i class="bi bi-pencil-fill"></i>
+        Edit
+      <% end %>
+  </td>
+</tr>
