@@ -1,9 +1,12 @@
 <div class="row height d-flex justify-content-end mb-2 p-0 pe-md-2">
-  <div class="col-6 col-md-3 mb-2 mb-md-0">
-    <%= link_to "New Team", new_team_path, class: "btn btn-secondary semi-bold w-100" %>
+  <div class="col-4 col-md-3 mb-2 mb-md-0">
+    <%= link_to "Edit", edit_team_path(@team), class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" %>
   </div>
-  <div class="col-6 col-md-3 mb-2 mb-md-0">
-    <%= link_to "Teams", teams_path, class: "btn btn-secondary semi-bold w-100" %>
+  <div class="col-4 col-md-3 mb-2 mb-md-0">
+    <%= link_to "New", new_team_path, class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" %>
+  </div>
+  <div class="col-4 col-md-3 mb-2 mb-md-0">
+    <%= link_to "Teams", teams_path, class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" %>
   </div>
 </div>
 <div id="team">

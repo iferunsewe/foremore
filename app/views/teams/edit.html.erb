@@ -2,9 +2,6 @@
 
 <%= render "form", team: @team %>
 
-<br>
-
-<div>
-  <%= link_to "Show this team", @team %> |
-  <%= link_to "Back to teams", teams_path %>
+<div class="actions col-12 col-md-3">
+  <%= link_to "Show team", @team, class: "btn btn-secondary mb-3 w-100" %>
 </div>

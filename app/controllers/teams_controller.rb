@@ -49,16 +49,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # DELETE /teams/1 or /teams/1.json
-  def destroy
-    @team.destroy
-
-    respond_to do |format|
-      format.html { redirect_to teams_url, notice: "Team was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team
