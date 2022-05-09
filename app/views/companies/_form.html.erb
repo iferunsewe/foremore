@@ -21,6 +21,11 @@
     <%= form.text_field :tax_id %>
   </div>
 
+   <div>
+    <%= form.label :image, style: "display: block" %>
+    <%= form.file_field :image, accept: 'image/jpg, image/gif, image/jpeg, image/png' %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

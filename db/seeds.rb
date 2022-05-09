@@ -24,3 +24,5 @@ Delivery.create!(
   scheduled_date: DateTime.now,
   description: "2x Plasterboards"
 )
+
+Company.create(name: 'Simonis', tax_id: '123456789').image.attach(io: File.open('app/assets/images/seed_images/simonis-logo.png'), filename: 'logo_1.jpg')

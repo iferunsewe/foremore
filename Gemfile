@@ -79,3 +79,6 @@ gem "devise", github: "heartcombo/devise", ref: "f8d1ea90bc3"
 
 # Preview mails in the the browser
 gem "letter_opener", group: :development
+
+
+gem 'active_storage_validations'

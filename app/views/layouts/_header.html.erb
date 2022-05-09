@@ -8,10 +8,12 @@
   <li class="nav-item col-4">
     <% if user_signed_in? %>
       <div class="d-flex justify-content-end">
-        <%= image_tag "simonis-logo.png", alt: "Simonis", class: "logo" %>
+        <%= link_to(edit_company_path(current_user.company), class: 'nav-link logo-container') do %>
+          <%= image_tag current_user.company.image, alt: "#{current_user.company.name}-logo", class: "logo" %>
+        <% end %>
       </div>
       <div class="d-flex justify-content-end">
-        <p class="overflow-ellipsis">Berkenwoudestraat 22, 3076 JA Rotterdam</p>
+        <p class="overflow-ellipsis company-address">Berkenwoudestraat 22, 3076 JA Rotterdam</p>
       </div>
     <% end %>
   </li>
