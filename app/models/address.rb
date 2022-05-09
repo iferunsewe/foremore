@@ -1,5 +1,6 @@
 class Address < ApplicationRecord
   has_many :deliveries
+  belongs_to :team
 
   geocoded_by :one_line
   after_validation :geocode

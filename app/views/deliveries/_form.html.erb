@@ -27,7 +27,7 @@
             <div class="col-md-6 col-sm-12 d-inline-block">
               <h4><%= t("delivery.form.address.heading") %></h4>
               <div>
-                <% pickup_address = Address.find(1)%>
+                <% pickup_address = current_user.team.address %>
                 <p><span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <span id="delivery_pickup_address"><%= pickup_address.one_line %></span><p>
                 <%= form.hidden_field :pickup_address_id, value: pickup_address.id %>
               </div>

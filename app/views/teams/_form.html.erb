@@ -11,11 +11,28 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :company_id, style: "display: block" %>
-    <%= form.number_field :company_id %>
-  </div>
-
+  <%= form.fields_for :address do |address_form| %>
+    <div>
+      <%= address_form.label :street, style: "display: block" %>
+      <%= address_form.text_field :street %> 
+    </div>
+    <div>
+      <%= address_form.label :city, style: "display: block" %>
+      <%= address_form.text_field :city %>
+    </div>
+    <div>
+      <%= address_form.label :country, style: "display: block" %>
+      <%= address_form.text_field :country %>
+    </div>
+    <div>
+      <%= address_form.label :postcode, style: "display: block" %>
+      <%= address_form.text_field :postcode %>
+    </div>
+    <div>
+      <%= address_form.label :company_name, style: "display: block" %>
+      <%= address_form.text_field :company_name, value: team.company&.name %>
+    </div>
+  <% end %>
   <div>
     <%= form.submit %>
   </div>
