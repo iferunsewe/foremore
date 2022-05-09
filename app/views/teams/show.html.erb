@@ -1,10 +1,38 @@
-
-
-<%= render @team %>
-
-<div>
-  <%= link_to "Edit this team", edit_team_path(@team) %> |
-  <%= link_to "Back to teams", teams_path %>
-
-  <%= button_to "Destroy this team", @team, method: :delete %>
+<div id="team">
+  <table class="table table-hover table-borderless table-responsive">
+    <thead>
+      <tr>
+        <th scope="col">
+          <div class="th-inner">
+            Joined
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            First Name
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Last Name
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Role
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Actions
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @team.users.each do |user| %>
+        <%= render partial: "users/users_table_row", locals: { user: user } %>
+      <% end %>
+    </tbody>
+  </table>
 </div>
