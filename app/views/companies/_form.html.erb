@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="field form-group col-md-3 col-sm-12 mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :tax_id, style: "display: block" %>
-    <%= form.text_field :tax_id %>
+  <div class="field form-group col-md-3 col-sm-12 mb-3">
+    <%= form.label :tax_id, "Tax Id", class: "form-label" %>
+    <%= form.text_field :tax_id, class: "form-control" %>
   </div>
 
-   <div>
-    <%= form.label :image, style: "display: block" %>
-    <%= form.file_field :image, accept: 'image/jpg, image/gif, image/jpeg, image/png' %>
+   <div class="field form-group col-md-3 col-sm-12 mb-3">
+    <%= form.label :image, class: "form-label" %>
+    <%= form.file_field :image, accept: 'image/jpg, image/gif, image/jpeg, image/png', class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="actions col-12 col-md-3">
+    <%= form.submit class: "btn btn-primary mb-3 w-100" %>
   </div>
 <% end %>

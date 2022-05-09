@@ -12,28 +12,28 @@
   <% end %>
 
   <%= form.fields_for :address do |address_form| %>
-    <div>
-      <%= address_form.label :street, style: "display: block" %>
-      <%= address_form.text_field :street %> 
+    <div class="field form-group col-md-3 col-sm-12 mb-3">
+      <%= address_form.label :street, class: "form-label" %>
+      <%= address_form.text_field :street, class: "form-control" %> 
     </div>
-    <div>
-      <%= address_form.label :city, style: "display: block" %>
-      <%= address_form.text_field :city %>
+    <div class="field form-group col-md-3 col-sm-12 mb-3">
+      <%= address_form.label :city, class: "form-label" %>
+      <%= address_form.text_field :city, class: "form-control" %>
     </div>
-    <div>
-      <%= address_form.label :country, style: "display: block" %>
-      <%= address_form.text_field :country %>
+    <div class="field form-group col-md-3 col-sm-12 mb-3">
+      <%= address_form.label :country, class: "form-label" %>
+      <%= address_form.text_field :country, class: "form-control" %>
     </div>
-    <div>
-      <%= address_form.label :postcode, style: "display: block" %>
-      <%= address_form.text_field :postcode %>
+    <div class="field form-group col-md-3 col-sm-12 mb-3">
+      <%= address_form.label :postcode, class: "form-label" %>
+      <%= address_form.text_field :postcode, class: "form-control" %>
     </div>
-    <div>
-      <%= address_form.label :company_name, style: "display: block" %>
-      <%= address_form.text_field :company_name, value: team.company&.name %>
+    <div class="field form-group col-md-3 col-sm-12 mb-3">
+      <%= address_form.label :company_name, class: "form-label" %>
+      <%= address_form.text_field :company_name, value: team.company&.name, class: "form-control" %>
     </div>
   <% end %>
-  <div>
-    <%= form.submit %>
+  <div class="actions col-12 col-md-3">
+    <%= form.submit class: "btn btn-primary mb-3 w-100" %>
   </div>
 <% end %>
