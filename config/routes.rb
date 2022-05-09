@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :teams
+  resources :companies
+  resources :organizaions
   devise_for :users
   resources :users
   resources :addresses
