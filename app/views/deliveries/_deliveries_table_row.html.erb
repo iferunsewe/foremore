@@ -1,5 +1,5 @@
 <tr>
-  <td><%= link_to delivery.id, delivery_path(delivery) %></td>
+  <td><%= link_to delivery.id, delivery_path(delivery), data: { turbo: false } %></td>
   <td><%= delivery.created_at.strftime('%Y-%m-%d %H:%M') %></td>
   <td><%= delivery.delivery_address %></td>
   <td><%= delivery.status.capitalize %></td>
@@ -7,12 +7,12 @@
   <td></td>
   <td>
     <% if delivery.delivered? %>
-      <%= link_to new_delivery_path(old_delivery_id: delivery.id) do %>
+      <%= link_to new_delivery_path(old_delivery_id: delivery.id), data: { turbo: false } do %>
         <i class="bi bi-arrow-repeat"></i>
         Rebook
       <% end %>
     <% else %>
-      <%= link_to edit_delivery_path(delivery) do %>
+      <%= link_to edit_delivery_path(delivery), data: { turbo: false } do %>
         <i class="bi bi-pencil-fill"></i>
         Edit
       <% end %>
