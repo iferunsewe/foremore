@@ -1,70 +1,62 @@
 <%= title("Deliveries")%>
-<div id="deliveries">
-  <table class="table table-hover table-borderless table-responsive">
-    <thead>
-      <tr>
-        <th scope="col">
-          <div class="th-inner">
-            #
-          </div>
-        </th>
-        <th scope="col">
-          <div class="th-inner">
-            Created at
-          </div>
-        </th>
-        <th scope="col">
-          <div class="th-inner">
-            Delivery Address
-          </div>
-        </th>
-        <th scope="col">
-          <div class="th-inner">
-            Status
-          </div>
-        </th>
-        <th scope="col">
-          <div class="th-inner">
-            Delivered at
-          </div>
-        </th>
-        <th scope="col">
-          <div class="th-inner">
-            Rating
-          </div>
-        </th>
-        <th scope="col">
-          <div class="th-inner">
-            Actions
-          </div>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @deliveries.each do |delivery| %>
+<%= form_with url: deliveries_path, method: :get, data: { controller: "search-form", search_form_target: "form", turbo_frame: "deliveries" } do |form| %>
+  <div class="row height d-flex justify-content-end mb-2 p-0 pe-md-2">
+    <div class="col-12 col-md-4">
+      <div class="form-floating">
+        <%= form.text_field :query, class: 'form-control', value: params[:query], data: { action: "input->search-form#search" } %>
+        <%= form.label :query, "Search by id, delivery address" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= turbo_frame_tag "deliveries", class: "shadow overflow-hidden rounded border-b border-gray-200" do %>
+  <div id="deliveries">
+    <table class="table table-hover table-borderless table-responsive">
+      <thead>
         <tr>
-          <td><%= link_to delivery.id, delivery_path(delivery) %></td>
-          <td><%= delivery.created_at.strftime('%Y-%m-%d %H:%M') %></td>
-          <td><%= delivery.delivery_address %></td>
-          <td><%= delivery.status.capitalize %></td>
-          <td><%= delivery.delivered_at&.strftime('%Y-%m-%d %H:%M') %></td>
-          <td></td>
-          <td>
-            <% if delivery.delivered? %>
-              <%= link_to new_delivery_path(old_delivery_id: delivery.id) do %>
-                <i class="bi bi-arrow-repeat"></i>
-                Rebook
-              <% end %>
-            <% else %>
-              <%= link_to edit_delivery_path(delivery) do %>
-                <i class="bi bi-pencil-fill"></i>
-                Edit
-              <% end %>
-            <% end %>
-          </td>
+          <th scope="col">
+            <div class="th-inner">
+              #
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Created at
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Delivery Address
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Status
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Delivered at
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Rating
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Actions
+            </div>
+          </th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-    
-</div>
+      </thead>
+      <tbody id="deliveries-tbody">
+        <% @deliveries.each do |delivery| %>
+          <%= render partial: "deliveries/deliveries_table_row", locals: { delivery: delivery } %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

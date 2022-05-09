@@ -3,7 +3,11 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries or /deliveries.json
   def index
-    @deliveries = Delivery.all.order(created_at: :desc)
+    if params[:query].present?
+      @deliveries = Delivery.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
+    else
+      @deliveries = Delivery.all.order(created_at: :desc)
+    end
   end
 
   # GET /deliveries/1 or /deliveries/1.json
