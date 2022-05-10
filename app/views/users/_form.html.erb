@@ -26,10 +26,12 @@
     <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
   </div>
 
-  <div class="field form-group col-md-3 col-sm-12 mb-3">
-    <%= form.label :role , class: "form-label", class: "form-label"  %><br />
-    <%= form.select :role, User.roles.keys.map{|role| [role.humanize, role]}, {prompt: "Select role"}, {class: "form-control form-select", required: true} %>
-  </div>
+  <% if current_user.admin? || current_user.company_admin? %>
+    <div class="field form-group col-md-3 col-sm-12 mb-3">
+      <%= form.label :role , class: "form-label", class: "form-label"  %><br />
+      <%= form.select :role, User.roles.keys.map{|role| [role.humanize, role]}, {prompt: "Select role"}, {class: "form-control form-select", required: true} %>
+    </div>
+  <% end %>
 
   <div class="actions col-12 col-md-3">
     <%= form.submit class: "btn btn-primary mb-3 w-100" %>

@@ -18,6 +18,7 @@ function updateMapFromDeliveryAddress() {
 }
 
 function updateMapFromDeliveryAddressOnInit(deliveryAddressValue) {
+  if(!document.getElementById("delivery_delivery_address")) return;
   const deliveryAddress = (deliveryAddressValue || document.getElementById("delivery_delivery_address").value)
   if(!deliveryAddress || deliveryAddress == "") return;
   const pickupAddress = document.getElementById("delivery_pickup_address").innerText

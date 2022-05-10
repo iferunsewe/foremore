@@ -10,10 +10,11 @@ class DeliveriesController < ApplicationController
         @deliveries = Delivery.all.order(created_at: :desc)
       end
    else
+    current_user_deliveries =  Delivery.where(pickup_address: current_user.team.address)
     if params[:query].present?
-      @deliveries = current_user.team.address.deliveries.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
+      @deliveries = current_user_deliveries&.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
     else
-      @deliveries = current_user.team.address.deliveries.all.order(created_at: :desc)
+      @deliveries = current_user_deliveries&.order(created_at: :desc)
     end
    end
   end

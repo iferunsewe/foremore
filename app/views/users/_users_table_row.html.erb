@@ -3,7 +3,7 @@
   <td><%= user.full_name %></td>
   <td><%= user.role&.humanize || 'Guest' %></td>
   <td>
-    <% if user == current_user || current_user.admin? %>
+    <% if user == current_user || current_user.admin? || (user.team == current_user.team && current_user.company_admin? && !user.admin?)|| (user.team == current_user.team && current_user.team_admin? && user.normal?) %>
       <%= link_to edit_user_path(user), data: { turbo: false } do %>
         <i class="bi bi-pencil-fill"></i>
         Edit

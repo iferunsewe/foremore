@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[ edit update ]
 
   def index
+    redirect_to teams_path if !current_user.admin?
     @users = User.all.order(created_at: :desc)
   end
 
