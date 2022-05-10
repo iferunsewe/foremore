@@ -84,3 +84,6 @@ gem 'active_storage_validations'
 
 # Manage roles
 gem 'cancancan'
+
+# Storing assets in s3
+gem "aws-sdk-s3", require: false
