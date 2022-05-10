@@ -229,13 +229,14 @@ table {
     display: none;
   }
 
-  #main
+  #main {
    .map-container {
       height: 40vh;
       background: #F2F4F8;
     }
     .map-row {
       height: unset;
+    }
   }
 
   #delivery-form .sticky-top {
