@@ -3,7 +3,7 @@
   <td><%= company.name %></td>
   <td><%= company.tax_id %></td>
   <td>
-    <% company.teams.each do |team| %>
+    <% company&.teams&.each do |team| %>
       <%= link_to team.address.one_line, edit_team_path(team) %>
     <% end %>
   </td>
