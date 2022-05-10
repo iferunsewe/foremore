@@ -37,6 +37,13 @@
         <p class="overflow-ellipsis"><%=  t("company.list-link") %></p>
       <% end %>
     </li>
+  <% elsif !current_user.company.nil? && current_user.try(:company_admin?) %>
+    <li class="nav-item flex-column <%= is_companies_path_active? ? "active" : "" %>">
+      <%= link_to(edit_company_path(current_user.company), class: 'nav-link flex-column') do %>
+        <i class="bi bi-people-fill mr-3"></i>
+        <p class="overflow-ellipsis"><%=  t("company.single-link") %></p>
+      <% end %>
+    </li>
   <% end %>
   <li class="nav-item flex-column <%= is_settings_path_active? ? "active" : "" %>">
     <%= link_to(edit_user_registration_path, class: 'nav-link flex-column') do %>
