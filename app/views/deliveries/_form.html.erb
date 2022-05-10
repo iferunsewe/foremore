@@ -155,15 +155,10 @@
       <div class="col-md-6 col-sm-12 order-1 order-md-2 sticky-top">
         <div class="sticky-top">
           <div class="form-group mb-5 map-container">
-            <% if @delivery.persisted? %>
-              <% iframe_source = google_map(pickup_address: @delivery.pickup_address.one_line, delivery_address: @delivery.delivery_address) %>
-            <% else %>
-              <% iframe_source = google_map(pickup_address: pickup_address.one_line) %>
-            <% end %>
             <iframe
               class="map"
               id="google-embed-map"
-              src=<%= iframe_source %>
+              src=<%= iframe_source(delivery: @delivery, alt_pickup_address: pickup_address) %>
               data-fallback-url= <%= google_map_fallback_url(pickup_address: pickup_address.one_line) %>
               data-google-api-key=<%= ENV['GOOGLE_API_KEY'] %>
               >

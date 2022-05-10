@@ -7,6 +7,11 @@ body {
 }
 
 #main {
+  .btn {
+    --bs-body-font-family: "Montserrat";
+    font-weight: 600;
+  }
+
   .btn-primary {
     color: #06158F;
     background-color: #F7E2B5;
@@ -17,6 +22,12 @@ body {
     color: #F7E2B5;
     background-color: #06158F;
     border-color: #06158F;
+  }
+
+  .btn-danger { 
+    background-color: #C5221F40;
+    border-color: transparent;
+    color: #000000;
   }
 
   .form-control {
@@ -86,6 +97,23 @@ body {
 
   .button-and-explainer {
     text-align: center;
+  }
+
+  .map-row {
+    height: 55vh;
+    .map {
+      border-radius: 10px;
+    }
+  }
+
+  .expected-time {
+    font-size: 3rem;
+  }
+  
+  .avatar {
+    object-fit: contain;
+    width: auto;
+    height: auto;
   }
 }
 

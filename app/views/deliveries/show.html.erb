@@ -1,8 +1,4 @@
 <%= title("Delivery #{@delivery.id}")%>
 
 
-<%= render @delivery %>
-
-<div>
-  <%= link_to "Edit this delivery", edit_delivery_path(@delivery), class: 'btn btn-primary' %> 
-</div>
+<%= render "new_delivery", {delivery: @delivery} %>

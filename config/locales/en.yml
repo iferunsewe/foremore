@@ -43,6 +43,7 @@ en:
       address:
         heading: "Address"
         pickup-label: "Pick up from"
+        delivery-label: "Deliver to"
         delivery-placeholder: "Enter a delivery address"
         notes-placeholder: "Enter any notes for the pick up and delivery e.g. floor level, parking available, leave at the door etc..."
       map:
@@ -70,6 +71,16 @@ en:
       other-notes:
         placeholder: 'Enter any other notes about the delivery'
       submit-button-label: "Book"
+    show:
+      expected-at: "Delivery expected at"
+      status: "Status"
+      recipient: "Recipient details"
+      order-details: "Order details"
+      order-reference: "Ref"
+      rider: "Rider"
+      weight: "Weight"
+      length: "Length"
+      pending-message: "We're confirming your order with our drivers."
   team:
     list-link: 'Teams'
     single-link: 'Team'
