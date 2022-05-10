@@ -99,8 +99,9 @@ body {
     text-align: center;
   }
 
-  .map-row {
+  .map-container {
     height: 55vh;
+
     .map {
       border-radius: 10px;
     }
@@ -109,11 +110,15 @@ body {
   .expected-time {
     font-size: 3rem;
   }
-  
-  .avatar {
-    object-fit: contain;
-    width: auto;
-    height: auto;
+
+  .delivery-details {
+    .bi-whatsapp {
+      font-size: 1.5rem;
+    }
+
+    .rider-info {
+      text-align: center;
+    }
   }
 }
 
@@ -233,9 +238,6 @@ table {
    .map-container {
       height: 40vh;
       background: #F2F4F8;
-    }
-    .map-row {
-      height: unset;
     }
   }
 

@@ -1,31 +1,95 @@
 <div id="<%= dom_id delivery %>">
-  <div class="row map-row">
+  <div class="row">
     <div class="col-12 col-md-9 h-100">
-      <iframe
-        class="map h-100 w-100"
-        id="google-embed-map"
-        src=<%= iframe_source(delivery: @delivery) %>
-        data-fallback-url= <%= google_map_fallback_url(pickup_address: delivery.pickup_address.one_line) %>
-        data-google-api-key=<%= ENV['GOOGLE_API_KEY'] %>
-        >
-      </iframe>
+      <div class="map-container">
+        <iframe
+          class="map h-100 w-100"
+          id="google-embed-map"
+          src=<%= iframe_source(delivery: @delivery) %>
+          data-fallback-url= <%= google_map_fallback_url(pickup_address: delivery.pickup_address.one_line) %>
+          data-google-api-key=<%= ENV['GOOGLE_API_KEY'] %>
+          >
+        </iframe>
+      </div>
+      <div class="row mt-0 mt-md-3 delivery-details">
+        <div class="col-12 col-md-3 d-block d-md-none mt-3 mt-md-0">
+          <div>
+            <p>
+              <span><%= t("delivery.show.expected-at") %></span>: <span class="expected-time semi-bold"><%= (DateTime.now + 27.minutes).strftime("%H:%M") %></span>
+            <p>
+          </div>
+          <div>
+            <p>
+              <span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <span><%= @delivery.pickup_address.one_line %></span>
+            <p>
+          </div>
+
+          <div>
+            <p>
+              <span class="bold"><%= t("delivery.form.address.delivery-label") %></span>: <span><%= @delivery.delivery_address %></span>
+            <p>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 mt-3 mt-md-0">
+          <p class="semi-bold"><%= t("delivery.show.rider") %></p>
+          <div class="row">
+            <div class="col-3 p-md-0">
+              <%= image_tag "maarten.png", class: 'img-fluid' %>
+            </div>
+            <div class="col-6 rider-info">
+              <span class="semi-bold">Maarten</span><br/>
+              <div>
+                <% 4.times do%>
+                  <i class="bi bi-star-fill"></i>
+                <% end %>
+                <i class="bi bi-star-half"></i>
+              </div>
+            </div>
+            <div class="col-3 p-md-0">
+              <%= link_to("https://wa.me/31640390016", class: 'btn btn-primary btn-radio semi-bold') do %>
+                <i class="bi bi-whatsapp"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 mt-3 mt-md-0">
+          <p class="semi-bold"><%= t("delivery.show.status") %></p>
+          <p><%= @delivery.status.humanize %></p>
+          <%= t("delivery.show.pending-message") %>
+        </div>
+        <div class="col-12 col-md-3 mt-3 mt-md-0">
+          <p class="semi-bold"><%= t("delivery.show.recipient") %></p>
+          <%= delivery.recipient_name %><br/>
+          <%= delivery.recipient_phone %><br/>
+          <%= delivery.recipient_email %><br/>
+        </div>
+        <div class="col-12 col-md-3 mt-3 mt-md-0">
+          <p class="semi-bold"><%= t("delivery.show.order-details") %></p>
+          <p class="overflow-ellipsis"><%= delivery.description %></p>
+          <span class="bold"><%= t("delivery.show.order-reference") %></span>: <span><%= delivery.order_reference %></span><br/>
+          <span class="bold"><%= t("delivery.show.weight") %></span>: <span><%= delivery.weight_class %> kg</span><br/>
+          <span class="bold"><%= t("delivery.show.length") %></span>: <span><%= delivery.length_class %> m</span><br/>
+        </div> 
+      </div>
     </div>
     <div class="col-12 col-md-3 mt-3 mt-md-0">
-      <div>
-        <p>
-          <span><%= t("delivery.show.expected-at") %></span>: <span class="expected-time semi-bold"><%= (DateTime.now + 27.minutes).strftime("%H:%M") %></span>
-        <p>
-      </div>
-      <div>
-        <p>
-          <span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <span><%= @delivery.pickup_address.one_line %></span>
-        <p>
-      </div>
+      <div class="d-none d-md-block">
+        <div>
+          <p>
+            <span><%= t("delivery.show.expected-at") %></span>: <span class="expected-time semi-bold"><%= (DateTime.now + 27.minutes).strftime("%H:%M") %></span>
+          <p>
+        </div>
+        <div>
+          <p>
+            <span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <span><%= @delivery.pickup_address.one_line %></span>
+          <p>
+        </div>
 
-      <div>
-        <p>
-          <span class="bold"><%= t("delivery.form.address.delivery-label") %></span>: <span><%= @delivery.delivery_address %></span>
-        <p>
+        <div>
+          <p>
+            <span class="bold"><%= t("delivery.form.address.delivery-label") %></span>: <span><%= @delivery.delivery_address %></span>
+          <p>
+        </div>
       </div>
 
       <div class="mb-3">
@@ -36,46 +100,5 @@
         <%= mail_to "contact@foremoresupplies.com", "Raise issue", class: 'btn btn-danger col-12' %>
       </div>
     </div>
-  </div>
-  <div class="row mt-3">
-    <div class="col-12 col-md-3 mt-3 mt-md-0">
-      <p class="semi-bold"><%= t("delivery.show.rider") %></p>
-      <div class="row">
-        <div class="col-3">
-          <%= image_tag "maarten.png", class: 'avatar' %>
-        </div>
-        <div class="col-9">
-          <span class="semi-bold">Maarten</span><br/>
-          <div>
-            <% 4.times do%>
-              <i class="bi bi-star-fill"></i>
-            <% end %>
-            <i class="bi bi-star-half"></i>
-          </div>
-          <span class="mr-4"> Call or whatsapp</span>
-          <%= link_to("https://wa.me/31640390016", class: 'btn btn-primary btn-radio semi-bold') do %>
-            <i class="bi bi-whatsapp"></i>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="col-12 col-md-3 mt-3 mt-md-0">
-      <p class="semi-bold"><%= t("delivery.show.status") %></p>
-      <p><%= @delivery.status.humanize %></p>
-      <%= t("delivery.show.pending-message") %>
-    </div>
-    <div class="col-12 col-md-3 mt-3 mt-md-0">
-      <p class="semi-bold"><%= t("delivery.show.recipient") %></p>
-      <%= delivery.recipient_name %><br/>
-      <%= delivery.recipient_phone %><br/>
-      <%= delivery.recipient_email %><br/>
-    </div>
-    <div class="col-12 col-md-3 mt-3 mt-md-0">
-      <p class="semi-bold"><%= t("delivery.show.order-details") %></p>
-      <p class="overflow-ellipsis"><%= delivery.description %></p>
-      <span class="bold"><%= t("delivery.show.order-reference") %></span>: <span><%= delivery.order_reference %></span><br/>
-      <span class="bold"><%= t("delivery.show.weight") %></span>: <span><%= delivery.weight_class %> kg</span><br/>
-      <span class="bold"><%= t("delivery.show.length") %></span>: <span><%= delivery.length_class %> m</span><br/>
-    </div> 
   </div>
 </div>
