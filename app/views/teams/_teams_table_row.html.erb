@@ -1,12 +1,18 @@
 <tr>
   <td><%= team.created_at.strftime('%Y-%m-%d %H:%M') %></td>
-  <td><%= team.address.one_line %></td>
+  <td>
+    <%= link_to team_path(team), data: { turbo: false } do %>
+      <%= team.address.one_line %>
+    <% end %>
+  </td>
   <td><%= team.company.name %></td>
   <td><%= team.employees_count %></td>
   <td>
-     <%= link_to edit_team_path(team), data: { turbo: false } do %>
+    <% if current_user&.admin? || current_user.company_admin? || current_user&.team_admin? %>
+      <%= link_to edit_team_path(team), data: { turbo: false } do %>
         <i class="bi bi-pencil-fill"></i>
         Edit
       <% end %>
+    <% end %>
   </td>
 </tr>

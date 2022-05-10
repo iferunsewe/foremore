@@ -9,7 +9,7 @@
 Address.create!(street: 'Berkenwoudestraat 22', city: 'Rotterdam', postcode: '3076 JA', country: 'Netherlands', company_name: 'Simonis')
 Address.create!(street: 'Walhallalaan 82', city: 'Rotterdam', postcode: '3072 EX', country: 'Netherlands')
 Delivery.create!(
-  pickup_address: Address.first,
+pickup_address: Address.first,
   delivery_address: Address.last.one_line,
   delivery_type: 'instant',
   weight_class: '< 15',
@@ -25,4 +25,4 @@ Delivery.create!(
   description: "2x Plasterboards"
 )
 
-Company.create(name: 'Simonis', tax_id: '123456789').image.attach(io: File.open('app/assets/images/seed_images/simonis-logo.png'), filename: 'logo_1.jpg')
+Company.find_or_create_by(name: 'Simonis', tax_id: '123456789').image.attach(io: File.open('app/assets/images/seed_images/simonis-logo.png'), filename: 'logo_1.jpg')

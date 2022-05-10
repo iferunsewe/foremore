@@ -5,8 +5,9 @@
     <% end %>
   </li>
 
+
   <li class="nav-item col-4">
-    <% if user_signed_in? %>
+    <% if user_signed_in? && (!current_user.guest? || !current_user.role.nil?) %>
       <div class="d-flex justify-content-end">
         <%= link_to(edit_company_path(current_user.company), class: 'nav-link logo-container') do %>
           <%= image_tag current_user.company.image, alt: "#{current_user.company.name}-logo", class: "logo" %>

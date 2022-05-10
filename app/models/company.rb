@@ -4,5 +4,5 @@ class Company < ApplicationRecord
   has_one_attached :image
 
   validates_presence_of :name
-  validates :image, attached: true
+  validates_uniqueness_of :name
 end

@@ -3,11 +3,19 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries or /deliveries.json
   def index
+    if current_user&.admin?
+      if params[:query].present?
+        @deliveries = Delivery.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
+      else
+        @deliveries = Delivery.all.order(created_at: :desc)
+      end
+   else
     if params[:query].present?
-      @deliveries = Delivery.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
+      @deliveries = current_user.team.address.deliveries.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
     else
-      @deliveries = Delivery.all.order(created_at: :desc)
+      @deliveries = current_user.team.address.deliveries.all.order(created_at: :desc)
     end
+   end
   end
 
   # GET /deliveries/1 or /deliveries/1.json
@@ -16,6 +24,7 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries/new
   def new
+    redirect_to edit_user_registration_path if current_user.team.nil?
     if params[:old_delivery_id] && old_delivery = Delivery.find(params[:old_delivery_id])
       @delivery = old_delivery.dup
     else

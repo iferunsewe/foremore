@@ -1,12 +1,5 @@
-<%= title("Teams") %>
-<h1>Teams</h1>
-
-<div class="row height d-flex justify-content-end mb-2 p-0 pe-md-2">
-  <div class="col-4 col-md-3 mb-2 mb-md-0">
-    <%= link_to "New", new_team_path, class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" %>
-  </div>
-</div>
-<div id="teams">
+<%= title("users") %>
+<div id="users">
   <table class="table table-hover table-borderless table-responsive">
     <thead>
       <tr>
@@ -17,17 +10,12 @@
         </th>
         <th scope="col">
           <div class="th-inner">
-            Address
+            Full Name
           </div>
         </th>
         <th scope="col">
           <div class="th-inner">
-            Company
-          </div>
-        </th>
-        <th scope="col">
-          <div class="th-inner">
-            No. of Employees
+            Role
           </div>
         </th>
         <th scope="col">
@@ -38,8 +26,8 @@
       </tr>
     </thead>
     <tbody>
-      <% @teams.each do |team| %>
-        <%= render partial: "teams/teams_table_row", locals: { team: team } %>
+      <% @users.each do |user| %>
+        <%= render partial: "users/users_table_row", locals: { user: user } %>
       <% end %>
     </tbody>
   </table>

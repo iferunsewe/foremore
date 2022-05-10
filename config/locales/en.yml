@@ -71,6 +71,7 @@ en:
         placeholder: 'Enter any other notes about the delivery'
       submit-button-label: "Book"
   team:
-    list-link: 'Team'
+    list-link: 'Teams'
+    single-link: 'Team'
   company:
     list-link: 'Companies'

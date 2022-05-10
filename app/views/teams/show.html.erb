@@ -1,13 +1,17 @@
+<%= title(@team.company.name)%>
 <div class="row height d-flex justify-content-end mb-2 p-0 pe-md-2">
-  <div class="col-4 col-md-3 mb-2 mb-md-0">
-    <%= link_to "Edit", edit_team_path(@team), class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" %>
-  </div>
-  <div class="col-4 col-md-3 mb-2 mb-md-0">
-    <%= link_to "New", new_team_path, class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" %>
-  </div>
-  <div class="col-4 col-md-3 mb-2 mb-md-0">
-    <%= link_to "Teams", teams_path, class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" %>
-  </div>
+  <% if current_user.try(:team_admin?) || current_user.try(:company_admin?) %>
+    <div class="col-4 col-md-3 mb-2 mb-md-0">
+      <%= link_to "Edit", edit_team_path(@team), class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" %>
+    </div>
+  <% elsif current_user.try(:company_admin?) %>
+    <div class="col-4 col-md-3 mb-2 mb-md-0">
+      <%= link_to "New", new_team_path, class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" %>
+    </div>
+    <div class="col-4 col-md-3 mb-2 mb-md-0">
+      <%= link_to "Teams", teams_path, class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" %>
+    </div>
+  <% end %>
 </div>
 <div id="team">
   <table class="table table-hover table-borderless table-responsive">
@@ -20,12 +24,7 @@
         </th>
         <th scope="col">
           <div class="th-inner">
-            First Name
-          </div>
-        </th>
-        <th scope="col">
-          <div class="th-inner">
-            Last Name
+            Full Name
           </div>
         </th>
         <th scope="col">

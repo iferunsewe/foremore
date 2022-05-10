@@ -37,7 +37,15 @@ module ApplicationHelper
     end
   end
 
+  def is_users_path_active?
+    current_page?(edit_user_path(current_user)) if !current_user.nil?
+  end
+
   def title(text)
     content_for :title, text
+  end
+
+  def default_address
+    "Fred. Roeskestraat 115, 1076 EE Amsterdam, Netherlands"
   end
 end
