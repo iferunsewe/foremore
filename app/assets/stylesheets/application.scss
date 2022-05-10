@@ -229,9 +229,13 @@ table {
     display: none;
   }
 
-  #main .map-container {
-    height: 40vh;
-    background: #F2F4F8;
+  #main
+   .map-container {
+      height: 40vh;
+      background: #F2F4F8;
+    }
+    .map-row {
+      height: unset;
   }
 
   #delivery-form .sticky-top {
