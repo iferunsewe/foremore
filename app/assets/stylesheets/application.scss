@@ -34,7 +34,7 @@ body {
     border: 1px solid transparent;
   }
 
-  input:not([type=submit]), textarea {
+  input:not([type=submit]), textarea, select {
     background: #2C25D20D;
   }
 
@@ -199,7 +199,7 @@ table {
 }
 
 #delivery-form {
-  #delivery_address_notes{
+  #delivery_address_notes, #delivery_description {
     min-height: calc(6.5em + 0.75rem + 2px);
   }
 

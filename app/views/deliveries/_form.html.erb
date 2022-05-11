@@ -13,13 +13,19 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-sm-12 order-2 order-md-1">
-        <%= form.hidden_field :status, value: "pending" %>
-        
         <div class="form-group mb-3 button-and-explainer">
-          <div class="d-grid gap-2 col-12 col-md-6 mx-auto mb-2">
-            <%= button_tag t("delivery.form.integrations.orders-button-label"), type: 'button', class: 'btn btn-primary semi-bold', disabled: true %>
-          </div>
-          <div class="form-text mb-2"><%=  t("delivery.form.integrations.explainer_html") %></div>
+          <% if @delivery.persisted? %>
+            <div class="form-floating">
+              <%= form.select :status, Delivery.statuses_for_companies.keys.map{|status| [status.humanize, status]}, {prompt: "Select status"}, {class: "form-control form-select", required: true} %>
+              <%= form.label :status, t("delivery.form.status-label"),  style: "display: block", class: 'form-label semi-bold' %>
+            </div>
+          <% else %>
+            <div class="d-grid gap-2 col-12 col-md-6 mx-auto mb-2">
+              <%= button_tag t("delivery.form.integrations.orders-button-label"), type: 'button', class: 'btn btn-primary semi-bold', disabled: true %>
+            </div>
+            <div class="form-text mb-2"><%=  t("delivery.form.integrations.explainer_html") %></div>
+            <%= form.hidden_field :status, value: "pending" %>
+          <% end %>
         </div>
 
         <div class="form-group mb-3">
@@ -84,12 +90,14 @@
         <div class="form-group mb-3">
           <h4><%= t("delivery.form.item-details.heading") %></h4>
 
-          <div class="form-group mb-3 button-and-explainer">
-            <div class="d-grid gap-2 col-12 col-md-6 mx-auto mb-2">
-              <%= button_tag t("delivery.form.item-details.inventory-button-label"), type: 'button', class: 'btn btn-primary semi-bold', disabled: true %>
+          <% if !@delivery.persisted? %>
+            <div class="form-group mb-3 button-and-explainer">
+              <div class="d-grid gap-2 col-12 col-md-6 mx-auto mb-2">
+                <%= button_tag t("delivery.form.item-details.inventory-button-label"), type: 'button', class: 'btn btn-primary semi-bold', disabled: true %>
+              </div>
+              <div class="form-text mb-2"><%=  t("delivery.form.item-details.inventory-explainer_html") %></div>
             </div>
-            <div class="form-text mb-2"><%=  t("delivery.form.item-details.inventory-explainer_html") %></div>
-          </div>
+          <% end %>
 
           <div class="form-floating mb-2">
             <%= form.text_area :description, class: 'form-control mb-2' %>
@@ -149,7 +157,11 @@
         </div>
 
         <div class="row d-md-none d-flex justify-content-center mb-3">
-          <%= form.submit t("delivery.form.submit-button-label"), class: "btn btn-success col-12 semi-bold" %>
+          <% if @delivery.persisted? %>
+              <%= form.submit t("delivery.form.edit-submit-button-label"), class: "btn btn-success col-6 semi-bold" %>
+            <% else %>
+              <%= form.submit t("delivery.form.submit-button-label"), class: "btn btn-success col-6 semi-bold" %>
+            <% end %>
         </div>
       </div>
       <div class="col-md-6 col-sm-12 order-1 order-md-2 sticky-top">
@@ -166,7 +178,11 @@
           </div>
 
           <div class="row d-none d-md-flex justify-content-center">
-            <%= form.submit t("delivery.form.submit-button-label"), class: "btn btn-success col-6 semi-bold" %>
+            <% if @delivery.persisted? %>
+              <%= form.submit t("delivery.form.edit-submit-button-label"), class: "btn btn-success col-6 semi-bold" %>
+            <% else %>
+              <%= form.submit t("delivery.form.submit-button-label"), class: "btn btn-success col-6 semi-bold" %>
+            <% end %>
           </div>
         </div>
       </div>

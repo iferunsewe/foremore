@@ -55,7 +55,7 @@
         <div class="col-12 col-md-3 mt-3 mt-md-0">
           <p class="semi-bold"><%= t("delivery.show.status") %></p>
           <p><%= @delivery.status.humanize %></p>
-          <%= t("delivery.show.pending-message") %>
+          <%= t("delivery.show.#{@delivery.status}-message") %>
         </div>
         <div class="col-12 col-md-3 mt-3 mt-md-0">
           <p class="semi-bold"><%= t("delivery.show.recipient") %></p>

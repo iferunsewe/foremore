@@ -12,6 +12,10 @@ class Delivery < ApplicationRecord
   after_validation :geocode
   after_update :update_delivered_at, if: :status_changed_to_delivered?
 
+  def self.statuses_for_companies
+    statuses.select { |k, _| k.in?(%w(draft pending preparing ready)) }
+  end
+
   def to_coordinates_s
     to_coordinates.join(',')
   end

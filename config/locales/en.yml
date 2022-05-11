@@ -71,6 +71,8 @@ en:
       other-notes:
         placeholder: 'Enter any other notes about the delivery'
       submit-button-label: "Book"
+      edit-submit-button-label: "Change delivery"
+      status-label: "Status"
     show:
       expected-at: "Delivery expected at"
       status: "Status"
@@ -80,7 +82,13 @@ en:
       rider: "Rider"
       weight: "Weight"
       length: "Length"
-      pending-message: "We're confirming your order with our drivers."
+      draft-message: "You haven't completed your order yet"
+      pending-message: "We're confirming your order with our rider."
+      confirmed-message: "We've confirmed your order and have a rider waiting to pick it up"
+      preparing-message: "The order is being prepared for our riders"
+      ready-message: "Our rider will be with you shortly to collect the order"
+      delivering-message: "Our rider is delivering on our way to your client"
+      delivered-message: "The rider has delivered your materials"
   team:
     list-link: 'Teams'
     single-link: 'Team'
