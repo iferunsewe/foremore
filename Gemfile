@@ -87,3 +87,6 @@ gem 'cancancan'
 
 # Storing assets in s3
 gem "aws-sdk-s3", require: false
+
+# Devise way of creating invitations
+gem 'devise_invitable', '~> 2.0.0'
