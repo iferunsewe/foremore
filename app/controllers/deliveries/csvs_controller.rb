@@ -14,6 +14,10 @@ class Deliveries::CsvsController < ApplicationController
     end
   end
 
+  def get_template
+    send_file Rails.root.join('app', 'assets', 'files', 'delivery_template.csv')
+  end
+
   private 
   
   def delivery_csv_params

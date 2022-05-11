@@ -75,7 +75,9 @@ en:
         explainer: Choose from a options to help you book deliveries faster e.g. multiple deliveries at once or rebook old orders.
         csv:
           explainer: "Upload a csv to create multiple bookings at once"
+          template-link: "Click here to download the template."
           submit-button-label: Upload
+
         rebook:
           submit-button-label: Rebook
           explainer: Enter an previous delivery id to book the same delivery again

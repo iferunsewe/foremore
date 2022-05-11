@@ -21,5 +21,6 @@ Rails.application.routes.draw do
 
   namespace :deliveries do
     post 'csvs', to: 'csvs#create'
+    get 'csvs/template', to: 'csvs#get_template'
   end
 end
