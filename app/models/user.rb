@@ -16,6 +16,7 @@ class User < ApplicationRecord
   after_update :normal!, if: :joining_a_team?
   after_update :team_admin!, if: :first_team_member?
   after_update :company_admin!, if: :first_company_member?
+  after_commit :assign_team_and_company
 
   def guest?
     persisted?
@@ -45,5 +46,14 @@ class User < ApplicationRecord
   def first_company_member?
     return false if saved_change_to_company_id.nil?
     company&.users&.count == 1
+  end
+
+  def assign_team_and_company
+    return false if !invited_by || (team.present? || company.present?)
+    team_id = invited_by.team.id
+    company_id = invited_by.company.id
+    update_attribute(:team_id, team_id)
+    update_attribute(:company_id, company_id)
+    update_attribute(:role, "normal")
   end
 end

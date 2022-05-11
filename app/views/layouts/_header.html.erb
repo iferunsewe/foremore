@@ -6,7 +6,7 @@
   </li>
 
 
-  <% if user_signed_in? && (!current_user.guest? || !current_user.role.nil?) && !current_user.admin? %>
+  <% if user_signed_in? && !current_user.company.nil? && !current_user.admin? %>
     <li class="nav-item col-4">
       <div class="d-flex justify-content-end">
         <%= link_to(edit_company_path(current_user.company), class: 'nav-link logo-container') do %>
