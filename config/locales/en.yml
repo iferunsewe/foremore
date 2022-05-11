@@ -37,9 +37,6 @@ en:
     new-link: "Book"
     list-link: "Deliveries"
     form:
-      integrations:
-        orders-button-label: "Select order"
-        explainer_html: "<b>Coming soon!</b> Select an order from your ERP system or a CSV to prefill this form"
       address:
         heading: "Address"
         pickup-label: "Pick up from"
@@ -73,6 +70,18 @@ en:
       submit-button-label: "Book"
       edit-submit-button-label: "Change delivery"
       status-label: "Status"
+      quick-actions:
+        heading: "Quick actions"
+        explainer: Choose from a options to help you book deliveries faster e.g. multiple deliveries at once or rebook old orders.
+        csv:
+          explainer: "Upload a csv to create multiple bookings at once"
+          submit-button-label: Upload
+        rebook:
+          submit-button-label: Rebook
+          explainer: Enter an previous delivery id to book the same delivery again
+        integrations:
+          explainer_html: <b>Coming soon!</b> Add orders already created in your ERP system
+          submit-button-label: Choose order
     show:
       expected-at: "Delivery expected at"
       status: "Status"

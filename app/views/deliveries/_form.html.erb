@@ -13,17 +13,17 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-sm-12 order-2 order-md-1">
-        <div class="form-group mb-3 button-and-explainer">
+        <div class="form-group mb-3">
           <% if @delivery.persisted? %>
             <div class="form-floating">
               <%= form.select :status, Delivery.statuses_for_companies.keys.map{|status| [status.humanize, status]}, {prompt: "Select status"}, {class: "form-control form-select", required: true} %>
               <%= form.label :status, t("delivery.form.status-label"),  style: "display: block", class: 'form-label semi-bold' %>
             </div>
           <% else %>
-            <div class="d-grid gap-2 col-12 col-md-6 mx-auto mb-2">
-              <%= button_tag t("delivery.form.integrations.orders-button-label"), type: 'button', class: 'btn btn-primary semi-bold', disabled: true %>
+            <div class="d-grid gap-2 col-12 col-md-6 mb-2">
+              <%= button_tag t("delivery.form.quick-actions.heading"), data: {bs_toggle: "modal", bs_target: "#quickActionsModal"}, type: 'button', class: 'btn btn-primary semi-bold' %>
             </div>
-            <div class="form-text mb-2"><%=  t("delivery.form.integrations.explainer_html") %></div>
+            <div class="form-text mb-2"><%=  t("delivery.form.quick-actions.explainer") %></div>
             <%= form.hidden_field :status, value: "pending" %>
           <% end %>
         </div>

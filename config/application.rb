@@ -33,5 +33,7 @@ module Foremore
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.autoload_paths << Rails.root.join('lib')
+    config.paths.add Rails.root.join('lib').to_s, eager_load: true
   end
 end
