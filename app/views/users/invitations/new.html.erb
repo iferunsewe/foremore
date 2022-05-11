@@ -4,7 +4,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <% resource.class.invite_key_fields.each do |field| -%>
-    <div class="form-floating mb-2 col-3">
+    <div class="form-floating mb-2 col-md-3">
       <%= f.text_field field, class: 'form-control', required: true %>
       <%= f.label field %>
     </div>
