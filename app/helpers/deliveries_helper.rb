@@ -19,4 +19,20 @@ module DeliveriesHelper
       google_map(pickup_address: alt_pickup_address.one_line)
     end
   end
+
+  def statuses_to_display
+    if current_user.admin?
+      Delivery.statuses.keys.map{|status| [status.humanize, status]}
+    else
+      Delivery.statuses_for_companies.keys.map{|status| [status.humanize, status]}
+    end
+  end
+
+  def pickup_address_to_use(delivery)
+    if current_user.admin?
+      delivery.pickup_address
+    else
+      current_user.team.address
+    end
+  end
 end

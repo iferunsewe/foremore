@@ -16,7 +16,7 @@
         <div class="form-group mb-3">
           <% if @delivery.persisted? %>
             <div class="form-floating">
-              <%= form.select :status, Delivery.statuses_for_companies.keys.map{|status| [status.humanize, status]}, {prompt: "Select status"}, {class: "form-control form-select", required: true} %>
+              <%= form.select :status, statuses_to_display, {prompt: "Select status"}, {class: "form-control form-select", required: true} %>
               <%= form.label :status, t("delivery.form.status-label"),  style: "display: block", class: 'form-label semi-bold' %>
             </div>
           <% else %>
@@ -33,7 +33,8 @@
             <div class="col-md-6 col-sm-12 d-inline-block">
               <h4><%= t("delivery.form.address.heading") %></h4>
               <div>
-                <% pickup_address = current_user.team.address %>
+                
+                <% pickup_address = pickup_address_to_use(delivery) %>
                 <p><span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <span id="delivery_pickup_address"><%= pickup_address.one_line %></span><p>
                 <%= form.hidden_field :pickup_address_id, value: pickup_address.id %>
               </div>
