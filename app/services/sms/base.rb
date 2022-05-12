@@ -14,7 +14,7 @@ module Sms
     private
 
     def sms_opt_in?
-      user.account.sms_opt_in
+      user.sms_opt_in
     end
 
     def phone_number

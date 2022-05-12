@@ -107,5 +107,6 @@ en:
     list-link: 'Companies'
     single-link: 'Company'
   sms:
-    new-delivery:
-      message: "Hi %{first_name}. ANOTHER ONE. Yes you got another delivery on foremore. Get this show on the road by confirming it as soon as possible %{delivery_url}."
+    new-delivery: "foremore: Hi %{first_name}. ANOTHER ONE. Yes you got another delivery. Get this show on the road by confirming it as soon as possible %{delivery_url}."
+    ready-to-pickup: "foremore: The delivery {order_reference} is ready to pick up at {address}. Go Go Go. See more details at %{delivery_url}"
+

@@ -45,10 +45,7 @@ class DeliveriesController < ApplicationController
       if @delivery.save
         format.html { redirect_to delivery_url(@delivery), notice: "Delivery was successfully created." }
         format.json { render :show, status: :created, location: @delivery }
-        User.admin.each do |admin|
-          Sms::SendNewDeliverySms.new(@delivery, admin).enqueue!
-        end
-        
+        send_new_delivery_sms
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @delivery.errors, status: :unprocessable_entity }
@@ -62,6 +59,7 @@ class DeliveriesController < ApplicationController
       if @delivery.update(delivery_params_to_i)
         format.html { redirect_to delivery_url(@delivery), notice: "Delivery was successfully updated." }
         format.json { render :show, status: :ok, location: @delivery }
+        send_ready_to_pickup_sms
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @delivery.errors, status: :unprocessable_entity }
@@ -103,5 +101,19 @@ class DeliveriesController < ApplicationController
         length_class: delivery_params[:length_class].to_i,
         user_id: current_user.id
       )
+    end
+
+    def send_new_delivery_sms
+      User.admin.each do |admin|
+        Sms::SendNewDeliverySms.new(@delivery, admin).enqueue!
+      end
+    end
+
+    def send_ready_to_pickup_sms
+      if @delivery.ready?
+        User.admin.each do |admin|
+          Sms::SendReadyToPickupSms.new(@delivery, admin).enqueue!
+        end
+      end
     end
 end

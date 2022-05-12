@@ -1,5 +1,5 @@
 module Sms
-  class SendNewDeliverySms < Base
+  class SendReadyToPickupSms < Base
     attr_accessor :delivery
     RouteHelpers = Rails.application.routes.url_helpers
 
@@ -7,14 +7,14 @@ module Sms
       @delivery = delivery
       @user = user
     end
-
+    
     private
 
     def message
-      I18n.t("sms.new-delivery",
-             first_name: first_name,
-             reference: delivery.reference,
-             delivery_url:  delivery_url)
+      I18n.t("sms.ready-to-pickup",
+              reference: delivery.id,
+              address: delivery.pickup_address_to_s,
+              delivery_url:  delivery_url)
     end
 
     def user

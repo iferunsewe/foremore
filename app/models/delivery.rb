@@ -21,6 +21,10 @@ class Delivery < ApplicationRecord
     to_coordinates.join(',')
   end
 
+  def pickup_address_to_s
+    pickup_address.one_line
+  end
+
   private
 
   def update_delivered_at
