@@ -34,7 +34,7 @@ body {
     border: 1px solid transparent;
   }
 
-  input:not([type=submit]), textarea, select {
+  input:not([type=submit]):not([type=checkbox]), textarea, select {
     background: #2C25D20D;
   }
 

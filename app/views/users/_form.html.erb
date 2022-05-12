@@ -20,15 +20,16 @@
     <%= form.label :last_name, class: "form-label", class: "form-label"  %><br />
     <%= form.text_field :last_name, class: "form-control", required: true %>
   </div>
-  
-  <div class="field form-group col-md-3 col-sm-12 mb-3">
-    <%= form.label :email, class: "form-label", class: "form-label"  %><br />
-    <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
-  </div>
 
   <div class="field form-group col-md-3 col-sm-12 mb-3">
     <%= form.label :phone_number, class: "form-label", class: "form-label"  %><br />
     <%= form.telephone_field :phone_number, class: "form-control" %>
+  </div>
+
+  <div class="field form-check col-md-3 col-sm-12 mb-3">
+    <%= form.check_box :sms_opt_in, class: "form-check-input" %>
+    <%= form.label :sms_opt_in, class: "form-check-label", class: "form-label"  %><br />
+    <div class="form-text mb-2"><%= t("user.sms-opt-in.explainer") %></div>
   </div>
 
   <% if current_user.admin? || current_user.company_admin? %>

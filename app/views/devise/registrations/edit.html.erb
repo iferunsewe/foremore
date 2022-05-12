@@ -10,16 +10,6 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field form-group col-md-3 col-sm-12 mb-3">
-    <%= f.label :first_name, class: "form-label"  %><br />
-    <%= f.text_field :first_name, class: "form-control", required: true %>
-  </div>
-
-  <div class="field form-group col-md-3 col-sm-12 mb-3">
-    <%= f.label :last_name, class: "form-label"  %><br />
-    <%= f.text_field :last_name, class: "form-control", required: true %>
-  </div>
-  
-  <div class="field form-group col-md-3 col-sm-12 mb-3">
     <%= f.label :email, class: "form-label"  %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
   </div>

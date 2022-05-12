@@ -3,13 +3,8 @@ module Sms
     def initialize; end
 
     def enqueue!
-      Sms::Sender.new(phone_number, message).send!
-    #   Delayed::Job.enqueue(job, priority: 20) if enqueue?
+      Sms::Sender.new(phone_number, message).send! if sms_opt_in?
     end
-
-    # def job
-    #   SendSMSJob.new(phone_number, message)
-    # end
 
     private
 

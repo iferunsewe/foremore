@@ -12,7 +12,7 @@ module Sms
 
     def message
       I18n.t("sms.ready-to-pickup",
-              reference: delivery.id,
+              reference: delivery.order_reference,
               address: delivery.pickup_address_to_s,
               delivery_url:  delivery_url)
     end

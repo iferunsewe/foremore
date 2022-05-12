@@ -13,7 +13,6 @@ module Sms
     def message
       I18n.t("sms.new-delivery",
              first_name: first_name,
-             reference: delivery.reference,
              delivery_url:  delivery_url)
     end
 
