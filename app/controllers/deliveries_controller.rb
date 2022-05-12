@@ -45,6 +45,10 @@ class DeliveriesController < ApplicationController
       if @delivery.save
         format.html { redirect_to delivery_url(@delivery), notice: "Delivery was successfully created." }
         format.json { render :show, status: :created, location: @delivery }
+        User.admin.each do |admin|
+          SendNewDeliverySMS.new(@delivery, admin).enqueue!
+        end
+        
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @delivery.errors, status: :unprocessable_entity }

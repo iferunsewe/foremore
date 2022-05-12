@@ -285,7 +285,7 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   turbo-rails
-  twilio-ruby
+  twilio-ruby (~> 5.67.0)
   tzinfo-data
   web-console
 
