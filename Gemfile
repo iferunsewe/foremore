@@ -90,3 +90,6 @@ gem "aws-sdk-s3", require: false
 
 # Devise way of creating invitations
 gem 'devise_invitable', '~> 2.0.0'
+
+# Used to send SMSs
+gem 'twilio-ruby'

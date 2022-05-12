@@ -96,7 +96,8 @@ class DeliveriesController < ApplicationController
       delivery_params.merge(
         delivery_type: delivery_params[:delivery_type].to_i,
         weight_class: delivery_params[:weight_class].to_i,
-        length_class: delivery_params[:length_class].to_i
+        length_class: delivery_params[:length_class].to_i,
+        user_id: current_user.id
       )
     end
 end

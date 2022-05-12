@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   belongs_to :team, optional: true
   belongs_to :company, optional: true
+  has_many :deliveries
 
   enum role: [:normal, :team_admin, :company_admin, :admin]
 

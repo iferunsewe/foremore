@@ -1,5 +1,6 @@
 class Delivery < ApplicationRecord
   belongs_to :pickup_address, class_name: 'Address'
+  belongs_to :user
 
   enum status: [:draft, :pending, :confirmed, :preparing, :ready, :delivering, :delivered]
   enum delivery_type: [:instant, :scheduled]
