@@ -1,5 +1,5 @@
-module SMS
-  class SendNewDeliverySMS < Base
+module Sms
+  class SendNewDeliverySms < Base
     attr_accessor :delivery
     RouteHelpers = Rails.application.routes.url_helpers
 

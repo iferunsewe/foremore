@@ -1,4 +1,4 @@
-module SMS
+module Sms
   class Base
     def initialize; end
 

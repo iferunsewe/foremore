@@ -21,4 +21,6 @@ Rails.application.routes.draw do
     post 'csvs', to: 'csvs#create'
     get 'csvs/template', to: 'csvs#get_template'
   end
+
+  default_url_options host: ENV["HOST"]
 end

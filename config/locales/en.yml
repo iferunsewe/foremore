@@ -108,5 +108,4 @@ en:
     single-link: 'Company'
   sms:
     new-delivery:
-      message:
-        message: "Hi %{first_name}. ANOTHER ONE. Yes you got another delivery on foremore. Get this show on the road by confirming it as soon as possible %{delivery_url}."
+      message: "Hi %{first_name}. ANOTHER ONE. Yes you got another delivery on foremore. Get this show on the road by confirming it as soon as possible %{delivery_url}."

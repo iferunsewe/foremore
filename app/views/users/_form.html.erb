@@ -26,6 +26,11 @@
     <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
   </div>
 
+  <div class="field form-group col-md-3 col-sm-12 mb-3">
+    <%= form.label :phone_number, class: "form-label", class: "form-label"  %><br />
+    <%= form.telephone_field :phone_number, class: "form-control" %>
+  </div>
+
   <% if current_user.admin? || current_user.company_admin? %>
     <div class="field form-group col-md-3 col-sm-12 mb-3">
       <%= form.label :role , class: "form-label", class: "form-label"  %><br />
