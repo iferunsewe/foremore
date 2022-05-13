@@ -28,14 +28,40 @@
           <% end %>
         </div>
 
+        <div class="form-group mb-4">
+          <h4 class="mb-1"><%= t("delivery.form.delivery-type.heading") %></h4>
+          <div class="form-text mb-3"><%=  t("delivery.form.delivery-type.explainer") %></div>
+
+          <div class="d-flex justify-content-around mb-3" role="group">
+            <% if delivery.persisted? %>
+              <%= form.radio_button :delivery_type, Delivery.delivery_types["instant"], class: "btn-check", checked: delivery.delivery_type == "instant" %>  
+            <% else %>
+              <%= form.radio_button :delivery_type, Delivery.delivery_types["instant"], class: "btn-check", checked: true %>
+            <% end %>
+            <%= form.label :delivery_type_0, class: 'btn btn-outline-primary btn-radio col-4 semi-bold', data: {bs_toggle: "collapse", bs_target: "#collapseExample.show"}, aria: { expanded: "false", controls: "collapseExample"} do %>
+              <%= t("delivery.form.delivery-type.instant-label") %>
+              <i class="bi bi-lightning-charge-fill"></i>
+            <% end %>
+            <%= form.radio_button :delivery_type, Delivery.delivery_types["scheduled"], class: "btn-check", checked: delivery.delivery_type == "scheduled" %>
+            <%= form.label :delivery_type_1, class: 'btn btn-outline-primary btn-radio col-4 semi-bold', data: {bs_toggle: "collapse", bs_target: "#collapseExample:not(.show)"}, aria: { expanded: "false", controls: "collapseExample"} do %>
+              <%= t("delivery.form.delivery-type.scheduled-label") %>
+              <i class="bi bi-calendar-week"></i>
+            <% end %>
+          </div>
+
+          <div class="collapse <%= delivery&.delivery_type == "scheduled" ? "show" : "" %>" id="collapseExample">
+            <%= form.label :scheduled_date, t("delivery.form.delivery-type.scheduled-date.heading"), style: "display: block", class: 'form-label semi-bold' %>
+            <%= form.datetime_local_field :scheduled_date, value: DateTime.now.strftime('%Y-%m-%d %H:%M'), class: 'form-control mb-2' %>
+          </div>
+        </div>
+
         <div class="form-group mb-3">
           <div class="row">
-            <div class="col-md-6 col-sm-12 d-inline-block">
+            <div class="d-inline-block">
               <h4><%= t("delivery.form.address.heading") %></h4>
               <div>
-                
                 <% pickup_address = pickup_address_to_use(delivery) %>
-                <p><span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <span id="delivery_pickup_address"><%= pickup_address.one_line %></span><p>
+                <div id="delivery_pickup_address" class="d-none"><%= pickup_address.one_line %></div>
                 <%= form.hidden_field :pickup_address_id, value: pickup_address.id %>
               </div>
             
@@ -48,7 +74,12 @@
                 <%= form.text_area :address_notes, placeholder: t("delivery.form.address.notes-placeholder"), class: 'form-control' %>
               </div>
             </div>
-            <div class="col-md-6 col-sm-12 d-inline-block">
+          </div>
+        </div>
+
+        <div class="form-group mb-3">
+          <div class="row">
+            <div class="d-inline-block">
               <h4><%=  t("delivery.form.contact-information.heading") %></h4>
               <div class="form-text mb-2"><%=  t("delivery.form.contact-information.explainer") %></div>
               <div class="form-floating mb-2">
@@ -61,30 +92,9 @@
               </div>
               <div class="form-floating mb-2">
                 <%= form.telephone_field :recipient_phone, class: 'form-control' %>
-                <%= form.label :recipient_phone, t("delivery.form.contact-information.phone-placeholder"), required: true %>
+                <%= form.label :recipient_phone, t("delivery.form.contact-information.phone-placeholder") %>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div class="form-group mb-4">
-          <h4 class="mb-3"><%= t("delivery.form.delivery-type.heading") %></h4>
-
-          <div class="d-flex justify-content-around mb-3" role="group">
-            <% if delivery.persisted? %>
-              <%= form.radio_button :delivery_type, Delivery.delivery_types["instant"], class: "btn-check", checked: delivery.delivery_type == "instant" %>
-            <% else %>
-              <%= form.radio_button :delivery_type, Delivery.delivery_types["instant"], class: "btn-check", checked: true %>
-            <% end %>
-            <%= form.label :delivery_type_0, "ASAP", class: 'btn btn-outline-primary btn-radio col-4 semi-bold', data: {bs_toggle: "collapse", bs_target: "#collapseExample.show"}, aria: { expanded: "false", controls: "collapseExample"} %>
-            
-            <%= form.radio_button :delivery_type, Delivery.delivery_types["scheduled"], class: "btn-check", checked: delivery.delivery_type == "scheduled" %>
-            <%= form.label :delivery_type_1, "Scheduled", class: 'btn btn-outline-primary btn-radio col-4 semi-bold', data: {bs_toggle: "collapse", bs_target: "#collapseExample:not(.show)"}, aria: { expanded: "false", controls: "collapseExample"} %>
-          </div>
-
-          <div class="collapse <%= delivery&.delivery_type == "scheduled" ? "show" : "" %>" id="collapseExample">
-            <%= form.label :scheduled_date, t("delivery.form.delivery-type.scheduled-date.heading"), style: "display: block", class: 'form-label semi-bold' %>
-            <%= form.datetime_local_field :scheduled_date, value: DateTime.now.strftime('%Y-%m-%d %H:%M'), class: 'form-control mb-2' %>
           </div>
         </div>
 
@@ -92,8 +102,8 @@
           <h4><%= t("delivery.form.item-details.heading") %></h4>
 
           <% if !@delivery.persisted? %>
-            <div class="form-group mb-3 button-and-explainer">
-              <div class="d-grid gap-2 col-12 col-md-6 mx-auto mb-2">
+            <div class="form-group mb-3">
+              <div class="d-grid gap-2 col-12 col-md-6 mb-2">
                 <%= button_tag t("delivery.form.item-details.inventory-button-label"), type: 'button', class: 'btn btn-primary semi-bold', disabled: true %>
               </div>
               <div class="form-text mb-2"><%=  t("delivery.form.item-details.inventory-explainer_html") %></div>
@@ -106,12 +116,12 @@
           </div>
 
           <div class="form-floating mb-2">
-            <%= form.text_field :order_reference, class: 'form-control', required: true %>
+            <%= form.text_field :order_reference, class: 'form-control' %>
             <%= form.label :order_reference, t("delivery.form.item-details.reference-placeholder") %>
           </div>
 
           <div class="row">
-            <div class="col-md-6 col-sm-12 mb-3 mb-md-0">
+            <div class="col-md-6 col-sm-12 mb-3 mb-md-2">
               <%= form.label :weight_class, t("delivery.form.item-details.weight-label"),  style: "display: block", class: 'form-label semi-bold' %>
               <div class="d-flex justify-content-around" role="group">
                 <% if delivery.persisted? %>
@@ -129,7 +139,7 @@
               </div>
             </div>
 
-            <div class="col-md-6 col-sm-12 mb-3 mb-md-0">
+            <div class="col-md-6 col-sm-12 mb-3 mb-md-2">
               <%= form.label :length_class, t("delivery.form.item-details.length-label"),  style: "display: block", class: 'form-label semi-bold' %>
               <div class="d-flex justify-content-around" role="group">
                 <% if delivery.persisted? %>
@@ -150,24 +160,28 @@
               </div>
             </div>  
           </div>
+
+          <div class="row">
+            <div class="form-text mb-2"><%= t("delivery.form.item-details.dimensions-explainer") %></div>
+          </div>
         </div>
 
         <div class="form-group mb-3">
-          <h4 class="mb-3">Any other notes</h4>
+          <h4 class="mb-3"><%= t("delivery.form.other-notes.heading") %></h4>
           <%= form.text_area :other_notes, placeholder: t("delivery.form.other-notes.placeholder"), class: 'form-control mb-2' %>
         </div>
 
         <div class="row d-md-none d-flex justify-content-center mb-3">
           <% if @delivery.persisted? %>
-              <%= form.submit t("delivery.form.edit-submit-button-label"), class: "btn btn-success col-6 semi-bold" %>
+              <%= render "submit_button", {button_label: t("delivery.form.edit-submit-button-label")} %>
             <% else %>
-              <%= form.submit t("delivery.form.submit-button-label"), class: "btn btn-success col-6 semi-bold" %>
+              <%= render "submit_button", {button_label: t("delivery.form.submit-button-label")} %>
             <% end %>
         </div>
       </div>
-      <div class="col-md-6 col-sm-12 order-1 order-md-2 sticky-top">
+      <div class="col-md-6 col-sm-12 order-1 order-md-2 mb-md-0 mb-3">
         <div class="sticky-top">
-          <div class="form-group mb-5 map-container">
+          <div class="form-group map-container">
             <iframe
               class="map"
               id="google-embed-map"
@@ -178,11 +192,17 @@
             </iframe>
           </div>
 
+          <div class="latest-time-container">
+            <div class="col-md-6">
+              <%= t("delivery.form.latest-delivery-label") %><span class="expected-time semi-bold"><%= (DateTime.now + 58.minutes).strftime("%H:%M") %></span>
+            </div>
+          </div>
+
           <div class="row d-none d-md-flex justify-content-center">
             <% if @delivery.persisted? %>
-              <%= form.submit t("delivery.form.edit-submit-button-label"), class: "btn btn-success col-6 semi-bold" %>
+              <%= render "submit_button", {button_label: t("delivery.form.edit-submit-button-label")} %>
             <% else %>
-              <%= form.submit t("delivery.form.submit-button-label"), class: "btn btn-success col-6 semi-bold" %>
+              <%= render "submit_button", {button_label: t("delivery.form.submit-button-label")} %>
             <% end %>
           </div>
         </div>

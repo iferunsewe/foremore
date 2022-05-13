@@ -38,52 +38,57 @@ en:
     list-link: "Deliveries"
     form:
       address:
-        heading: "Address"
+        heading: "2. Address"
         pickup-label: "Pick up from"
         delivery-label: "Deliver to"
-        delivery-placeholder: "Enter a delivery address"
+        delivery-placeholder: "Enter a delivery address *"
         notes-placeholder: "Enter any notes for the pick up and delivery e.g. floor level, parking available, leave at the door etc..."
       map:
         estimated-time_html: <b>Latest delivery by:</b>
       item-details:
-        heading: "Item Details"
+        heading: "4. Item Details"
         inventory-button-label: "Select from inventory"
         inventory-explainer_html: "<b>Coming soon!</b> Choose an item from your inventory to add to the order"
-        description-placeholder: "What are we picking up?"
-        reference-placeholder: "Order reference"
+        description-placeholder: "What are we picking up? e.g. 2 x 25kg Knauff acquastuc plaster"
+        reference-placeholder: "Order reference i.e. something to help us identify the order"
         weight-label: "Weight (kg)"
         length-label: "Length (m)"
+        dimensions-explainer: "Giving us the correct weight and length will help us select the right vehicle for delivery."
       delivery-type:
-        heading: "Delivery Type"
+        heading: "1. Delivery Type"
         instant-label: "ASAP"
         scheduled-label: "Scheduled"
         scheduled-date:
           heading: "Scheduled Date"
+        explainer: "If you choose the option ASAP, we'll try to complete the delivery in an hour!"
       contact-information:
-        heading: "Contact Information"
-        explainer: "Enter the recipient's contact details"
-        name-placeholder: "Name"
+        heading: "3. Contact Information"
+        explainer: "Enter the recipient's contact details so we can keep them informed about the delivery."
+        name-placeholder: "Name *"
         email-placeholder: "Email"
         phone-placeholder: "Phone number"
       other-notes:
+        heading: 5. Any other information you want to share
         placeholder: 'Enter any other notes about the delivery'
       submit-button-label: "Book"
       edit-submit-button-label: "Change delivery"
       status-label: "Status"
       quick-actions:
         heading: "Quick actions"
-        explainer: Choose from a options to help you book deliveries faster e.g. multiple deliveries at once or rebook old orders.
+        explainer: Choose from options like booking multiple deliveries at once or rebooking old orders to help you book deliveries faster.
         csv:
           explainer: "Upload a csv to create multiple bookings at once"
           template-link: "Click here to download the template."
           submit-button-label: Upload
-
         rebook:
           submit-button-label: Rebook
           explainer: Enter an previous delivery id to book the same delivery again
         integrations:
           explainer_html: <b>Coming soon!</b> Add orders already created in your ERP system
           submit-button-label: Choose order
+      notify-recipient:
+        explainer: Should we tell your customer when the delivery is on it's way?
+      latest-delivery-label: "Latest delivery by"
     show:
       expected-at: "Delivery expected at"
       status: "Status"
