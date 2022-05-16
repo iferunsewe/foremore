@@ -6,7 +6,6 @@ class User < ApplicationRecord
          :confirmable, :trackable
 
   validates_uniqueness_of :email
-  validates :phone_number, phone: true
 
   belongs_to :team, optional: true
   belongs_to :company, optional: true
