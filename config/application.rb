@@ -35,5 +35,6 @@ module Foremore
     config.generators.system_tests = nil
     config.autoload_paths << Rails.root.join('lib')
     config.paths.add Rails.root.join('lib').to_s, eager_load: true
+    config.time_zone = "Amsterdam"
   end
 end
