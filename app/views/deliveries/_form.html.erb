@@ -194,7 +194,7 @@
 
           <div class="latest-time-container">
             <div class="col-md-6">
-              <%= t("delivery.form.latest-delivery-label") %>  <span class="expected-time semi-bold"><%= (DateTime.now + 58.minutes).strftime("%H:%M") %></span>
+              <%= t("delivery.form.latest-delivery-label") %>  <span class="expected-time semi-bold"><%= (DateTime.now + 48.minutes).in_time_zone("Europe/Amsterdam").strftime("%H:%M") %></span>
             </div>
           </div>
 
