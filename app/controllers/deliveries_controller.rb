@@ -29,7 +29,7 @@ class DeliveriesController < ApplicationController
     if params[:old_delivery_id] && old_delivery = Delivery.find(params[:old_delivery_id])
       @delivery = old_delivery.dup
     else
-      @delivery = Delivery.new
+      @delivery = session[:delivery] || Delivery.new
     end
   end
 

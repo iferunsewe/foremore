@@ -36,8 +36,13 @@
             <hr>
              <div class="row">
                 <div class="col-md-12">
-                  <div class="form-text mb-2"><%=  t("delivery.form.quick-actions.integrations.explainer_html") %></div>
-                  <%= button_tag t("delivery.form.quick-actions.integrations.submit-button-label"), type: 'button', class: 'btn btn-primary semi-bold col-6', disabled: true %>
+                  <%= form_tag find_order_path, method: :get do %>
+                    <div class="form-text mb-2"><%=  t("delivery.form.quick-actions.rebook.explainer") %></div>
+                    <div class="mb-2">
+                      <%= number_field_tag :order_number, nil, class: "form-control", placeholder: "Enter the order number from your ERP" %>
+                    </div>
+                    <%= submit_tag t("delivery.form.quick-actions.integrations.submit-button-label"), class: 'btn btn-primary semi-bold col-6' %>
+                  <% end %>
                 </div>
              </div>
           </div>

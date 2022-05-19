@@ -36,5 +36,6 @@ module Foremore
     config.autoload_paths << Rails.root.join('lib')
     config.paths.add Rails.root.join('lib').to_s, eager_load: true
     config.time_zone = "Amsterdam"
+    config.session_store :active_record_store, key: '_foremore_session'
   end
 end

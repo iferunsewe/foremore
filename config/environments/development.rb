@@ -73,4 +73,6 @@ Rails.application.configure do
   # For letter_opener
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
+
+  config.hosts << "4077-77-251-201-157.eu.ngrok.io"
 end

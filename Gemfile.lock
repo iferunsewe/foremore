@@ -10,6 +10,16 @@ GIT
       responders
       warden (~> 1.2.3)
 
+GIT
+  remote: https://github.com/iferunsewe/exactonline-api-ruby-client
+  revision: c76c27f7ecf5bc52bb52f4dcc11579cce907fb5a
+  specs:
+    elmas (3.1.0)
+      activeresource
+      activesupport
+      faraday (>= 0.12.1)
+      mechanize (>= 2.7.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -68,9 +78,23 @@ GEM
       globalid (>= 0.3.6)
     activemodel (7.0.2.3)
       activesupport (= 7.0.2.3)
+    activemodel-serializers-xml (1.0.2)
+      activemodel (> 5.x)
+      activesupport (> 5.x)
+      builder (~> 3.1)
     activerecord (7.0.2.3)
       activemodel (= 7.0.2.3)
       activesupport (= 7.0.2.3)
+    activerecord-session_store (2.0.0)
+      actionpack (>= 5.2.4.1)
+      activerecord (>= 5.2.4.1)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 2.0.8, < 3)
+      railties (>= 5.2.4.1)
+    activeresource (6.0.0)
+      activemodel (>= 6.0)
+      activemodel-serializers-xml (~> 1.0)
+      activesupport (>= 6.0)
     activestorage (7.0.2.3)
       actionpack (= 7.0.2.3)
       activejob (= 7.0.2.3)
@@ -110,6 +134,7 @@ GEM
     cancancan (3.3.0)
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
+    connection_pool (2.2.5)
     crass (1.0.6)
     cssbundling-rails (1.1.0)
       railties (>= 6.0.0)
@@ -120,6 +145,8 @@ GEM
       actionmailer (>= 5.0)
       devise (>= 4.6)
     digest (3.1.0)
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -132,6 +159,11 @@ GEM
     geocoder (1.7.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    http-cookie (1.0.4)
+      domain_name (~> 0.5)
+    httparty (0.20.0)
+      mime-types (~> 3.0)
+      multi_xml (>= 0.5.2)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     io-console (0.5.11)
@@ -154,10 +186,29 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (1.0.2)
+    mechanize (2.8.4)
+      addressable (~> 2.8)
+      domain_name (~> 0.5, >= 0.5.20190701)
+      http-cookie (~> 1.0, >= 1.0.3)
+      mime-types (~> 3.0)
+      net-http-digest_auth (~> 1.4, >= 1.4.1)
+      net-http-persistent (>= 2.5.2, < 5.0.dev)
+      nokogiri (~> 1.11, >= 1.11.2)
+      rubyntlm (~> 0.6, >= 0.6.3)
+      webrick (~> 1.7)
+      webrobots (~> 0.1.2)
     method_source (1.0.0)
+    mime-types (3.4.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     minitest (5.15.0)
     msgpack (1.5.1)
+    multi_json (1.15.0)
+    multi_xml (0.6.0)
+    net-http-digest_auth (1.4.1)
+    net-http-persistent (4.0.1)
+      connection_pool (~> 2.2)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -227,6 +278,7 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     ruby2_keywords (0.0.5)
+    rubyntlm (0.6.3)
     sprockets (4.0.3)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -248,6 +300,9 @@ GEM
       nokogiri (>= 1.6, < 2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.8.1)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -255,6 +310,8 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
+    webrick (1.7.0)
+    webrobots (0.1.2)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -266,6 +323,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations
+  activerecord-session_store
   aws-sdk-s3
   bootsnap
   cancancan
@@ -274,7 +332,9 @@ DEPENDENCIES
   devise!
   devise_invitable (~> 2.0.0)
   dotenv-rails
+  elmas!
   geocoder
+  httparty
   jbuilder
   jsbundling-rails
   letter_opener

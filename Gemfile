@@ -96,3 +96,11 @@ gem 'twilio-ruby', '~> 5.67.0'
 
 # Phone number validator
 gem 'phonelib'
+
+# REST Client
+gem 'httparty'
+
+# Creates the sessions table
+gem 'activerecord-session_store'
+
+gem 'elmas', git: 'https://github.com/iferunsewe/exactonline-api-ruby-client'
