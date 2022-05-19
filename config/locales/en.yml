@@ -84,7 +84,7 @@ en:
           submit-button-label: Rebook
           explainer: Enter an previous delivery id to book the same delivery again
         integrations:
-          explainer_html: <b>Coming soon!</b> Add orders already created in your ERP system
+          explainer: Automatically request a delivery from your ERP using just an order number
           submit-button-label: Choose order
       notify-recipient:
         explainer: Should we tell your customer when the delivery is on it's way?

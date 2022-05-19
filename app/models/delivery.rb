@@ -17,6 +17,12 @@ class Delivery < ApplicationRecord
     statuses.select { |k, _| k.in?(%w(draft pending preparing ready)) }
   end
 
+  def self.weight_i_to_weight_class(weight_i)
+    return "< 15" if weight_i < 15
+    return "15 - 300" if weight_i < 300
+    return "300 - 800" if weight_i < 800
+  end
+
   def to_coordinates_s
     to_coordinates.join(',')
   end

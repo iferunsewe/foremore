@@ -24,7 +24,7 @@ class IntegrationsController < ApplicationController
         redirect_to edit_user_registration_path, alert: "Please authorize with Exact."
       end
     rescue Elmas::BadRequestException => e
-      redirect_to edit_user_registration_path, alert: "Please authorize with Exact."
+      redirect_to new_delivery_path, alert: "Please authorize with Exact. #{e.message}"
     rescue => e
       redirect_to new_delivery_path, alert: e.message
     end
@@ -62,11 +62,18 @@ class IntegrationsController < ApplicationController
 
   def build_delivery_from_sales_order(sales_order)
     delivery_address = get_delivery_address(sales_order)
-
+    sales_order_lines = get_sales_order_lines(sales_order)
+    recipient = get_recipient(sales_order)
+    weight_class = calculate_weight_class(sales_order_lines)
+    
     Delivery.new(
       order_reference: sales_order.order_number,
-      recipient_name: sales_order.deliver_to_name,
-      delivery_address: delivery_address
+      recipient_name: recipient.name,
+      recipient_email: recipient.email,
+      recipient_phone: recipient.phone,
+      delivery_address: delivery_address,
+      description: build_description(sales_order, sales_order_lines),
+      weight_class: weight_class
     )
   end
 
@@ -85,5 +92,44 @@ class IntegrationsController < ApplicationController
     ]
     address_components.reject!(&:blank?)
     address_components.join(", ")
+  end
+
+  def get_sales_order_lines(sales_order)
+    sales_order_lines = Elmas::SalesOrderLine.new(order_ID: sales_order.order_id).find_by(filters: [:order_ID]).records
+    sales_order_lines.map do |line|
+      item = Elmas::Item.new(id: line.item).find
+      {
+        name: line.item_description,
+        quantity: line.quantity,
+        code: line.item_code,
+        weight: item.gross_weight
+      }
+    end
+  end
+
+  def get_recipient(sales_order)
+    Elmas::Account.new(id: sales_order.deliver_to).find
+  end
+
+  def build_description(sales_order, sales_order_lines)
+    description = "Item details:"
+    description += "\n"
+    description += sales_order_lines.map{|line| "- #{line[:code]}: #{line[:quantity]} x #{line[:name]}"}.join("\n")
+    description += "\n\n"
+    description += "Description:"
+    description += "\n"
+    description += "#{sales_order.description}"
+    description
+  end
+
+  def calculate_weight_class(sales_order_lines)
+    total_weight = sales_order_lines.sum do |line|
+      if line[:weight].present?
+        line[:weight] * line[:quantity]
+      else
+        0
+      end
+    end
+    Delivery.weight_i_to_weight_class(total_weight)
   end
 end
