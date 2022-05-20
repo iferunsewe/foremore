@@ -4,59 +4,58 @@
   <p>Interested in using our product? Please get email us at contact@foremoresupplies.com</p>
 <% end %>
 
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h4 class="mb-2">Edit <%= resource_name.to_s.humanize %></h4>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, data: { turbo: false }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field form-group col-md-3 col-sm-12 mb-3">
-    <%= f.label :email, class: "form-label"  %><br />
+  <div class="form-floating col-md-3 col-sm-12 mb-4">
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %>
+    <%= f.label :email  %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field form-group col-md-3 col-sm-12 mb-3">
-    <%= f.label :password, class: "form-label" %> <i>(leave blank if you don't want to change it)</i><br />
+  <div class="form-floating col-md-3 col-sm-12 mb-4">
     <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    <%= f.label :password %>
     <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <div class="form-text mb-3"><%= @minimum_password_length %> characters minimum. Leave blank if you don't want to change it.</div>
     <% end %>
   </div>
 
-  <div class="field form-group col-md-3 col-sm-12 mb-3">
-    <%= f.label :password_confirmation, class: "form-label" %><br />
+  <div class="form-floating col-md-3 col-sm-12 mb-4">
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    <%= f.label :password_confirmation %>
   </div>
 
-  <div class="field form-group col-md-3 col-sm-12 mb-3">
-    <%= f.label :current_password, class: "form-label" %> <i>(we need your current password to confirm your changes)</i><br />
+  <div class="form-floating col-md-3 col-sm-12 mb-4">
     <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+    <%= f.label :current_password, class: "form-label" %>
+    <div class="form-text mb-3">We need your current password to confirm your changes.</div>
   </div>
 
-  <div class="actions col-12 col-md-3">
+  <div class="actions col-12 col-md-3 mb-4">
     <%= f.submit "Update", class: "btn btn-primary mb-3 w-100" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h4 class="mb-2">Account actions</h4>
 
-<div class="col-12 col-md-3 mb-3">
-  <p>Unhappy?</p>
+<div class="col-12 col-md-3 mb-4">
   <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger w-100' %>
 </div>
 
-<div class="col-12 col-md-3 mb-3">
+<div class="col-12 col-md-3 mb-4">
   <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-danger w-100' %>
 </div>
 
-<h3 class="mb-3">Integrations</h3>
+<h4 class="mb-2">Integrations</h4>
 
-<div class="col-12 col-md-3 mb-3">
-  <%= link_to(exact_oauth_link, class: 'logo-container text-decoration-none') do %>
+<div class="col-12 col-md-3 mb-4">
+  <%= link_to(exact_oauth_link, class: 'logo-container') do %>
     <%= image_tag "exact-logo.svg", alt: "Exact Online Logo", class: "logo" %><br/>
     Connect to Exact Online
   <% end %>
