@@ -50,10 +50,11 @@ en:
         inventory-button-label: "Select from inventory"
         inventory-explainer_html: "<b>Coming soon!</b> Choose an item from your inventory to add to the order"
         description-placeholder: "What are we picking up? e.g. 2 x 25kg Knauff acquastuc plaster"
-        reference-placeholder: "Order reference i.e. something to help us identify the order"
+        reference-placeholder: "Order number i.e. something to help us identify the order"
         weight-label: "Weight (kg)"
         length-label: "Length (m)"
         dimensions-explainer: "Giving us the correct weight and length will help us select the right vehicle for delivery."
+        explainer: "Give us as much information about the order as you can so we can choose the right vehicle and pick up the right order. Just leave a link of the items if you have one."
       delivery-type:
         heading: "1. Delivery Type"
         instant-label: "ASAP"
