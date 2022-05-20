@@ -24,6 +24,9 @@ Rails.application.routes.draw do
 
   default_url_options host: ENV["HOST"]
 
-  get 'users/exact-callback', to: 'users#exact_callback'
+  namespace :users do
+    get 'oauth/exact-callback', to: 'oauth#exact_callback'
+  end
+  
   get 'integrations/find-order', to: 'integrations#find_order', as: :find_order
 end
