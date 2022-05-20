@@ -51,10 +51,10 @@ class UsersController < ApplicationController
     def retrieve_exact_token(code)
       url = "https://start.exactonline.nl/api/oauth2/token"
       response = HTTParty.post(url, body: {
-        client_id: ENV["EXACT_CLIENT_ID"],
-        client_secret: ENV["EXACT_CLIENT_SECRET"],
+        client_id: Elmas.config[:client_id],
+        client_secret: Elmas.config[:client_secret],
         grant_type: "authorization_code",
-        redirect_uri: ENV["EXACT_REDIRECT_URI"],
+        redirect_uri: Elmas.config[:redirect_uri],
         code: code
       })
     end

@@ -1,5 +1,5 @@
 module UsersHelper
   def exact_oauth_link
-    "https://start.exactonline.nl/api/oauth2/auth?client_id=#{ENV["EXACT_CLIENT_ID"]}&redirect_uri=#{ENV["EXACT_REDIRECT_URI"]}&response_type=code"
+    "https://start.exactonline.nl/api/oauth2/auth?client_id=#{Elmas.config[:client_id]}&redirect_uri=#{Elmas.config[:redirect_uri]}&response_type=code"
   end
 end

@@ -47,8 +47,8 @@ class IntegrationsController < ApplicationController
   def refresh_exact_token
     url = "https://start.exactonline.nl/api/oauth2/token"
     HTTParty.post(url, body: {
-      client_id: ENV["EXACT_CLIENT_ID"],
-      client_secret: ENV["EXACT_CLIENT_SECRET"],
+      client_id: Elmas.config[:client_id],
+      client_secret: Elmas.config[:client_secret],
       grant_type: "refresh_token",
       refresh_token: session[:exact_refresh_token]
     })
