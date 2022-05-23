@@ -11,7 +11,7 @@ class Delivery < ApplicationRecord
 
   geocoded_by :delivery_address, latitude: :delivery_latitude, longitude: :delivery_longitude
   after_validation :geocode
-  after_update :update_delivered_at, if: :status_changed_to_delivered?
+  after_update :send_delivered_sms_and_update_delivered_at, if: :status_changed_to_delivered?
   after_update :send_confirmed_sms, if: :status_changed_to_confirmed?
   after_update :send_delivering_sms, if: :status_changed_to_delivering?
 
@@ -64,5 +64,14 @@ class Delivery < ApplicationRecord
 
   def send_delivering_sms
     Sms::SendDeliveringSms.new(self).enqueue!
+  end
+
+  def send_delivered_sms
+    Sms::SendDeliveredSms.new(self).enqueue!
+  end
+
+  def send_delivered_sms_and_update_delivered_at
+    send_delivered_sms
+    update_delivered_at
   end
 end

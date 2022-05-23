@@ -117,6 +117,7 @@ en:
     ready-to-pickup: "foremore: The delivery #%{reference} is ready to pick up at %{address}. Go Go Go. See more details at %{delivery_url}."
     confirmed: "foremore: The delivery #%{reference} for %{address} has been confirmed. Please start preparing the order and let us know when the order is ready to be picked up %{edit_delivery_url}."
     delivering: "foremore: Hi %{recipient_name}, the delivery #%{reference} is on its way to you from %{company_name}. You can track the delivery and see other details here %{tracking_link}."
+    delivered: "foremore: The delivery #%{reference} has been successfully delivered to %{recipient_name}. We look forward to handling your next order %{new_delivery_url}."
   user:
     sms-opt-in:
       explainer: 'Do you want to receive delivery notifications via sms so you can react as quick as possible?'
