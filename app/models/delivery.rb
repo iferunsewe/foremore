@@ -13,6 +13,7 @@ class Delivery < ApplicationRecord
   after_validation :geocode
   after_update :update_delivered_at, if: :status_changed_to_delivered?
   after_update :send_confirmed_sms, if: :status_changed_to_confirmed?
+  after_update :send_delivering_sms, if: :status_changed_to_delivering?
 
   def self.statuses_for_companies
     statuses.select { |k, _| k.in?(%w(draft pending preparing ready)) }
@@ -32,6 +33,13 @@ class Delivery < ApplicationRecord
     pickup_address.one_line
   end
 
+  def company_name
+    return pickup_address.company_name if pickup_address.company_name.present?
+    return pickup_address.team.company&.name if pickup_address.team.present?
+    return user.company&.name if user.present?
+    nil
+  end
+
   private
 
   def update_delivered_at
@@ -46,7 +54,15 @@ class Delivery < ApplicationRecord
     !saved_change_to_status.nil? && saved_change_to_status[1] == "confirmed"
   end
 
+  def status_changed_to_delivering?
+    !saved_change_to_status.nil? && saved_change_to_status[1] == "delivering"
+  end
+
   def send_confirmed_sms
     Sms::SendConfirmedSms.new(self).enqueue!
+  end
+
+  def send_delivering_sms
+    Sms::SendDeliveringSms.new(self).enqueue!
   end
 end
