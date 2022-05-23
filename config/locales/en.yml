@@ -115,6 +115,7 @@ en:
   sms:
     new-delivery: "foremore: Hi %{first_name}. ANOTHER ONE. Yes you got another delivery. Get this show on the road by confirming it as soon as possible %{delivery_url}."
     ready-to-pickup: "foremore: The delivery #%{reference} is ready to pick up at %{address}. Go Go Go. See more details at %{delivery_url}"
+    confirmed: "foremore: The delivery #%{reference} for %{address} has been confirmed. Please start preparing the order and let us know when the order is ready to be picked up %{edit_delivery_url}."
   user:
     sms-opt-in:
       explainer: 'Do you want to receive delivery notifications via sms so you can react as quick as possible?'

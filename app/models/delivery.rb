@@ -12,6 +12,7 @@ class Delivery < ApplicationRecord
   geocoded_by :delivery_address, latitude: :delivery_latitude, longitude: :delivery_longitude
   after_validation :geocode
   after_update :update_delivered_at, if: :status_changed_to_delivered?
+  after_update :send_confirmed_sms, if: :status_changed_to_confirmed?
 
   def self.statuses_for_companies
     statuses.select { |k, _| k.in?(%w(draft pending preparing ready)) }
@@ -39,5 +40,13 @@ class Delivery < ApplicationRecord
 
   def status_changed_to_delivered?
     !saved_change_to_status.nil? && saved_change_to_status[1] == "delivered"
+  end
+
+  def status_changed_to_confirmed?
+    !saved_change_to_status.nil? && saved_change_to_status[1] == "confirmed"
+  end
+
+  def send_confirmed_sms
+    Sms::SendConfirmedSms.new(self).enqueue!
   end
 end
