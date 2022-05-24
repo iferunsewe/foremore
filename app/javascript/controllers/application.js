@@ -12,13 +12,32 @@ function onDeliveryAddressChange() {
   const deliveryAddressEle = document.getElementById("delivery_delivery_address")
   if (!deliveryAddressEle) return;
   deliveryAddressEle.addEventListener("change", function(e) {
-    const deliveryAddress = this.value
-    updateMap(deliveryAddress)
+    updateMap()
+    getTravelTime()
   });
 }
 
-function updateMap(deliveryAddress) {
+function onDeliveryTypeChange() {
+  const deliveryTypeEle = document.querySelector('input[name="delivery[delivery_type]"]')
+  if (!deliveryTypeEle) return;
+  deliveryTypeEle.addEventListener("change", function(e) {
+    if(this.value == '1') return;
+    getTravelTime()
+    calculateExpectedTime()
+  });
+}
+
+function onScheduleDateChange() {
+  const scheduleDateEle = document.getElementById("delivery_scheduled_date")
+  if (!scheduleDateEle) return;
+  scheduleDateEle.addEventListener("change", function(e) {
+    showScheduledDate()
+  });
+}
+
+function updateMap() {
   const pickupAddress = document.getElementById("delivery_pickup_address").innerText
+  const deliveryAddress = document.getElementById("delivery_delivery_address").value
   const map = document.getElementById("google-embed-map")
   if(!map) return;
   var googleApiKey = map.getAttribute('data-google-api-key');
@@ -30,6 +49,35 @@ function updateMap(deliveryAddress) {
   map.src = newMapUrl.toString()
 }
 
+function getTravelTime() {
+  const pickupAddress = document.getElementById("delivery_pickup_address").innerText
+  const deliveryAddress = document.getElementById("delivery_delivery_address").value
+  const travelTime = document.getElementById("delivery_travel_time")
+  if(!travelTime) return;
+  if(!pickupAddress || !deliveryAddress) return;
+  let service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+    {
+      origins: [pickupAddress],
+      destinations: [deliveryAddress],
+      travelMode: 'BICYCLING'
+    }, travelTimeCallback
+  );
+}
+
+function travelTimeCallback(response, status) {
+  // See Parsing the Results for
+  // the basics of a callback function.
+  if (status !== 'OK') {
+    alert('Error was: ' + status);
+  }
+  const travelTime = document.getElementById("delivery_travel_time") 
+  if(!travelTime) return;
+  const travelTimeInMinutes = response.rows[0].elements[0].duration.value / 60
+  travelTime.value = travelTimeInMinutes
+  calculateExpectedTime()
+}
+
 
 function initMapsAutocomplete() {
   let deliveryAddressEle = document.getElementById("delivery_delivery_address")
@@ -37,9 +85,52 @@ function initMapsAutocomplete() {
   new google.maps.places.Autocomplete(deliveryAddressEle);
 }
 
+function calculateExpectedTime(){
+  // if the delivery type is scheduled then we don't need to calculate the expected time
+  if(document.querySelector('input[name="delivery[delivery_type]"]:checked').value == '1') {
+    showScheduledDate()
+    return
+  }
+  const travelTime = parseInt(document.getElementById("delivery_travel_time").value)
+  const expectedTime = document.querySelector(".expected-time")
+  const expectedDay = document.getElementById("expected-day")
+
+  if(!expectedTime || !travelTime) return;
+  const prepTime = 20
+  const expectedTimeInMinutes = travelTime + prepTime
+  const timeToDisplay = addMinutesToCurrentDate(expectedTimeInMinutes)
+  expectedTime.innerText = `${padTo2Digits(timeToDisplay.getHours())}:${padTo2Digits(timeToDisplay.getMinutes())}`
+  expectedDay.innerText = 'Today'
+}
+
+function showScheduledDate() {
+  const scheduleDate = document.getElementById('delivery_scheduled_date').value
+  const expectedTime = document.querySelector(".expected-time")
+  const expectedDay = document.getElementById("expected-day")
+  if(!scheduleDate || !expectedTime) return;
+  const timeToDisplay = new Date(scheduleDate)
+  expectedTime.innerText = `${padTo2Digits(timeToDisplay.getHours())}:${padTo2Digits(timeToDisplay.getMinutes())}`
+  if (timeToDisplay.getDate() == new Date().getDate() + 1) {
+    expectedDay.innerText = 'Tomorrow'
+  } else {
+    expectedDay.innerText = `${padTo2Digits(timeToDisplay.getDate())}/${padTo2Digits(timeToDisplay.getMonth() + 1)}/${timeToDisplay.getFullYear()}`
+  }
+}
+
+function addMinutesToCurrentDate(minutes) {
+  const currentDate = new Date()
+  return new Date(currentDate.getTime() + minutes * 60000)
+}
+
+function padTo2Digits(num) {
+  return String(num).padStart(2, '0');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   google.maps.event.addDomListener(window, 'load', initMapsAutocomplete);
 
   updateMap()
   onDeliveryAddressChange()
+  onDeliveryTypeChange()
+  onScheduleDateChange()
 })
