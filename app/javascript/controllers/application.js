@@ -8,17 +8,16 @@ window.Stimulus   = application
 
 export { application }
 
-function updateMap() {
+function onDeliveryAddressChange() {
   const deliveryAddressEle = document.getElementById("delivery_delivery_address")
   if (!deliveryAddressEle) return;
   deliveryAddressEle.addEventListener("change", function(e) {
     const deliveryAddress = this.value
-    updateMapOnInit(deliveryAddress)
+    updateMap(deliveryAddress)
   });
 }
 
-function updateMapOnInit(deliveryAddressValue) {
-  const deliveryAddress = (deliveryAddressValue || document.getElementById("delivery_delivery_address").value)
+function updateMap(deliveryAddress) {
   const pickupAddress = document.getElementById("delivery_pickup_address").innerText
   const map = document.getElementById("google-embed-map")
   if(!map) return;
@@ -32,7 +31,6 @@ function updateMapOnInit(deliveryAddressValue) {
 }
 
 
-
 function initMapsAutocomplete() {
   let deliveryAddressEle = document.getElementById("delivery_delivery_address")
   if (!deliveryAddressEle) return;
@@ -42,6 +40,6 @@ function initMapsAutocomplete() {
 document.addEventListener('DOMContentLoaded', () => {
   google.maps.event.addDomListener(window, 'load', initMapsAutocomplete);
 
-  updateMapOnInit()
   updateMap()
+  onDeliveryAddressChange()
 })
