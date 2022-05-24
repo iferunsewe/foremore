@@ -40,6 +40,11 @@ class Delivery < ApplicationRecord
     nil
   end
 
+  def expected_time
+    return scheduled_date if delivery_type == "scheduled" && scheduled_date.present?
+    DateTime.now + 47.minutes
+  end
+
   private
 
   def update_delivered_at

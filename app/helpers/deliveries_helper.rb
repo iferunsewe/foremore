@@ -35,4 +35,12 @@ module DeliveriesHelper
       current_user.team.address
     end
   end
+
+  def format_expected_time(delivery)
+    if delivery.expected_time.present?
+      delivery.expected_time.in_time_zone("Europe/Amsterdam").strftime("%H:%M")
+    else
+      "-"
+    end
+  end
 end
