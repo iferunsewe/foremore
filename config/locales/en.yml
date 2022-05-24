@@ -91,7 +91,7 @@ en:
         explainer: Should we tell your customer when the delivery is on it's way?
       latest-delivery-label: "Latest delivery by"
     show:
-      expected-at: "Delivery expected at"
+      expected-at: "Delivery expected by"
       status: "Status"
       recipient: "Recipient details"
       order-details: "Order details"
