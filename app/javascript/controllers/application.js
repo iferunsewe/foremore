@@ -8,22 +8,20 @@ window.Stimulus   = application
 
 export { application }
 
-function updateMapFromDeliveryAddress() {
+function updateMap() {
   const deliveryAddressEle = document.getElementById("delivery_delivery_address")
   if (!deliveryAddressEle) return;
   deliveryAddressEle.addEventListener("change", function(e) {
     const deliveryAddress = this.value
-    updateMapFromDeliveryAddressOnInit(deliveryAddress)
+    updateMapOnInit(deliveryAddress)
   });
 }
 
-function updateMapFromDeliveryAddressOnInit(deliveryAddressValue) {
-  if(!document.getElementById("delivery_delivery_address")) return;
+function updateMapOnInit(deliveryAddressValue) {
   const deliveryAddress = (deliveryAddressValue || document.getElementById("delivery_delivery_address").value)
-  if(!deliveryAddress || deliveryAddress == "") return;
   const pickupAddress = document.getElementById("delivery_pickup_address").innerText
   const map = document.getElementById("google-embed-map")
-  if (!map) return;
+  if(!map) return;
   var googleApiKey = map.getAttribute('data-google-api-key');
   if (deliveryAddress !== undefined && deliveryAddress !== "") {
     var newMapUrl = `https://www.google.com/maps/embed/v1/directions?key=${googleApiKey}&origin=${pickupAddress}&destination=${deliveryAddress}&mode=bicycling`
@@ -42,8 +40,8 @@ function initMapsAutocomplete() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  updateMapFromDeliveryAddressOnInit()
-  updateMapFromDeliveryAddress()
-
   google.maps.event.addDomListener(window, 'load', initMapsAutocomplete);
+
+  updateMapOnInit()
+  updateMap()
 })
