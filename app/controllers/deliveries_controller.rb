@@ -90,7 +90,8 @@ class DeliveriesController < ApplicationController
         :delivery_type, :weight_class, :length_class,
         :order_reference, :other_notes, :scheduled_date,
         :description, :address_notes, :recipient_name,
-        :recipient_email, :recipient_phone
+        :recipient_email, :recipient_phone, :travel_time,
+        :prep_time
       )
     end
 

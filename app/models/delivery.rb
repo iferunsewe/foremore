@@ -42,7 +42,14 @@ class Delivery < ApplicationRecord
 
   def expected_time
     return scheduled_date if delivery_type == "scheduled" && scheduled_date.present?
-    DateTime.now + 47.minutes
+    
+    created_at + travel_plus_prep_time.minutes
+  end
+
+  def travel_plus_prep_time
+    default_travel_time = 20
+    default_prep_time = 20
+    (travel_time || default_travel_time) + (prep_time || default_prep_time)
   end
 
   private

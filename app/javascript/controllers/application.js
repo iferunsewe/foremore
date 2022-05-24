@@ -130,6 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
   google.maps.event.addDomListener(window, 'load', initMapsAutocomplete);
 
   updateMap()
+  getTravelTime()
+  calculateExpectedTime()
+  showScheduledDate()
   onDeliveryAddressChange()
   onDeliveryTypeChange()
   onScheduleDateChange()
