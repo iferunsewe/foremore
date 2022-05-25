@@ -78,7 +78,7 @@ class IntegrationsController < ApplicationController
   end
 
   def get_delivery_address(sales_order)
-    address_id = sales_order.delivery_address
+    address_id = sales_order&.delivery_address
     return unless address_id.present?
     delivery_address = Elmas::Address.new(id: address_id).find
 
@@ -95,7 +95,7 @@ class IntegrationsController < ApplicationController
   end
 
   def get_sales_order_lines(sales_order)
-    sales_order_lines = Elmas::SalesOrderLine.new(order_ID: sales_order.order_id).find_by(filters: [:order_ID]).records
+    sales_order_lines = Elmas::SalesOrderLine.new(order_ID: sales_order&.order_id).find_by(filters: [:order_ID])&.records
     sales_order_lines.map do |line|
       item = Elmas::Item.new(id: line.item).find
       {
@@ -108,7 +108,7 @@ class IntegrationsController < ApplicationController
   end
 
   def get_recipient(sales_order)
-    Elmas::Account.new(id: sales_order.deliver_to).find
+    Elmas::Account.new(id: sales_order&.deliver_to)&.find
   end
 
   def build_description(sales_order, sales_order_lines)
