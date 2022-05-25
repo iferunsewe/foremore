@@ -133,7 +133,7 @@ function padTo2Digits(num) {
   return String(num).padStart(2, '0');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', function () {
   google.maps.event.addDomListener(window, 'load', initMapsAutocomplete);
 
   updateMap()
