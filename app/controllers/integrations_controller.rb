@@ -6,7 +6,7 @@ class IntegrationsController < ApplicationController
         @sales_order = Elmas::SalesOrder.new(order_number: params[:order_number].to_i).find_by(filters: [:order_number]).records.first
         session[:delivery] = build_delivery_from_sales_order(@sales_order)
         redirect_to new_delivery_path, notice: "Order #{@sales_order.order_number} was successfully retrieved."
-      elsif Time.now > session[:exact_token_expires_at] && session[:exact_refresh_token].present?
+      elsif session[:exact_token_expires_at].present? && session[:exact_refresh_token].present? && Time.now > session[:exact_token_expires_at]
         token_response = refresh_exact_token
         set_session_exact_variables(token_response)
         set_elmas_config
@@ -21,7 +21,7 @@ class IntegrationsController < ApplicationController
         session[:delivery] = build_delivery_from_sales_order(@sales_order)
         redirect_to new_delivery_path, notice: "Order #{@sales_order.order_number} was successfully retrieved."
       else
-        redirect_to edit_user_registration_path, alert: "Please authorize with Exact."
+        redirect_to edit_user_registration_path(anchor: "integrations"), alert: "Please authorize with Exact."
       end
     rescue Elmas::BadRequestException => e
       redirect_to new_delivery_path, alert: "Please authorize with Exact. #{e.message}"
