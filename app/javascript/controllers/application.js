@@ -36,8 +36,11 @@ function onScheduleDateChange() {
 }
 
 function updateMap() {
-  const pickupAddress = document.getElementById("delivery_pickup_address").innerText
-  const deliveryAddress = document.getElementById("delivery_delivery_address").value
+  const pickupAddressEle = document.getElementById("delivery_pickup_address")
+  const deliveryAddressEle = document.getElementById("delivery_delivery_address")
+  if(!pickupAddressEle || !deliveryAddressEle) return;
+  const pickupAddress = pickupAddressEle.innerText
+  const deliveryAddress = deliveryAddressEle.value
   const map = document.getElementById("google-embed-map")
   if(!map) return;
   var googleApiKey = map.getAttribute('data-google-api-key');
@@ -50,11 +53,14 @@ function updateMap() {
 }
 
 function getTravelTime() {
-  const pickupAddress = document.getElementById("delivery_pickup_address").innerText
-  const deliveryAddress = document.getElementById("delivery_delivery_address").value
+  const pickupAddressEle = document.getElementById("delivery_pickup_address")
+  const deliveryAddressEle = document.getElementById("delivery_delivery_address")
+  if(!pickupAddressEle || !deliveryAddressEle) return;
+  const pickupAddress = pickupAddressEle.innerText
+  const deliveryAddress = deliveryAddressEle.value
   const travelTime = document.getElementById("delivery_travel_time")
   if(!travelTime) return;
-  if(!pickupAddress || !deliveryAddress) return;
+  
   let service = new google.maps.DistanceMatrixService();
   service.getDistanceMatrix(
     {
