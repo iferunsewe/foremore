@@ -69,7 +69,8 @@ function travelTimeCallback(response, status) {
   // See Parsing the Results for
   // the basics of a callback function.
   if (status !== 'OK') {
-    alert('Error was: ' + status);
+    console.error('Unable to retrieve travel time from google. The error was: ' + status);
+    return;
   }
   const travelTime = document.getElementById("delivery_travel_time") 
   if(!travelTime) return;
