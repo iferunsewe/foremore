@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: %i[ show edit update destroy ]
+  before_action :authenticate_current_user_can_edit_company!, only: %i[ show edit update destroy ]
 
   # GET /companies or /companies.json
   def index
@@ -66,5 +67,13 @@ class CompaniesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def company_params
       params.require(:company).permit(:name, :tax_id, :image)
+    end
+
+    def authenticate_current_user_can_edit_company!
+      @company = Company.find(params[:id])
+
+      return if current_user.admin?
+      return if current_user.company_admin? && @company.part_of?(current_user)
+      redirect_to root_path, alert: "Whoops! You can't access this page."
     end
 end

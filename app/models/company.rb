@@ -5,4 +5,8 @@ class Company < ApplicationRecord
 
   validates_presence_of :name
   validates_uniqueness_of :name
+
+  def part_of?(user)
+    users.include?(user)
+  end
 end

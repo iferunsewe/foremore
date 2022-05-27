@@ -121,4 +121,15 @@ en:
   user:
     sms-opt-in:
       explainer: 'Do you want to receive delivery notifications via sms so you can react as quick as possible?'
+    edit:
+      first-name-label: 'First name *'
+      last-name-label: 'Last name *'
+    list-link: 'Users'
+  address:
+    form:
+      street-label: 'Street *'
+      city-label: 'City *'
+      postcode-label: 'Postcode *'
+      country-label: 'Country *'
+
 

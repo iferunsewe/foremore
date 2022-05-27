@@ -13,24 +13,32 @@
 
   <%= form.fields_for :address do |address_form| %>
     <div class="field form-group col-md-3 col-sm-12 mb-3">
-      <%= address_form.label :street, class: "form-label" %>
-      <%= address_form.text_field :street, class: "form-control" %> 
+      <%= address_form.label :street, t('address.form.street-label'), class: "form-label" %>
+      <%= address_form.text_field :street, class: "form-control", required: true %> 
     </div>
     <div class="field form-group col-md-3 col-sm-12 mb-3">
-      <%= address_form.label :city, class: "form-label" %>
-      <%= address_form.text_field :city, class: "form-control" %>
+      <%= address_form.label :city, t('address.form.city-label'), class: "form-label" %>
+      <%= address_form.text_field :city, class: "form-control", required: true %>
     </div>
     <div class="field form-group col-md-3 col-sm-12 mb-3">
-      <%= address_form.label :country, class: "form-label" %>
-      <%= address_form.text_field :country, class: "form-control" %>
+      <%= address_form.label :country, t('address.form.country-label'), class: "form-label" %>
+      <%= address_form.text_field :country, class: "form-control", required: true %>
     </div>
     <div class="field form-group col-md-3 col-sm-12 mb-3">
-      <%= address_form.label :postcode, class: "form-label" %>
-      <%= address_form.text_field :postcode, class: "form-control" %>
+      <%= address_form.label :postcode, t('address.form.postcode-label'), class: "form-label" %>
+      <%= address_form.text_field :postcode, class: "form-control", required: true %>
     </div>
+    <% if team.company %>
+      <div class="field form-group col-md-3 col-sm-12 mb-3">
+        <%= address_form.label :company_name, class: "form-label" %>
+        <%= address_form.text_field :company_name, value: team.company.name, class: "form-control" %>
+      </div>
+    <% end %>
+  <% end %>
+  <% if team.company.nil? || current_user.admin? %>
     <div class="field form-group col-md-3 col-sm-12 mb-3">
-      <%= address_form.label :company_name, class: "form-label" %>
-      <%= address_form.text_field :company_name, value: team.company&.name, class: "form-control" %>
+      <%= form.label :company_id, class: "form-label" %>
+      <%= form.select :company_id, Company.all.map { |company| [company.name, company.id] }, {}, class: "form-control" %>
     </div>
   <% end %>
   <div class="actions col-12 col-md-3">

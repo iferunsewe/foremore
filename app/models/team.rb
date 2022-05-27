@@ -3,9 +3,13 @@ class Team < ApplicationRecord
   has_many :users
   has_one :address, dependent: :destroy
   accepts_nested_attributes_for :address, allow_destroy: true
-  validates_presence_of :name, :company_id
+  validates_presence_of :company_id
 
   def employees_count
     users.count
+  end
+
+  def part_of?(user)
+    users.include?(user)
   end
 end

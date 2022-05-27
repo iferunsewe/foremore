@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[ show edit update destroy ]
+  before_action :authenticate_current_user_can_edit_team!, only: %i[ show edit update destroy ]
 
   # GET /teams or /teams.json
   def index
@@ -61,10 +62,21 @@ class TeamsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def team_params
-      params.require(:team).permit(address_attributes: [:id, :street, :city, :postcode, :company_name, :country])
+      params.require(:team).permit(:company_id, address_attributes: [:id, :street, :city, :postcode, :company_name, :country])
     end
 
     def team_params_with_company_id
+      return team_params if current_user.admin?
       team_params.merge(company_id: current_user.company_id)
+    end
+
+    def authenticate_current_user_can_edit_team!
+      @team = Team.find(params[:id])
+
+      return if current_user.admin?
+      return if current_user.team_admin? && @team.part_of?(current_user)
+      return if current_user.company_admin? && @team.company.part_of?(current_user)
+      return if current_user.team == @team && action_name == 'show'
+      redirect_to root_path, alert: "Whoops! You can't access this page."
     end
 end

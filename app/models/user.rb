@@ -27,6 +27,10 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def completed_user_account?
+    first_name.present? && last_name.present? && phone_number.present?
+  end
+
   private
 
   def joining_a_team?

@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    authenticated_root_path # your path
+    return authenticated_root_path if current_user.completed_user_account?
+    edit_user_path(current_user)
   end
 
   protected

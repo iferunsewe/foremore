@@ -38,7 +38,7 @@ module ApplicationHelper
   end
 
   def is_users_path_active?
-    current_page?(edit_user_path(current_user)) if !current_user.nil?
+    current_page?(edit_user_path(current_user)) || current_page?(users_path) if !current_user.nil?
   end
 
   def title(text)

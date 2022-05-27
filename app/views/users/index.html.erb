@@ -18,6 +18,18 @@
             Role
           </div>
         </th>
+        <% if current_user.admin? %>
+          <th scope="col">
+            <div class="th-inner">
+              Team
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Company
+            </div>
+          </th>
+        <% end %>
         <th scope="col">
           <div class="th-inner">
             Actions

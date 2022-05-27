@@ -84,6 +84,14 @@
               <% end %>
             </li>
           <% end %>
+          <% if current_user.try(:admin?) %>
+            <li class="nav-item <%= is_users_path_active? ? "active" : "" %>">
+              <%= link_to(users_path, class: 'nav-link d-flex') do %>
+                <i class="bi bi-people-fill mr-3"></i>
+                <span class="ml-3 overflow-ellipsis"><%=  t("user.list-link") %></span>
+              <% end %>
+            </li>
+          <% end %>
           <li class="nav-item <%= is_settings_path_active? ? "active" : "" %>">
             <%= link_to(edit_user_registration_path, class: 'nav-link d-flex') do %>
               <i class="bi bi-gear mr-3"></i>

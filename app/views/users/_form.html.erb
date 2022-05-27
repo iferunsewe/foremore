@@ -13,13 +13,13 @@
 
   <div class="form-floating col-md-3 col-sm-12 mb-4">
     <%= form.text_field :first_name, class: "form-control", required: true %>
-    <%= form.label :first_name  %>
+    <%= form.label :first_name, t("user.edit.first-name-label")  %>
     
   </div>
 
   <div class="form-floating col-md-3 col-sm-12 mb-4">
     <%= form.text_field :last_name, class: "form-control", required: true %>
-    <%= form.label :last_name  %>
+    <%= form.label :last_name, t("user.edit.last-name-label")  %>
   </div>
 
   <div class="form-floating col-md-3 col-sm-12 mb-4">
@@ -33,6 +33,25 @@
     <%= form.label :sms_opt_in, class: "form-check-label", class: "form-label"  %>
     <div class="form-text mb-2"><%= t("user.sms-opt-in.explainer") %></div>
   </div>
+
+  <% if current_user.admin? %>
+    <div class="form-floating col-md-3 col-sm-12 mb-4">
+      <%= form.select :company_id, Company.all.map { |company| [company.name, company.id] }, {}, class: "form-control" %>
+      <%= form.label :company_id, class: "form-label" %>
+    </div>
+  <% end %>
+
+  <% if (current_user.admin? || current_user.company_admin?) && @user.company.present? %>
+    <div class="form-floating col-md-3 col-sm-12 mb-4">
+      <%= form.select :team_id, Team.where(company_id: user.company.id).map { |team| [team.address.one_line, team.id] }, {}, class: "form-control" %>
+      <%= form.label :team_id, class: "form-label" %>
+    </div>
+  <% elsif current_user.admin? %>
+    <div class="form-floating col-md-3 col-sm-12 mb-4">
+      <%= form.select :team_id, Team.all.map { |team| [team.address.one_line, team.id] }, {}, class: "form-control" %>
+      <%= form.label :team_id, class: "form-label" %>
+    </div>
+  <% end %>
 
   <% if current_user.admin? || current_user.company_admin? %>
     <div class="form-floating col-md-3 col-sm-12 mb-4">
