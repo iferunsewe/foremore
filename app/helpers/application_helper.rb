@@ -21,7 +21,7 @@ module ApplicationHelper
     if @team.nil?
       current_page?(teams_path)
     elsif @team.persisted?
-      current_page?(team_path(@team)) || current_page?(edit_team_path(@team))
+      current_page?(team_path(@team)) || current_page?(edit_team_path(@team)) || current_page?(my_team_path) || current_page?(edit_my_team_path)
     else
       false
     end
@@ -31,7 +31,7 @@ module ApplicationHelper
     if @company.nil?
       current_page?(companies_path)
     elsif @company.persisted?
-      current_page?(company_path(@company)) || current_page?(edit_company_path(@company))
+      current_page?(company_path(@company)) || current_page?(edit_company_path(@company)) || current_page?(my_company_path) || current_page?(edit_my_company_path)
     else
       false
     end

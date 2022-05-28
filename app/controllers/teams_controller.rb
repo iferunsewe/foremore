@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[ show edit update destroy ]
+  before_action :set_team, only: %i[ edit update destroy ]
+  before_action :set_team_for_show, only: %i[ show ]
   before_action :authenticate_current_user_can_edit_team!, only: %i[ show edit update destroy ]
 
   # GET /teams or /teams.json
@@ -60,6 +61,14 @@ class TeamsController < ApplicationController
       @team = Team.find(params[:id])
     end
 
+    def set_team_for_show
+      if params[:id]
+        @team = Team.find(params[:id])
+      else
+        @team = current_user.team
+      end
+    end
+
     # Only allow a list of trusted parameters through.
     def team_params
       params.require(:team).permit(:company_id, address_attributes: [:id, :street, :city, :postcode, :company_name, :country])
@@ -71,8 +80,6 @@ class TeamsController < ApplicationController
     end
 
     def authenticate_current_user_can_edit_team!
-      @team = Team.find(params[:id])
-
       return if current_user.admin?
       return if current_user.team_admin? && @team.part_of?(current_user)
       return if current_user.company_admin? && @team.company.part_of?(current_user)

@@ -29,4 +29,9 @@ Rails.application.routes.draw do
   end
   
   get 'integrations/find-order', to: 'integrations#find_order', as: :find_order
+
+  get 'my-team', to: 'teams#show', as: :my_team
+  get 'my-company', to: 'companies#show', as: :my_company
+  get 'edit-my-team', to: 'teams#edit', as: :edit_my_team
+  get 'edit-my-company', to: 'companies#edit', as: :edit_my_company
 end

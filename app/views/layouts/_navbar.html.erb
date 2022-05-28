@@ -24,7 +24,7 @@
     </li>
   <% elsif !current_user.team.nil? %>
     <li class="nav-item flex-column <%= is_teams_path_active? ? "active" : "" %>">
-      <%= link_to(team_path(current_user.team), class: 'nav-link flex-column') do %>
+      <%= link_to(my_team_path, class: 'nav-link flex-column') do %>
         <i class="bi bi-people-fill mr-3"></i>
         <p class="overflow-ellipsis"><%=  t("team.single-link") %></p>
       <% end %>
@@ -39,7 +39,7 @@
     </li>
   <% elsif !current_user.company.nil? && current_user.try(:company_admin?) %>
     <li class="nav-item flex-column <%= is_companies_path_active? ? "active" : "" %>">
-      <%= link_to(edit_company_path(current_user.company), class: 'nav-link flex-column') do %>
+      <%= link_to(edit_my_company_path, class: 'nav-link flex-column') do %>
         <i class="bi bi-people-fill mr-3"></i>
         <p class="overflow-ellipsis"><%=  t("company.single-link") %></p>
       <% end %>
