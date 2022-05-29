@@ -14,7 +14,7 @@ module ApplicationHelper
   end
 
   def is_settings_path_active?
-    current_page?(edit_user_registration_path)
+    current_page?(settings_path)
   end
 
   def is_teams_path_active?

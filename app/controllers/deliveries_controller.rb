@@ -25,7 +25,7 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries/new
   def new
-    redirect_to edit_user_registration_path if current_user.team.nil?
+    redirect_to settings_path if current_user.team.nil?
     if params[:old_delivery_id] && old_delivery = Delivery.find(params[:old_delivery_id])
       @delivery = old_delivery.dup
     else

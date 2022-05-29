@@ -1,3 +1,49 @@
-
-
-<%= render @company %>
+<%= title(@company.name)%>
+<div class="row height d-flex justify-content-end mb-2 p-0 pe-md-2">
+  <div class="col-4 col-md-3 mb-2 mb-md-0">
+    <%= link_to "New Team", new_team_path, class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" %>
+  </div>
+  <div class="col-4 col-md-3 mb-2 mb-md-0">
+    <%= link_to "Edit", edit_my_company_path, class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" %>
+  </div>
+</div>
+<div id="teams">
+  <table class="table table-hover table-borderless table-responsive">
+    <thead>
+      <tr>
+        <th scope="col">
+          <div class="th-inner">
+            Created
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Address
+          </div>
+        </th>
+        <% if current_user.admin? %>
+          <th scope="col">
+            <div class="th-inner">
+              Company
+            </div>
+          </th>
+        <% end %>
+        <th scope="col">
+          <div class="th-inner">
+            No. of Employees
+          </div>
+        </th>
+        <th scope="col">
+          <div class="th-inner">
+            Actions
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @company.teams.each do |team| %>
+        <%= render partial: "teams/teams_table_row", locals: { team: team } %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

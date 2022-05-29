@@ -5,7 +5,9 @@
       <%= team.address.one_line %>
     <% end %>
   </td>
-  <td><%= team.company.name %></td>
+  <% if current_user.admin? %>
+    <td><%= team.company.name %></td>
+  <% end %>
   <td><%= team.employees_count %></td>
   <td>
     <% if current_user&.admin? || current_user.company_admin? || current_user&.team_admin? %>

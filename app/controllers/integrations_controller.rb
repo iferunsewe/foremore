@@ -21,7 +21,7 @@ class IntegrationsController < ApplicationController
         session[:delivery] = build_delivery_from_sales_order(@sales_order)
         redirect_to new_delivery_path, notice: "Order #{@sales_order.order_number} was successfully retrieved."
       else
-        redirect_to edit_user_registration_path(anchor: "integrations"), alert: "Please authorize with Exact."
+        redirect_to settings_path(anchor: "integrations"), alert: "Please authorize with Exact."
       end
     rescue Elmas::BadRequestException => e
       redirect_to new_delivery_path, alert: "Please authorize with Exact. #{e.message}"

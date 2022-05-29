@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     end
     
     root :to => "devise/sessions#new"
+
+    get 'settings', to: 'devise/registrations#edit', as: :settings
   end
 
   namespace :deliveries do

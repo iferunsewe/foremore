@@ -6,9 +6,9 @@ class Users::OauthController < ApplicationController
       token_response = retrieve_exact_token(params[:code])
       set_session_exact_variables(token_response)
 
-      redirect_to edit_user_registration_path, notice: "Exact Online was successfully linked."
+      redirect_to settings_path, notice: "Exact Online was successfully linked."
     rescue => e
-      redirect_to edit_user_registration_path, alert: "Exact Online could not be linked. #{e.message}"
+      redirect_to settings_path, alert: "Exact Online could not be linked. #{e.message}"
     end 
   end
 

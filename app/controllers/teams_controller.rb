@@ -1,6 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[ edit update destroy ]
-  before_action :set_team_for_show, only: %i[ show ]
+  before_action :set_team, only: %i[ show edit update destroy ]
   before_action :authenticate_current_user_can_edit_team!, only: %i[ show edit update destroy ]
 
   # GET /teams or /teams.json
@@ -33,7 +32,7 @@ class TeamsController < ApplicationController
 
     respond_to do |format|
       if @team.save
-        format.html { redirect_to team_url(@team), notice: "Team was successfully created." }
+        format.html { redirect_to my_or_a_path, notice: "Team was successfully created." }
         format.json { render :show, status: :created, location: @team }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -46,7 +45,7 @@ class TeamsController < ApplicationController
   def update
     respond_to do |format|
       if @team.update(team_params_with_company_id)
-        format.html { redirect_to team_url(@team), notice: "Team was successfully updated." }
+        format.html { redirect_to my_or_a_path, notice: "Team was successfully updated." }
         format.json { render :show, status: :ok, location: @team }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -58,10 +57,6 @@ class TeamsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_team
-      @team = Team.find(params[:id])
-    end
-
-    def set_team_for_show
       if params[:id]
         @team = Team.find(params[:id])
       else
@@ -85,5 +80,13 @@ class TeamsController < ApplicationController
       return if current_user.company_admin? && @team.company.part_of?(current_user)
       return if current_user.team == @team && action_name == 'show'
       redirect_to root_path, alert: "Whoops! You can't access this page."
+    end
+
+    def my_or_a_path
+      if current_user.admin? || current_user.company_admin?
+        team_path(@company)
+      else
+        my_team_path
+      end
     end
 end
