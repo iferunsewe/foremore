@@ -60,7 +60,7 @@
     <% end %>
   </li>
   <li class="nav-item flex-column text-center mt-auto <%= is_users_path_active? ? "active" : "" %>">
-    <%= link_to(edit_user_path(current_user), class: 'nav-link flex-column') do %>
+    <%= link_to(edit_my_user_path, class: 'nav-link flex-column') do %>
       <i class="bi bi-person-circle"></i>
       <p class="overflow-ellipsis"><%= current_user&.first_name || 'User' %></p>
     <% end %>

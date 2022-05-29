@@ -33,7 +33,7 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-lg-0">
           <li class="nav-item <%= is_users_path_active? ? "active" : "" %>">
-            <%= link_to(edit_user_path(current_user), class: 'nav-link d-flex') do %>
+            <%= link_to(edit_my_user_path, class: 'nav-link d-flex') do %>
               <i class="bi bi-person-circle mr-3"></i>
               <span class="overflow-ellipsis"><%= current_user&.first_name || 'User' %></span>
             <% end %>

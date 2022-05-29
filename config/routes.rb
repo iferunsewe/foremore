@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   get 'my-company', to: 'companies#show', as: :my_company
   get 'edit-my-team', to: 'teams#edit', as: :edit_my_team
   get 'edit-my-company', to: 'companies#edit', as: :edit_my_company
+  get 'edit-my-user', to: 'users#edit', as: :edit_my_user
 end
