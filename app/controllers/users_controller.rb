@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def index
     redirect_to teams_path if !current_user.admin?
-    @users = User.all.order(created_at: :desc)
+    @users = User.all.order(created_at: :desc).page params[:page]
   end
 
   # GET /users/1/edit

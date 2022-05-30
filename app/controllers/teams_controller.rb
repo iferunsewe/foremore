@@ -5,14 +5,15 @@ class TeamsController < ApplicationController
   # GET /teams or /teams.json
   def index
     if current_user.admin?
-      @teams = Team.all
+      @teams = Team.all.order(created_at: :desc).page params[:page]
     else
-      @teams = current_user.company.teams
+      @teams = current_user.company.teams.order(created_at: :desc).page params[:page]
     end
   end
 
   # GET /teams/1 or /teams/1.json
   def show
+    @team_users = @team.users.order(created_at: :desc).page params[:page]
   end
 
   # GET /teams/new

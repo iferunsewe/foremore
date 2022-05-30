@@ -4,11 +4,12 @@ class CompaniesController < ApplicationController
 
   # GET /companies or /companies.json
   def index
-    @companies = Company.all
+    @companies = Company.all.order(created_at: :desc).page params[:page]
   end
 
   # GET /companies/1 or /companies/1.json
   def show
+    @company_teams = @company.teams.order(created_at: :desc).page params[:page]
   end
 
   # GET /companies/new

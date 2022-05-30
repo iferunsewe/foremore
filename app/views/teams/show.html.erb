@@ -34,7 +34,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @team.users.each do |user| %>
+      <% @team_users.each do |user| %>
         <%= render partial: "users/users_table_row", locals: { user: user } %>
       <% end %>
     </tbody>
