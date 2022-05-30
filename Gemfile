@@ -104,3 +104,6 @@ gem 'httparty'
 gem 'activerecord-session_store'
 
 gem 'elmas', git: 'https://github.com/iferunsewe/exactonline-api-ruby-client'
+
+# Used for pagination
+gem 'kaminari'

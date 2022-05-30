@@ -131,5 +131,11 @@ en:
       city-label: 'City *'
       postcode-label: 'Postcode *'
       country-label: 'Country *'
+  views:
+    pagination:
+      next: '<i class="bi bi-chevron-right"></i>'
+      previous: '<i class="bi bi-chevron-left"></i>'
+      first: '<i class="bi bi-chevron-double-left"></i>'
+      last: '<i class="bi bi-chevron-double-right"></i>'
 
 

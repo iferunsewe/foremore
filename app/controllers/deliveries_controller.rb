@@ -6,16 +6,16 @@ class DeliveriesController < ApplicationController
   def index
     if current_user&.admin?
       if params[:query].present?
-        @deliveries = Delivery.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
+        @deliveries = Delivery.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(created_at: :desc).page params[:page]
       else
-        @deliveries = Delivery.all.order(created_at: :desc)
+        @deliveries = Delivery.all.order(created_at: :desc).page params[:page]
       end
    else
     current_user_deliveries =  Delivery.where(pickup_address: current_user.team.address)
     if params[:query].present?
-      @deliveries = current_user_deliveries&.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(created_at: :desc)
+      @deliveries = current_user_deliveries&.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(created_at: :desc).page params[:page]
     else
-      @deliveries = current_user_deliveries&.order(created_at: :desc)
+      @deliveries = current_user_deliveries&.order(created_at: :desc).page params[:page]
     end
    end
   end
