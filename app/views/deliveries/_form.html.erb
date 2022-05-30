@@ -59,12 +59,19 @@
           <div class="row">
             <div class="d-inline-block">
               <h4><%= t("delivery.form.address.heading") %></h4>
-              <div>
-                <% pickup_address = pickup_address_to_use(delivery) %>
-                <div id="delivery_pickup_address" class="d-none"><%= pickup_address.one_line %></div>
-                <%= form.hidden_field :pickup_address_id, value: pickup_address.id %>
-              </div>
-            
+              <% if current_user.team %>
+                <div>
+                  <% pickup_address = pickup_address_to_use(delivery) %>
+                  <div id="delivery_pickup_address" class="d-none"><%= pickup_address.one_line %></div>
+                  <%= form.hidden_field :pickup_address_id, value: pickup_address.id %>
+                </div>
+              <% else %>
+                <div class="form-floating mb-2">
+                  <%= form.select :pickup_address_id, pickup_addresses_to_display, {prompt: "Select address"}, {class: "form-control form-select", required: true} %>
+                  <%= form.label :pickup_address_id %>
+                </div>
+              <% end %>
+
               <div class="form-floating mb-2">
                 <%= form.text_field :delivery_address, placeholder: "", class: 'form-control', required: true %>
                 <%= form.label :delivery_address, t("delivery.form.address.delivery-placeholder") %>
@@ -179,7 +186,7 @@
               class="map"
               id="google-embed-map"
               src=<%= iframe_source(delivery: @delivery, alt_pickup_address: pickup_address) %>
-              data-fallback-url= <%= google_map_fallback_url(pickup_address: pickup_address.one_line) %>
+              data-fallback-url=<%= google_map_fallback_url(pickup_address: pickup_address) %>
               data-google-api-key=<%= ENV['GOOGLE_API_KEY'] %>
               >
             </iframe>

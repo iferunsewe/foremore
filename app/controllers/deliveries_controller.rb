@@ -1,5 +1,6 @@
 class DeliveriesController < ApplicationController
   before_action :set_delivery, only: %i[ show edit update destroy ]
+  before_action :location
 
   # GET /deliveries or /deliveries.json
   def index
@@ -25,7 +26,6 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries/new
   def new
-    redirect_to settings_path if current_user.team.nil?
     if params[:old_delivery_id] && old_delivery = Delivery.find(params[:old_delivery_id])
       @delivery = old_delivery.dup
     else

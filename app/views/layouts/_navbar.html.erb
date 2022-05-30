@@ -1,5 +1,5 @@
 <ul class="nav flex-column" id="desktop-nav">
-  <% if !current_user.team.nil? %>
+  <% if !current_user.team.nil? || current_user.admin? %>
     <li class="nav-item flex-column <%= is_new_deliveries_path_active? ? "active" : "" %>">
       <%= link_to(new_delivery_path, class: 'nav-link flex-column') do %>
         <i class="bi bi-pencil-fill"></i>

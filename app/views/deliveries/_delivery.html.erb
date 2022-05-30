@@ -6,7 +6,7 @@
           class="map h-100 w-100"
           id="google-embed-map"
           src=<%= iframe_source(delivery: @delivery) %>
-          data-fallback-url= <%= google_map_fallback_url(pickup_address: delivery.pickup_address.one_line) %>
+          data-fallback-url= <%= google_map_fallback_url(pickup_address: delivery.pickup_address) %>
           data-google-api-key=<%= ENV['GOOGLE_API_KEY'] %>
           >
         </iframe>

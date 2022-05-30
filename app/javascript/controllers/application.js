@@ -35,11 +35,22 @@ function onScheduleDateChange() {
   });
 }
 
-function updateMap() {
+function adminOrNormalPickupAddress() {
   const pickupAddressEle = document.getElementById("delivery_pickup_address")
+  const adminPickupEle = document.getElementById("delivery_pickup_address_id")
+  if(pickupAddressEle && pickupAddressEle.value !== "") {
+    return pickupAddressEle.innerText
+  } else if (adminPickupEle && adminPickupEle.value !== "") {
+    return adminPickupEle.options[adminPickupEle.selectedIndex].text;
+  } else {
+    return "100 overtoom, Amsterdam"
+  }
+}
+
+function updateMap() {
   const deliveryAddressEle = document.getElementById("delivery_delivery_address")
-  if(!pickupAddressEle || !deliveryAddressEle) return;
-  const pickupAddress = pickupAddressEle.innerText
+  if(!deliveryAddressEle) return;
+  const pickupAddress = adminOrNormalPickupAddress()
   const deliveryAddress = deliveryAddressEle.value
   const map = document.getElementById("google-embed-map")
   if(!map) return;
@@ -53,13 +64,12 @@ function updateMap() {
 }
 
 function getTravelTime() {
-  const pickupAddressEle = document.getElementById("delivery_pickup_address")
   const deliveryAddressEle = document.getElementById("delivery_delivery_address")
-  if(!pickupAddressEle || !deliveryAddressEle) return;
-  const pickupAddress = pickupAddressEle.innerText
+  if(!deliveryAddressEle) return;
+  const pickupAddress = adminOrNormalPickupAddress()
   const deliveryAddress = deliveryAddressEle.value
   const travelTime = document.getElementById("delivery_travel_time")
-  if(!travelTime) return;
+  if(!travelTime || deliveryAddress == '') return;
   
   let service = new google.maps.DistanceMatrixService();
   service.getDistanceMatrix(
