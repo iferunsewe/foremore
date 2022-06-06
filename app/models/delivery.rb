@@ -52,6 +52,10 @@ class Delivery < ApplicationRecord
     (travel_time || default_travel_time) + (prep_time || default_prep_time)
   end
 
+  def ineditable?
+    status.in?(%w(delivering delivered))
+  end
+
   private
 
   def update_delivered_at

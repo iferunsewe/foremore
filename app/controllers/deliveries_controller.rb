@@ -35,6 +35,9 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries/1/edit
   def edit
+    if !current_user.admin? && @delivery.ineditable?
+      redirect_to @delivery, alert: "This delivery is on it's way or has been delivered so it can't be edited."
+    end
   end
 
   # POST /deliveries or /deliveries.json

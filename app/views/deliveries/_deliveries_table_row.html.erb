@@ -7,7 +7,7 @@
   <td><%= delivery.delivered_at&.strftime('%Y-%m-%d %H:%M') %></td>
   <td></td>
   <td>
-    <% if delivery.delivered? %>
+    <% if delivery.ineditable? %>
       <%= link_to new_delivery_path(old_delivery_id: delivery.id), data: { turbo: false } do %>
         <i class="bi bi-arrow-repeat"></i>
         Rebook

@@ -13,9 +13,8 @@ module Sms
       if mobile_number?
         send_message
       else
-        raise(
-          Sms::Sender::Error,
-          "Class: StandardError, Error Message: Not a mobile number"
+        Rails.logger.error(
+          "Sms::Sender::Error - Class: StandardError, Error Message: Not a mobile number"
         )
       end
     end
@@ -27,9 +26,8 @@ module Sms
         body: message
       )
     rescue Twilio::REST::RestError => error
-      raise(
-        Sms::Sender::Error,
-        "Class: Twilio::REST::RestError, " \
+      Rails.logger.error(
+        "Sms::Sender::Error - Class: Twilio::REST::RestError, " \
         "Error code: #{error.code}, " \
         "Error message: #{error.message}"
       )
