@@ -9,8 +9,8 @@
 -%>
 <li class="page-item page<%= ' current' if page.current? %>">
   <% if page.current? %>
-    <div class="page-link"><%= page.number %></div>
+    <div class="page-link semi-bold"><%= page.number %></div>
   <% else %>
-    <%= link_to page.number, url, remote: remote, class: "page-link" %>
+    <%= link_to page.number, url, remote: remote, class: "page-link semi-bold" %>
   <% end %>
 </li>
