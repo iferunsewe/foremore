@@ -106,12 +106,22 @@ en:
       ready-message: "Our rider will be with you shortly to collect the order"
       delivering-message: "Our rider is delivering on our way to your client"
       delivered-message: "The rider has delivered your materials"
+      edit-button-label: "Edit"
+      contact-button-label: "Raise issue"
   team:
     list-link: 'Teams'
     single-link: 'Team'
+    show:
+      invite-button-label: Invite
+    index:
+      new-button-label: New team
   company:
     list-link: 'Companies'
     single-link: 'Company'
+    show:
+      edit-button-label: Edit company
+    index:
+      new-button-label: New company 
   sms:
     new-delivery: "Hi %{first_name}. ANOTHER ONE. Yes you got another delivery. Get this show on the road by confirming it as soon as possible %{delivery_url}."
     ready-to-pickup: "The delivery #%{reference} is ready to pick up at %{address}. Go Go Go. See more details at %{delivery_url}."
