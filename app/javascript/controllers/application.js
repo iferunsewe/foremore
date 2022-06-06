@@ -50,10 +50,12 @@ function adminOrNormalPickupAddress() {
 function updateMap() {
   const deliveryAddressEle = document.getElementById("delivery_delivery_address")
   if(!deliveryAddressEle) return;
+
   const pickupAddress = adminOrNormalPickupAddress()
   const deliveryAddress = deliveryAddressEle.value
   const map = document.getElementById("google-embed-map")
   if(!map) return;
+
   var googleApiKey = map.getAttribute('data-google-api-key');
   if (deliveryAddress !== undefined && deliveryAddress !== "") {
     var newMapUrl = `https://www.google.com/maps/embed/v1/directions?key=${googleApiKey}&origin=${pickupAddress}&destination=${deliveryAddress}&mode=bicycling`
@@ -104,11 +106,15 @@ function initMapsAutocomplete() {
 
 function calculateExpectedTime(){
   // if the delivery type is scheduled then we don't need to calculate the expected time
-  if(document.querySelector('input[name="delivery[delivery_type]"]:checked').value == '1') {
+  const deliveryTypeEle = document.querySelector('input[name="delivery[delivery_type]"]:checked')
+  if(deliveryTypeEle && deliveryTypeEle.value == '1') {
     showScheduledDate()
     return
   }
-  const travelTime = parseInt(document.getElementById("delivery_travel_time").value)
+  const travelTimeEle = document.getElementById("delivery_travel_time")
+  if(!travelTimeEle) return;
+  const travelTime = parseInt(travelTimeEle.value)
+  
   const expectedTime = document.querySelector(".expected-time")
   const expectedDay = document.getElementById("expected-day")
 
@@ -121,7 +127,10 @@ function calculateExpectedTime(){
 }
 
 function showScheduledDate() {
-  const scheduleDate = document.getElementById('delivery_scheduled_date').value
+  const scheduleDateEle = document.getElementById('delivery_scheduled_date')
+  if(!scheduleDateEle) return;
+
+  const scheduleDate = scheduleDateEle.value
   const expectedTime = document.querySelector(".expected-time")
   const expectedDay = document.getElementById("expected-day")
   if(!scheduleDate || !expectedTime) return;
@@ -144,7 +153,7 @@ function padTo2Digits(num) {
 }
 
 window.addEventListener('load', function () {
-  google.maps.event.addDomListener(window, 'load', initMapsAutocomplete);
+  initMapsAutocomplete();
 
   updateMap()
   getTravelTime()
