@@ -46,7 +46,7 @@ class UsersController < ApplicationController
       return if current_user.admin?
       return if current_user.team_admin? && current_user.team.part_of?(@user)
       return if current_user.company_admin? && current_user.company.part_of?(@user)
-      redirect_to root_path, alert: "Whoops! You can't access this page." unless current_user == User.find(params[:id])
+      redirect_to root_path, alert: "Whoops! You can't access this page." unless current_user == @user
     end
 
     def edit_my_or_a_path
