@@ -64,7 +64,7 @@ en:
         explainer: "If you choose the option ASAP, we'll try to complete the delivery in an hour!"
       contact-information:
         heading: "3. Contact Information"
-        explainer: "Enter the recipient's contact details so we can keep them informed about the delivery."
+        explainer: "Enter the recipient's contact details so we can keep them informed about the delivery. Leave the phone number blank if you don't want your customer to be contacted."
         name-placeholder: "Name *"
         email-placeholder: "Email"
         phone-placeholder: "Phone number"
