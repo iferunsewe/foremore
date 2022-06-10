@@ -51,7 +51,7 @@
 
           <div class="collapse <%= delivery&.delivery_type == "scheduled" ? "show" : "" %>" id="collapseExample">
             <%= form.label :scheduled_date, t("delivery.form.delivery-type.scheduled-date.heading"), style: "display: block", class: 'form-label semi-bold' %>
-            <%= form.datetime_local_field :scheduled_date, value: DateTime.now.strftime('%Y-%m-%d %H:%M'), class: 'form-control mb-2' %>
+            <%= form.datetime_local_field :scheduled_date, value: value_for_scheduled_date(delivery).strftime('%Y-%m-%dT%H:%M'), class: 'form-control mb-2' %>
           </div>
         </div>
 

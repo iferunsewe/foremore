@@ -64,4 +64,11 @@ module DeliveriesHelper
     delivery.expected_time.in_time_zone("Europe/Amsterdam").strftime("%d/%m/%Y")
   end
 
+  def value_for_scheduled_date(delivery)
+    if delivery.scheduled_date.present?
+      delivery.scheduled_date
+    else
+      DateTime.now
+    end
+  end
 end
