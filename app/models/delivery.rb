@@ -53,7 +53,7 @@ class Delivery < ApplicationRecord
   end
 
   def ineditable?
-    status.in?(%w(delivering delivered))
+    status.in?(%w(ready delivering delivered))
   end
 
   private
