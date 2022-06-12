@@ -152,7 +152,7 @@ function padTo2Digits(num) {
   return String(num).padStart(2, '0');
 }
 
-window.addEventListener('load', function () {
+document.addEventListener('DOMContentLoaded', () => {
   initMapsAutocomplete();
 
   updateMap()
