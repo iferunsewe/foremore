@@ -2,7 +2,7 @@ class Delivery < ApplicationRecord
   belongs_to :pickup_address, class_name: 'Address'
   belongs_to :user
 
-  enum status: [:draft, :pending, :confirmed, :preparing, :ready, :delivering, :delivered]
+  enum status: [:draft, :pending, :confirmed, :ready, :delivering, :delivered]
   enum delivery_type: [:instant, :scheduled]
   enum weight_class: ["< 15", "15 - 300", "300 - 800"]
   enum length_class: ["< 1.4", "1.4 - 2.2", "2.2 - 3.4", "3.4 - 4.4"]
@@ -16,7 +16,7 @@ class Delivery < ApplicationRecord
   after_update :send_delivering_sms, if: :status_changed_to_delivering?
 
   def self.statuses_for_companies
-    statuses.select { |k, _| k.in?(%w(draft pending preparing ready)) }
+    statuses.select { |k, _| k.in?(%w(pending ready)) }
   end
 
   def self.weight_i_to_weight_class(weight_i)

@@ -65,7 +65,7 @@ module DeliveriesHelper
   end
 
   def value_for_scheduled_date(delivery)
-    if delivery.scheduled_date.present?
+    if delivery&.scheduled_date.present?
       delivery.scheduled_date
     else
       DateTime.now

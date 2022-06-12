@@ -103,8 +103,14 @@ class DeliveriesController < ApplicationController
         delivery_type: delivery_params[:delivery_type].to_i,
         weight_class: delivery_params[:weight_class].to_i,
         length_class: delivery_params[:length_class].to_i,
-        user_id: current_user.id
+        user_id: current_user.id,
+        status: toggle_status_or_status
       )
+    end
+
+    def toggle_status_or_status
+      return delivery_params[:status] if (current_user.admin? || @delivery.nil? || @delivery&.ineditable?)
+      delivery_params[:status].to_i == 1 ? Delivery.statuses[:ready] : @delivery.status
     end
 
     def send_new_delivery_sms

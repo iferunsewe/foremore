@@ -3,7 +3,7 @@
   <td><%= delivery.created_at.strftime('%Y-%m-%d %H:%M') %></td>
   <td><%= delivery.user.full_name %></td>
   <td><%= delivery.delivery_address %></td>
-  <td><%= delivery.status.capitalize %></td>
+  <td><%= delivery.status&.capitalize %></td>
   <td><%= delivery.delivered_at&.strftime('%Y-%m-%d %H:%M') %></td>
   <td></td>
   <td>

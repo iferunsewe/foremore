@@ -53,6 +53,27 @@ body {
     border-color: #F7E2B5;
   }
 
+  .form-check-input:checked {
+    background-color: #F7E2B5;
+    border-color: #F7E2B5;
+  }
+
+  .form-check-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+  }
+
+  .form-check {
+    .form-check-label-explainer{ 
+      margin-left: 2rem;
+    }
+  }
+
+  .form-check-input {
+    height: 2rem;
+    width: calc(3rem + 0.75rem);
+    border-radius: 2rem * 2;
+}
+
   .btn-outline-primary {
     color: #06158F;
     border-color: transparent;

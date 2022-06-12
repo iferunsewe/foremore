@@ -74,6 +74,8 @@ en:
       submit-button-label: "Book"
       edit-submit-button-label: "Change delivery"
       status-label: "Status"
+      ready-label: Ready to be picked up?
+      ready-label-explainer: If you want our drivers to pick up the order, please click the button on the right
       quick-actions:
         heading: "Quick actions"
         explainer: Choose from options like booking multiple deliveries at once or rebooking old orders to help you book deliveries faster.

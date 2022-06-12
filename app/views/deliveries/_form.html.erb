@@ -14,10 +14,18 @@
     <div class="row">
       <div class="col-md-6 col-sm-12 order-2 order-md-1">
         <div class="form-group mb-3">
-          <% if @delivery.persisted? %>
+          <% if @delivery.persisted? && current_user.admin? %>
             <div class="form-floating">
               <%= form.select :status, statuses_to_display, {prompt: "Select status"}, {class: "form-control form-select", required: true} %>
               <%= form.label :status, t("delivery.form.status-label"),  style: "display: block", class: 'form-label semi-bold' %>
+            </div>
+          <% elsif @delivery.persisted? %>
+            <div class="form-check form-switch form-switch-lg">
+              <%= form.check_box :status, {class: "form-check-input", checked: @delivery.ready? } %>
+              <div class="form-check-label-explainer">
+                <%= form.label :status, t("delivery.form.ready-label"),  class: 'form-check-label semi-bold' %>
+                <div class="form-text"><%=  t("delivery.form.ready-label-explainer") %></div>
+              </div>
             </div>
           <% else %>
             <div class="d-grid gap-2 col-12 col-md-6 mb-2">
