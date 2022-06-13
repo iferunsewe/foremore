@@ -13,14 +13,23 @@
       </div>
       <div class="row mt-0 mt-md-3 delivery-details">
         <div class="col-12 col-md-3 d-block d-md-none mt-3 mt-md-0">
-          <div>
-            <p><%= t("delivery.show.expected-at") %></p>
-            <p class="semi-bold">
-              <span><%= format_expected_day(@delivery) %></span>
-              <span class="expected-time"><%= format_expected_time(@delivery) %></span>
-            </p>
-            
-          </div>
+          <% if @delivery.delivered? %>
+            <div>
+              <p><%= t("delivery.show.delivered-at") %></p>
+              <p class="semi-bold">
+                <span><%= format_delivery_day(@delivery.delivered_at) %></span>
+                <span class="expected-time"><%= format_delivery_time(@delivery.delivered_at) %></span>
+              </p>
+            </div>
+          <% else %>
+            <div>
+              <p><%= t("delivery.show.expected-at") %></p>
+              <p class="semi-bold">
+                <span><%= format_delivery_day(@delivery.expected_time) %></span>
+                <span class="expected-time"><%= format_delivery_time(@delivery.expected_time) %></span>
+              </p>
+            </div>
+          <% end %>
           <div>
             <p>
               <span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <span><%= @delivery.pickup_address.one_line %></span>
@@ -77,13 +86,23 @@
     </div>
     <div class="col-12 col-md-3 mt-3 mt-md-0">
       <div class="d-none d-md-block">
-        <div>
-          <p><%= t("delivery.show.expected-at") %></p>
-          <p class="semi-bold">
-            <span><%= format_expected_day(@delivery) %></span>
-            <span class="expected-time"><%= format_expected_time(@delivery) %></span>
-          </p>
-        </div>
+        <% if @delivery.delivered? %>
+          <div>
+            <p><%= t("delivery.show.delivered-at") %></p>
+            <p class="semi-bold">
+              <span><%= format_delivery_day(@delivery.delivered_at) %></span>
+              <span class="expected-time"><%= format_delivery_time(@delivery.delivered_at) %></span>
+            </p>
+          </div>
+        <% else %>
+          <div>
+            <p><%= t("delivery.show.expected-at") %></p>
+            <p class="semi-bold">
+              <span><%= format_delivery_day(@delivery.expected_time) %></span>
+              <span class="expected-time"><%= format_delivery_time(@delivery.expected_time) %></span>
+            </p>
+          </div>
+        <% end %>
         <div>
           <p>
             <span class="bold"><%= t("delivery.form.address.pickup-label") %></span>: <span><%= @delivery.pickup_address.one_line %></span>
@@ -97,12 +116,14 @@
         </div>
       </div>
 
-      <div class="mb-3">
-        <%= link_to edit_delivery_path(@delivery), class: 'btn btn-primary col-12' do %>
-          <i class="bi bi-pencil"></i>
-          <%= t("delivery.show.edit-button-label") %>
-        <% end %>
-      </div>
+      <% if !@delivery.ineditable? %>
+        <div class="mb-3">
+          <%= link_to edit_delivery_path(@delivery), class: 'btn btn-primary col-12' do %>
+            <i class="bi bi-pencil"></i>
+            <%= t("delivery.show.edit-button-label") %>
+          <% end %>
+        </div>
+      <% end %>
 
       <div class="mb-3">
         <%= mail_to "contact@foremoresupplies.com", subject: "Something went wrong with my delivery", class: 'btn btn-danger col-12' do %>

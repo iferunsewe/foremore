@@ -54,14 +54,15 @@ module DeliveriesHelper
     end
   end
 
-  def format_expected_time(delivery)
-    delivery.expected_time.in_time_zone("Europe/Amsterdam").strftime("%H:%M")
+  def format_delivery_time(delivery_datetime)
+    delivery_datetime.in_time_zone("Europe/Amsterdam").strftime("%H:%M")
   end
 
-  def format_expected_day(delivery)
-    return "Today" if delivery.expected_time.in_time_zone("Europe/Amsterdam").today?
-    return "Tomorrow" if delivery.expected_time.in_time_zone("Europe/Amsterdam").tomorrow?
-    delivery.expected_time.in_time_zone("Europe/Amsterdam").strftime("%d/%m/%Y")
+  def format_delivery_day(delivery_datetime)
+    return "Today" if delivery_datetime.in_time_zone("Europe/Amsterdam").today?
+    return "Tomorrow" if delivery_datetime.in_time_zone("Europe/Amsterdam").tomorrow?
+    return "Yesterday" if delivery_datetime.in_time_zone("Europe/Amsterdam").yesterday?
+    delivery_datetime.in_time_zone("Europe/Amsterdam").strftime("%d/%m/%Y")
   end
 
   def value_for_scheduled_date(delivery)

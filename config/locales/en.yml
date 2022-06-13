@@ -94,6 +94,7 @@ en:
       latest-delivery-label: "Latest delivery by"
     show:
       expected-at: "Delivery expected by"
+      delivered-at: "Delivery completed at"
       status: "Status"
       recipient: "Recipient details"
       order-details: "Order details"
