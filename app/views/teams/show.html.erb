@@ -1,12 +1,12 @@
 <%= title(@team.company.name)%>
 <div class="row height d-flex justify-content-end mb-2 p-0 pe-md-2">
-  <div class="col-4 col-md-3 mb-2 mb-md-0">
+  <div class="col-12 col-md-3 mb-2 mb-md-0">
     <%= link_to edit_my_team_path, class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" do %>
       <i class="bi bi-pencil"></i>
       <%= t("delivery.show.edit-button-label") %>
     <% end %>
   </div>
-  <div class="col-4 col-md-3 mb-2 mb-md-0">
+  <div class="col-12 col-md-3 mb-2 mb-md-0">
     <%= link_to new_user_invitation_path, class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" do %>
       <i class="bi bi-person-plus-fill"></i>
       <%= t("team.show.invite-button-label") %>
