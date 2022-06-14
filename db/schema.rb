@@ -85,6 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_14_074259) do
     t.bigint "user_id"
     t.integer "prep_time"
     t.integer "travel_time"
+    t.integer "rider_id"
     t.index ["user_id"], name: "index_deliveries_on_user_id"
   end
 
