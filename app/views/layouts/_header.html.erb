@@ -5,7 +5,6 @@
     <% end %>
   </li>
 
-
   <% if user_signed_in? && !current_user.company.nil? && !current_user.admin? %>
     <li class="nav-item col-4">
       <div class="d-flex justify-content-end">
@@ -19,87 +18,4 @@
     </li>
   <% end %>
 </ul>
-<nav class="navbar navbar-light mb-4 sticky-top" id="mobile-header">
-  <div class="container-fluid">
-    <%= link_to(authenticated_root_path, class: 'nav-link logo-container') do %>
-      <%= image_tag "logo.png", alt: "Foremore", class: "logo foremore-logo" %>
-    <% end %>
-
-    <% if user_signed_in? %>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="bi bi-list"></i>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav me-auto mb-lg-0">
-          <li class="nav-item <%= is_users_path_active? ? "active" : "" %>">
-            <%= link_to(edit_my_user_path, class: 'nav-link d-flex') do %>
-              <i class="bi bi-person-circle mr-3"></i>
-              <span class="overflow-ellipsis"><%= current_user&.first_name || 'User' %></span>
-            <% end %>
-          </li>
-          <% if !current_user.team.nil? %>
-            <li class="nav-item <%= is_new_deliveries_path_active? ? "active" : "" %>">
-              <%= link_to(new_delivery_path, class: 'nav-link d-flex') do %>
-                <i class="bi bi-pencil-fill mr-3"></i>
-                <span class="ml-3 overflow-ellipsis"><%=  t("delivery.new-link") %></span>
-              <% end %>
-            </li>
-          <% end %>
-          <% if !current_user.team.nil? || current_user.admin? %>
-            <li class="nav-item <%= is_deliveries_path_active? ? "active" : "" %>">
-              <%= link_to(deliveries_path, class: 'nav-link d-flex') do %>
-                <i class="bi bi-truck mr-3"></i>
-                <span class="ml-3 overflow-ellipsis"><%=  t("delivery.list-link") %></span>
-              <% end %>
-            </li>
-          <% end %>
-          <% if current_user.try(:admin?) %>
-            <li class="nav-item <%= is_teams_path_active? ? "active" : "" %>">
-              <%= link_to(teams_path, class: 'nav-link d-flex') do %>
-                <i class="bi bi-people-fill mr-3"></i>
-                <span class="ml-3 overflow-ellipsis"><%=  t("team.list-link") %></span>
-              <% end %>
-            </li>
-          <% elsif !current_user.team.nil? %>
-            <li class="nav-item <%= is_teams_path_active? ? "active" : "" %>">
-              <%= link_to(my_team_path, class: 'nav-link d-flex') do %>
-                <i class="bi bi-people-fill mr-3"></i>
-                <span class="ml-3 overflow-ellipsis"><%=  t("team.single-link") %></span>
-              <% end %>
-            </li>
-          <% end %>
-          <% if current_user.try(:admin?) %>
-            <li class="nav-item <%= is_companies_path_active? ? "active" : "" %>">
-              <%= link_to(companies_path, class: 'nav-link d-flex') do %>
-                <i class="bi bi-building mr-3"></i>
-                <span class="ml-3 overflow-ellipsis"><%=  t("company.list-link") %></span>
-              <% end %>
-            </li>
-          <% elsif !current_user.company.nil? && current_user.try(:company_admin?) %>
-            <li class="nav-item <%= is_companies_path_active? ? "active" : "" %>">
-              <%= link_to(my_company_path, class: 'nav-link d-flex') do %>
-                <i class="bi bi-people-fill mr-3"></i>
-                <span class="ml-3 overflow-ellipsis"><%=  t("company.single-link") %></span>
-              <% end %>
-            </li>
-          <% end %>
-          <% if current_user.try(:admin?) %>
-            <li class="nav-item <%= is_users_path_active? ? "active" : "" %>">
-              <%= link_to(users_path, class: 'nav-link d-flex') do %>
-                <i class="bi bi-people-fill mr-3"></i>
-                <span class="ml-3 overflow-ellipsis"><%=  t("user.list-link") %></span>
-              <% end %>
-            </li>
-          <% end %>
-          <li class="nav-item <%= is_settings_path_active? ? "active" : "" %>">
-            <%= link_to(settings_path, class: 'nav-link d-flex') do %>
-              <i class="bi bi-gear mr-3"></i>
-              <span class="ml-3 overflow-ellipsis"><%=  t("settings.list-link") %></span>
-            <% end %>
-          </li>
-        </ul>
-      </div>
-    <% end %>
-  </div>
-</nav>
+<%= render 'layouts/mobile_navbar/navbar' %>

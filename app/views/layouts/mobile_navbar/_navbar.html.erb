@@ -1,0 +1,25 @@
+<nav class="navbar navbar-light mb-4 sticky-top" id="mobile-header">
+  <div class="container-fluid">
+    <%= link_to(authenticated_root_path, class: 'nav-link logo-container') do %>
+      <%= image_tag "logo.png", alt: "Foremore", class: "logo foremore-logo" %>
+    <% end %>
+
+    <% if user_signed_in? %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <% if current_user.try(:admin?) %>
+          <%= render partial: 'layouts/mobile_navbar/admin_navbar' %>
+        <% elsif current_user.try(:company_admin?) %>
+          <%= render partial: 'layouts/mobile_navbar/company_admin_navbar' %>
+        <% elsif current_user.try(:team_admin?) || current_user.try(:normal?) %>
+          <%= render partial: 'layouts/mobile_navbar/normal_navbar' %>
+        <% else %>
+          <%= render partial: 'layouts/mobile_navbar/guest_navbar' %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</nav>

@@ -1,0 +1,9 @@
+<% if current_user.try(:admin?) %>
+  <%= render partial: 'layouts/navbar/admin_navbar' %>
+<% elsif current_user.try(:company_admin?) %>
+  <%= render partial: 'layouts/navbar/company_admin_navbar' %>
+<% elsif current_user.try(:team_admin?) || current_user.try(:normal?) %>
+  <%= render partial: 'layouts/navbar/normal_navbar' %>
+<% else %>
+  <%= render partial: 'layouts/navbar/guest_navbar' %>
+<% end %>

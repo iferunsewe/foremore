@@ -1,0 +1,14 @@
+<ul class="navbar-nav me-auto mb-lg-0">
+  <li class="nav-item <%= is_users_path_active? ? "active" : "" %>">
+    <%= link_to(edit_my_user_path, class: 'nav-link d-flex') do %>
+      <i class="bi bi-person-circle mr-3"></i>
+      <span class="overflow-ellipsis"><%= current_user&.first_name || 'User' %></span>
+    <% end %>
+  </li>
+  <li class="nav-item <%= is_settings_path_active? ? "active" : "" %>">
+    <%= link_to(settings_path, class: 'nav-link d-flex') do %>
+      <i class="bi bi-gear mr-3"></i>
+      <span class="ml-3 overflow-ellipsis"><%=  t("settings.list-link") %></span>
+    <% end %>
+  </li>
+</ul>

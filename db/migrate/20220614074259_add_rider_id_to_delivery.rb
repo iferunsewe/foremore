@@ -1,5 +1,5 @@
 class AddRiderIdToDelivery < ActiveRecord::Migration[7.0]
   def change
-    add_reference :deliveries, :rider_id, null: false, foreign_key: true
+    add_column :deliveries, :rider_id, :integer
   end
 end
