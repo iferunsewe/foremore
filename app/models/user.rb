@@ -11,7 +11,7 @@ class User < ApplicationRecord
   belongs_to :company, optional: true
   has_many :deliveries
 
-  enum role: [:normal, :team_admin, :company_admin, :admin]
+  enum role: [:normal, :team_admin, :company_admin, :rider, :admin]
 
   after_update :normal!, if: :joining_a_company?
   after_update :normal!, if: :joining_a_team?
