@@ -72,4 +72,8 @@ module DeliveriesHelper
       DateTime.now
     end
   end
+
+  def whatsapp_link(delivery)
+    "https://api.whatsapp.com/send?phone=+31#{delivery.rider.phone_number}&text=I want to talk about the delivery #{delivery.id} to #{delivery.delivery_address}"
+  end
 end

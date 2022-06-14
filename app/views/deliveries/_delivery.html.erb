@@ -49,7 +49,7 @@
               <%= image_tag "maarten.png", class: 'img-fluid' %>
             </div>
             <div class="col-6 rider-info">
-              <span class="semi-bold">Maarten</span><br/>
+              <span class="semi-bold"><%= @delivery.rider.first_name %></span><br/>
               <div>
                 <% 4.times do%>
                   <i class="bi bi-star-fill"></i>
@@ -58,7 +58,7 @@
               </div>
             </div>
             <div class="col-3 p-md-0">
-              <%= link_to("https://wa.me/31640390016", class: 'btn btn-primary btn-radio semi-bold') do %>
+              <%= link_to(whatsapp_link(@delivery), class: 'btn btn-primary btn-radio semi-bold') do %>
                 <i class="bi bi-whatsapp"></i>
               <% end %>
             </div>
