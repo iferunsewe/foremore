@@ -49,7 +49,7 @@ en:
         heading: "4. Item Details"
         inventory-button-label: "Select from inventory"
         inventory-explainer_html: "<b>Coming soon!</b> Choose an item from your inventory to add to the order"
-        description-placeholder: "What are we picking up? e.g. 2 x 25kg Knauff acquastuc plaster"
+        description-placeholder: "What are we picking up? e.g. 2 x 25kg Knauff acquastuc plaster *"
         reference-placeholder: "Order number i.e. something to help us identify the order"
         weight-label: "Weight (kg)"
         length-label: "Length (m)"
@@ -92,6 +92,7 @@ en:
       notify-recipient:
         explainer: Should we tell your customer when the delivery is on it's way?
       latest-delivery-label: "Latest delivery by"
+      rider-label: Assign rider
     show:
       expected-at: "Delivery expected by"
       delivered-at: "Delivery completed at"

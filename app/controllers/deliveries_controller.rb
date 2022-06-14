@@ -94,7 +94,7 @@ class DeliveriesController < ApplicationController
         :order_reference, :other_notes, :scheduled_date,
         :description, :address_notes, :recipient_name,
         :recipient_email, :recipient_phone, :travel_time,
-        :prep_time
+        :prep_time, :rider_id
       )
     end
 

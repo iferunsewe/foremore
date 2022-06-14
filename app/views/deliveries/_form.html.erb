@@ -36,6 +36,15 @@
           <% end %>
         </div>
 
+        <% if current_user.admin? %>
+          <div class="form-group mb-3">
+            <div class="form-floating">
+              <%= form.select :rider_id, User.where(role: ["admin", "rider"]).map { |u| [u.full_name, u.id] }, {prompt: "Assign rider"}, {class: "form-control form-select", required: true} %>
+              <%= form.label :rider_id, t("delivery.form.rider-label"),  style: "display: block", class: 'form-label semi-bold' %>
+            </div>
+          </div>
+        <% end %>
+
         <div class="form-group mb-4">
           <h4 class="mb-1"><%= t("delivery.form.delivery-type.heading") %></h4>
           <div class="form-text mb-4"><%=  t("delivery.form.delivery-type.explainer") %></div>
@@ -101,8 +110,8 @@
               <h4><%=  t("delivery.form.contact-information.heading") %></h4>
               <div class="form-text mb-4"><%=  t("delivery.form.contact-information.explainer") %></div>
               <div class="form-floating mb-2">
-                <%= form.text_field :recipient_name, class: 'form-control' %>
-                <%= form.label :recipient_name, t("delivery.form.contact-information.name-placeholder"), required: true %>
+                <%= form.text_field :recipient_name, class: 'form-control', required: true %>
+                <%= form.label :recipient_name, t("delivery.form.contact-information.name-placeholder") %>
               </div>
               <div class="form-floating mb-2">
                 <%= form.email_field :recipient_email, class: 'form-control' %>
@@ -125,7 +134,7 @@
           </div>
 
           <div class="form-floating mb-2">
-            <%= form.text_area :description, placeholder: t("delivery.form.item-details.description-placeholder"), class: 'form-control mb-2' %>
+            <%= form.text_area :description, placeholder: t("delivery.form.item-details.description-placeholder"), class: 'form-control mb-2', required: true %>
           </div>
 
           <div class="row">
