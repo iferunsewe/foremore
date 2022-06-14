@@ -48,4 +48,8 @@ module ApplicationHelper
   def default_address
     "Fred. Roeskestraat 115, 1076 EE Amsterdam, Netherlands"
   end
+
+  def is_pending_deliveries_path_active?
+    current_page?(pending_deliveries_path)
+  end
 end

@@ -52,13 +52,15 @@
   <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-danger w-100' %>
 </div>
 
-<div id="integrations">
-  <h4 class="mb-2">Integrations</h4>
+<% unless current_user.rider? %>
+  <div id="integrations">
+    <h4 class="mb-2">Integrations</h4>
 
-  <div class="col-12 col-md-3 mb-4">
-    <%= link_to(exact_oauth_link, class: 'logo-container') do %>
-      <%= image_tag "exact-logo.svg", alt: "Exact Online Logo", class: "logo" %><br/>
-      Connect to Exact Online
-    <% end %>
+    <div class="col-12 col-md-3 mb-4">
+      <%= link_to(exact_oauth_link, class: 'logo-container') do %>
+        <%= image_tag "exact-logo.svg", alt: "Exact Online Logo", class: "logo" %><br/>
+        Connect to Exact Online
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>

@@ -118,7 +118,7 @@
         </div>
       </div>
 
-      <% if !@delivery.ineditable? %>
+      <% unless current_user.rider? || @delivery.ineditable? %>
         <div class="mb-3">
           <%= link_to edit_delivery_path(@delivery), class: 'btn btn-primary col-12' do %>
             <i class="bi bi-pencil"></i>

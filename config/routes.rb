@@ -37,4 +37,5 @@ Rails.application.routes.draw do
   get 'edit-my-team', to: 'teams#edit', as: :edit_my_team
   get 'edit-my-company', to: 'companies#edit', as: :edit_my_company
   get 'edit-my-user', to: 'users#edit', as: :edit_my_user
+  get 'pending-deliveries', to: 'deliveries#pending', as: :pending_deliveries
 end

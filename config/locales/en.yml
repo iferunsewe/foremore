@@ -36,6 +36,8 @@ en:
   delivery:
     new-link: "Book"
     list-link: "Deliveries"
+    pending-link: "Pending"
+    my-link: "My deliveries"
     form:
       address:
         heading: "2. Address"
