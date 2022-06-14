@@ -37,5 +37,6 @@ module Foremore
     config.paths.add Rails.root.join('lib').to_s, eager_load: true
     config.time_zone = "Amsterdam"
     config.session_store :active_record_store, key: '_foremore_session'
+    config.active_storage.variant_processor = :mini_magick
   end
 end

@@ -107,3 +107,5 @@ gem 'elmas', git: 'https://github.com/iferunsewe/exactonline-api-ruby-client'
 
 # Used for pagination
 gem 'kaminari'
+
+gem 'image_processing', '~> 1.2'

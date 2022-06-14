@@ -10,6 +10,9 @@ class User < ApplicationRecord
   belongs_to :team, optional: true
   belongs_to :company, optional: true
   has_many :deliveries
+  has_one_attached :image do |attachable|
+    attachable.variant :small_avatar, resize_to_fit: [50, 50]
+  end
 
   enum role: [:normal, :team_admin, :company_admin, :admin, :rider]
 

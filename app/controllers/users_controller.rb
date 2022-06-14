@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(
         :first_name, :last_name, :time_zone,
         :email, :role, :phone_number, :sms_opt_in,
-        :team_id, :company_id
+        :team_id, :company_id, :image
       )
     end
 

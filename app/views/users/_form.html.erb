@@ -60,6 +60,16 @@
     </div>
   <% end %>
 
+  <% if current_user.admin? || current_user.rider? %>
+    <div class="field form-group col-md-3 col-sm-12 mb-3">
+      <%= form.label :image, class: "form-label" %>
+      <%= form.file_field :image, accept: 'image/jpg, image/gif, image/jpeg, image/png', class: "form-control" %>
+      <% if user.image.attached? %>
+        <%= image_tag user.image.variant(:small_avatar), alt: "user-#{user.full_name.downcase.dasherize}-avatar" %>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="actions col-12 col-md-3">
     <%= form.submit class: "btn btn-primary mb-3 w-100" %>
   </div>

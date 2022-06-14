@@ -8,8 +8,10 @@
   <% if user_signed_in? && !current_user.company.nil? && !current_user.admin? %>
     <li class="nav-item col-4">
       <div class="d-flex justify-content-end">
-        <%= link_to(edit_my_company_path, class: 'nav-link logo-container') do %>
-          <%= image_tag current_user.company.image, alt: "#{current_user.company.name}-logo", class: "logo" %>
+        <% if current_user.company.image.attached? %>
+          <%= link_to(edit_my_company_path, class: 'nav-link logo-container') do %>
+            <%= image_tag current_user.company.image.variant(:header_logo), alt: "#{current_user.company.name}-logo", class: "logo" %>
+          <% end %>
         <% end %>
       </div>
       <div class="d-flex justify-content-end">
