@@ -16,7 +16,7 @@ class Delivery < ApplicationRecord
   after_update :send_confirmed_sms, if: :status_changed_to_confirmed?
   after_update :send_delivering_sms, if: :status_changed_to_delivering?
 
-  scope :pending_and_in_the_future, -> { where(status: "pending").where("(delivery_type = 0 AND created_at > ?) OR (delivery_type = 1 AND scheduled_date > ?)", DateTime.now.beginning_of_day, DateTime.now) }
+  scope :pending_and_in_the_future, -> { where(status: "pending", rider_id: nil).where("(delivery_type = 0 AND created_at > ?) OR (delivery_type = 1 AND scheduled_date > ?)", DateTime.now.beginning_of_day, DateTime.now) }
 
   def self.statuses_for_companies
     statuses.select { |k, _| k.in?(%w(pending ready)) }

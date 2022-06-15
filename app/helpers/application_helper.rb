@@ -52,4 +52,8 @@ module ApplicationHelper
   def is_pending_deliveries_path_active?
     current_page?(pending_deliveries_path)
   end
+
+  def is_my_deliveries_path_active?
+    current_page?(my_deliveries_path)
+  end
 end

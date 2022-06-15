@@ -1,0 +1,69 @@
+<%= title("Deliveries")%>
+<%= form_with url: my_deliveries_path, method: :get, data: { controller: "search-form", search_form_target: "form", turbo_frame: "deliveries" } do |form| %>
+  <div class="row height d-flex justify-content-end mb-2 p-0 pe-md-2">
+    <div class="col-12 col-md-4">
+      <div class="form-floating">
+        <%= form.text_field :query, class: 'form-control', value: params[:query], data: { action: "input->search-form#search" } %>
+        <%= form.label :query, "Search by delivery address" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= turbo_frame_tag "deliveries", class: "shadow overflow-hidden rounded border-b border-gray-200" do %>
+  <div id="deliveries">
+    <table class="table table-hover table-borderless table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">
+            <div class="th-inner">
+              #
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Created at
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Booked by
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Delivery address
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Status
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Delivered at
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Rating
+            </div>
+          </th>
+          <th scope="col">
+            <div class="th-inner">
+              Actions
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="deliveries-tbody">
+        <% @deliveries&.each do |delivery| %>
+          <%= render partial: "deliveries/deliveries_table_row", locals: { delivery: delivery } %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
+
+<%= paginate @deliveries %>
