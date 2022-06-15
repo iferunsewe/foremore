@@ -1,7 +1,7 @@
 class Delivery < ApplicationRecord
   belongs_to :pickup_address, class_name: 'Address'
   belongs_to :user
-  belongs_to :rider, class_name: 'User'
+  belongs_to :rider, class_name: 'User', optional: true
 
   enum status: [:draft, :pending, :confirmed, :ready, :delivering, :delivered]
   enum delivery_type: [:instant, :scheduled]
