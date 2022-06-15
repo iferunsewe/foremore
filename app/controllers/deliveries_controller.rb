@@ -1,6 +1,7 @@
 class DeliveriesController < ApplicationController
   before_action :set_delivery, only: %i[ show edit update destroy ]
   before_action :location
+  before_action :redirect_to_pending_deliveries, only: [:new, :edit]
 
   # GET /deliveries or /deliveries.json
   def index
@@ -143,5 +144,9 @@ class DeliveriesController < ApplicationController
           Sms::SendReadyToPickupSms.new(@delivery, admin).enqueue!
         end
       end
+    end
+
+    def redirect_to_pending_deliveries
+      redirect_to pending_deliveries_path if current_user.rider?
     end
 end

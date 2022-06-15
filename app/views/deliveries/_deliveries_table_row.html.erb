@@ -10,9 +10,9 @@
     <td><%= delivery.rider.first_name %></td>
   <% end %>
   <td>
-    <% if current_user.rider? %>
+    <% if current_user.rider? && delivery.rider_id.nil? %>
       <%= button_to "Deliver", delivery_path(delivery, delivery: {rider_id: current_user.id}), data: { turbo: false }, method: :patch, class: 'btn btn-primary' %>
-    <% else %>
+    <% elsif !current_user.rider? %>
       <% if delivery.ineditable? %>
         <%= link_to new_delivery_path(old_delivery_id: delivery.id), data: { turbo: false } do %>
           <i class="bi bi-arrow-repeat"></i>
