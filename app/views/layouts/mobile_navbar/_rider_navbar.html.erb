@@ -1,11 +1,11 @@
-<ul class="nav flex-column" id="desktop-nav">
+<ul class="navbar-nav me-auto mb-lg-0">
   <li class="nav-item <%= is_users_path_active? ? "active" : "" %>">
     <%= link_to(edit_my_user_path, class: 'nav-link d-flex') do %>
       <i class="bi bi-person-circle mr-3"></i>
       <span class="overflow-ellipsis"><%= current_user&.first_name || 'User' %></span>
     <% end %>
   </li>
- <li class="nav-item <%= is_pending_deliveries_path_active? ? "active" : "" %>">
+<li class="nav-item <%= is_pending_deliveries_path_active? ? "active" : "" %>">
     <%= link_to(pending_deliveries_path, class: 'nav-link d-flex') do %>
       <i class="bi bi-truck"></i>
       <span class="overflow-ellipsis"><%=  t("delivery.pending-link") %></span>

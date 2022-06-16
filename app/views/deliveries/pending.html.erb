@@ -27,32 +27,12 @@
           </th>
           <th scope="col">
             <div class="th-inner">
-              Booked by
-            </div>
-          </th>
-          <th scope="col">
-            <div class="th-inner">
               Delivery address
             </div>
           </th>
           <th scope="col">
             <div class="th-inner">
-              Status
-            </div>
-          </th>
-          <th scope="col">
-            <div class="th-inner">
-              Delivered at
-            </div>
-          </th>
-          <th scope="col">
-            <div class="th-inner">
-              Rating
-            </div>
-          </th>
-          <th scope="col">
-            <div class="th-inner">
-              Rider
+              When
             </div>
           </th>
           <th scope="col">
@@ -64,7 +44,7 @@
       </thead>
       <tbody id="deliveries-tbody">
         <% @deliveries&.each do |delivery| %>
-          <%= render partial: "deliveries/deliveries_table_row", locals: { delivery: delivery } %>
+          <%= render partial: "deliveries/pending_deliveries_table_row", locals: { delivery: delivery } %>
         <% end %>
       </tbody>
     </table>

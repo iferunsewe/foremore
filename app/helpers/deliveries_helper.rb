@@ -76,4 +76,9 @@ module DeliveriesHelper
   def whatsapp_link(delivery)
     "https://api.whatsapp.com/send?phone=+31#{delivery.rider.phone_number}&text=I want to talk about the delivery #{delivery.id} to #{delivery.delivery_address}"
   end
+
+  def when_is_delivery(delivery)
+    return "ASAP" if delivery.instant?
+    return delivery.scheduled_date.strftime('%Y-%m-%d %H:%M') if delivery.scheduled_date
+  end
 end

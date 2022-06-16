@@ -43,8 +43,6 @@
               <%= form.label :rider_id, t("delivery.form.rider-label"),  style: "display: block", class: 'form-label semi-bold' %>
             </div>
           </div>
-        <% else %>
-          <%= form.hidden_field :rider_id, value: User.admin.last.id %>
         <% end %>
 
         <div class="form-group mb-4">

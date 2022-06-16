@@ -45,25 +45,29 @@
         <div class="col-12 col-md-3 mt-3 mt-md-0">
           <p class="semi-bold"><%= t("delivery.show.rider") %></p>
           <div class="row">
-            <div class="col-3 p-md-0">
-              <% if @delivery.rider.image.attached? %>
-                <%= image_tag @delivery.rider.image.variant(:small_avatar), class: 'img-fluid rounded' %>
-              <% end %>
-            </div>
-            <div class="col-6 rider-info">
-              <span class="semi-bold"><%= @delivery.rider.first_name %></span><br/>
-              <div>
-                <% 4.times do%>
-                  <i class="bi bi-star-fill"></i>
+            <% if @delivery.rider.present? %>
+              <div class="col-3 p-md-0">
+                <% if @delivery.rider.image.attached? %>
+                  <%= image_tag @delivery.rider.image.variant(:small_avatar), class: 'img-fluid rounded' %>
                 <% end %>
-                <i class="bi bi-star-half"></i>
               </div>
-            </div>
-            <div class="col-3 p-md-0">
-              <%= link_to(whatsapp_link(@delivery), class: 'btn btn-primary btn-radio semi-bold') do %>
-                <i class="bi bi-whatsapp"></i>
-              <% end %>
-            </div>
+              <div class="col-6 rider-info">
+                <span class="semi-bold"><%= @delivery.rider&.first_name %></span><br/>
+                <div>
+                  <% 4.times do%>
+                    <i class="bi bi-star-fill"></i>
+                  <% end %>
+                  <i class="bi bi-star-half"></i>
+                </div>
+              </div>
+              <div class="col-3 p-md-0">
+                <%= link_to(whatsapp_link(@delivery), class: 'btn btn-primary btn-radio semi-bold') do %>
+                  <i class="bi bi-whatsapp"></i>
+                <% end %>
+              </div>
+            <% else %>
+              <p>We are finding a rider to complete the delivery</p>
+            <% end %>
           </div>
         </div>
         <div class="col-12 col-md-3 mt-3 mt-md-0">
@@ -118,14 +122,20 @@
         </div>
       </div>
 
-      <% unless current_user.rider? || @delivery.ineditable? %>
-        <div class="mb-3">
+      
+      <div class="mb-3">
+        <% if !current_user.rider? && !@delivery.ineditable? %>
           <%= link_to edit_delivery_path(@delivery), class: 'btn btn-primary col-12' do %>
             <i class="bi bi-pencil"></i>
             <%= t("delivery.show.edit-button-label") %>
           <% end %>
-        </div>
-      <% end %>
+        <% elsif current_user.rider? && @delivery.rider_id.nil? %>
+          <%= button_to delivery_path(delivery, delivery: {rider_id: current_user.id}), data: { turbo: false }, method: :patch, class: 'btn btn-primary col-12' do %>
+            <i class="bi bi-truck"></i>
+            Deliver
+          <% end %>
+        <% end %>
+      </div>
 
       <div class="mb-3">
         <%= mail_to "contact@foremoresupplies.com", subject: "Something went wrong with my delivery", class: 'btn btn-danger col-12' do %>

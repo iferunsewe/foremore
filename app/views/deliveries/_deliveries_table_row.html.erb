@@ -6,23 +6,16 @@
   <td><%= delivery.status&.capitalize %></td>
   <td><%= delivery.delivered_at&.strftime('%Y-%m-%d %H:%M') %></td>
   <td></td>
-  <% unless current_user.rider? && delivery.rider == current_user %>
-    <td><%= delivery.rider.first_name %></td>
-  <% end %>
   <td>
-    <% if current_user.rider? && delivery.rider_id.nil? %>
-      <%= button_to "Deliver", delivery_path(delivery, delivery: {rider_id: current_user.id}), data: { turbo: false }, method: :patch, class: 'btn btn-primary' %>
-    <% elsif !current_user.rider? %>
-      <% if delivery.ineditable? %>
-        <%= link_to new_delivery_path(old_delivery_id: delivery.id), data: { turbo: false } do %>
-          <i class="bi bi-arrow-repeat"></i>
-          Rebook
-        <% end %>
-      <% else %>
-        <%= link_to edit_delivery_path(delivery), data: { turbo: false } do %>
-          <i class="bi bi-pencil-fill"></i>
-          Edit
-        <% end %>
+    <% if delivery.ineditable? %>
+      <%= link_to new_delivery_path(old_delivery_id: delivery.id), data: { turbo: false } do %>
+        <i class="bi bi-arrow-repeat"></i>
+        Rebook
+      <% end %>
+    <% else %>
+      <%= link_to edit_delivery_path(delivery), data: { turbo: false } do %>
+        <i class="bi bi-pencil-fill"></i>
+        Edit
       <% end %>
     <% end %>
   </td>

@@ -27,11 +27,6 @@
           </th>
           <th scope="col">
             <div class="th-inner">
-              Booked by
-            </div>
-          </th>
-          <th scope="col">
-            <div class="th-inner">
               Delivery address
             </div>
           </th>
@@ -59,7 +54,7 @@
       </thead>
       <tbody id="deliveries-tbody">
         <% @deliveries&.each do |delivery| %>
-          <%= render partial: "deliveries/deliveries_table_row", locals: { delivery: delivery } %>
+          <%= render partial: "deliveries/my_deliveries_table_row", locals: { delivery: delivery } %>
         <% end %>
       </tbody>
     </table>
