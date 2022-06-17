@@ -6,7 +6,7 @@
     <% end %>
   </li>
   <li class="nav-item <%= is_new_deliveries_path_active? ? "active" : "" %>">
-    <%= link_to(new_delivery_path, class: 'nav-link d-flex') do %>
+    <%= link_to(new_delivery_path, class: 'nav-link d-flex', data: { turbo: false }) do %>
       <i class="bi bi-pencil-fill mr-3"></i>
       <span class="ml-3 overflow-ellipsis"><%=  t("delivery.new-link") %></span>
     <% end %>

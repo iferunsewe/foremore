@@ -1,6 +1,6 @@
 <ul class="nav flex-column" id="desktop-nav">
   <li class="nav-item flex-column <%= is_new_deliveries_path_active? ? "active" : "" %>">
-    <%= link_to(new_delivery_path, class: 'nav-link flex-column') do %>
+    <%= link_to(new_delivery_path, class: 'nav-link flex-column', data: { turbo: false }) do %>
       <i class="bi bi-pencil-fill"></i>
       <p class="overflow-ellipsis"><%=  t("delivery.new-link") %></p>
     <% end %>
