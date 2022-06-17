@@ -124,15 +124,25 @@
 
       
       <div class="mb-3">
-        <% if !current_user.rider? && !@delivery.ineditable? %>
+        <% if current_user.admin? || (!current_user.rider? && !@delivery.ineditable?) %>
           <%= link_to edit_delivery_path(@delivery), class: 'btn btn-primary col-12' do %>
             <i class="bi bi-pencil"></i>
             <%= t("delivery.show.edit-button-label") %>
           <% end %>
         <% elsif current_user.rider? && @delivery.rider_id.nil? %>
-          <%= button_to delivery_path(delivery, delivery: {rider_id: current_user.id}), data: { turbo: false }, method: :patch, class: 'btn btn-primary col-12' do %>
+          <%= button_to delivery_path(@delivery, delivery: {rider_id: current_user.id}), data: { turbo: false }, method: :patch, class: 'btn btn-primary col-12' do %>
             <i class="bi bi-truck"></i>
             Deliver
+          <% end %>
+        <% elsif current_user.rider? && @delivery.ready? %>
+          <%= button_to delivery_path(@delivery, delivery: {status: "delivering"}), data: { turbo: false }, method: :patch, class: 'btn btn-primary col-12' do %>
+            <i class="bi bi-truck"></i>
+            Picked up?
+          <% end %>
+        <% elsif current_user.rider? && @delivery.delivering? %>
+          <%= button_to delivery_path(@delivery, delivery: {status: "delivered"}), data: { turbo: false }, method: :patch, class: 'btn btn-primary col-12' do %>
+            <i class="bi bi-check2-circle"></i>
+            Delivered?
           <% end %>
         <% end %>
       </div>

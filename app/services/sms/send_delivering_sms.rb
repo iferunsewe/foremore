@@ -13,7 +13,7 @@ module Sms
       I18n.t("sms.delivering",
              company_name: delivery.company_name,
              reference: delivery.order_reference,
-             tracking_link: RouteHelpers.delivery_url(delivery),
+             phone_number: delivery.rider.phone_number,
              recipient_name: delivery.recipient_name)
     end
 

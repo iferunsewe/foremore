@@ -6,6 +6,17 @@
   <td><%= delivery.delivered_at&.strftime('%Y-%m-%d %H:%M') %></td>
   <td></td>
   <td>
-    <%= link_to "Details", delivery_path(delivery), data: { turbo: false }, class: 'btn btn-secondary' %>
+    <% if delivery.ready? %>
+      <%= button_to delivery_path(delivery, delivery: {status: "delivering"}), data: { turbo: false }, method: :patch, class: 'btn btn-primary mb-2 col-12' do %>
+        <i class="bi bi-truck"></i>
+        Picked up?
+      <% end %>
+    <% elsif delivery.delivering? %>
+      <%= button_to delivery_path(delivery, delivery: {status: "delivered"}), data: { turbo: false }, method: :patch, class: 'btn btn-primary mb-2 col-12' do %>
+        <i class="bi bi-check2-circle"></i>
+        Delivered?
+      <% end %>
+    <% end %>
+    <%= link_to "Details", delivery_path(delivery), data: { turbo: false }, class: 'btn btn-secondary col-12' %>
   </td>
 </tr>

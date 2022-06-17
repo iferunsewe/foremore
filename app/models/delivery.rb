@@ -15,6 +15,7 @@ class Delivery < ApplicationRecord
   after_update :send_delivered_sms_and_update_delivered_at, if: :status_changed_to_delivered?
   after_update :send_confirmed_sms, if: :status_changed_to_confirmed?
   after_update :send_delivering_sms, if: :status_changed_to_delivering?
+  after_update :confirmed!, if: :no_rider_to_rider?
 
   scope :pending_and_in_the_future, -> { where(status: "pending", rider_id: nil).where("(delivery_type = 0 AND created_at > ?) OR (delivery_type = 1 AND scheduled_date > ?)", DateTime.now.beginning_of_day, DateTime.now) }
 
@@ -92,5 +93,9 @@ class Delivery < ApplicationRecord
   def send_delivered_sms_and_update_delivered_at
     send_delivered_sms
     update_delivered_at
+  end
+
+  def no_rider_to_rider?
+    !saved_change_to_rider_id.nil? && saved_change_to_rider_id[0].nil? && saved_change_to_rider_id[1].present?
   end
 end

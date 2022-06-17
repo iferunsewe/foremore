@@ -136,6 +136,9 @@ class DeliveriesController < ApplicationController
       User.admin.each do |admin|
         Sms::SendNewDeliverySms.new(@delivery, admin).enqueue!
       end
+      User.rider.each do |rider|
+        Sms::SendRiderNewDeliverySms.new(@delivery, rider).enqueue!
+      end
     end
 
     def send_ready_to_pickup_sms
@@ -143,6 +146,7 @@ class DeliveriesController < ApplicationController
         User.admin.each do |admin|
           Sms::SendReadyToPickupSms.new(@delivery, admin).enqueue!
         end
+        Sms::SendReadyToPickupSms.new(@delivery, @delivery.rider).enqueue!
       end
     end
 
