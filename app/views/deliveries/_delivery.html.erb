@@ -13,6 +13,11 @@
       </div>
       <div class="row mt-0 mt-md-3 delivery-details">
         <div class="col-12 col-md-3 d-block d-md-none mt-3 mt-md-0">
+          <div>
+            <p>
+              <span class="bold"><%= t("delivery.form.address.delivery-number-label") %></span>: <span>#<%= @delivery.id %></span>
+            <p>
+          </div>
           <% if @delivery.delivered? %>
             <div>
               <p><%= t("delivery.show.delivered-at") %></p>
@@ -92,6 +97,11 @@
     </div>
     <div class="col-12 col-md-3 mt-3 mt-md-0">
       <div class="d-none d-md-block">
+        <div>
+          <p>
+            <span class="bold"><%= t("delivery.form.address.delivery-number-label") %></span> <span>#<%= @delivery.id %></span>
+          <p>
+        </div>
         <% if @delivery.delivered? %>
           <div>
             <p><%= t("delivery.show.delivered-at") %></p>
