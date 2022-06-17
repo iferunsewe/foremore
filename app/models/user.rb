@@ -31,6 +31,7 @@ class User < ApplicationRecord
   end
 
   def completed_user_account?
+    return false if rider? && !image.attached?
     first_name.present? && last_name.present? && phone_number.present?
   end
 

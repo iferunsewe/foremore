@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     return authenticated_root_path if current_user.completed_user_account?
+    flash[:notice] = "Please complete your account before continuing."
     edit_my_user_path
   end
 
