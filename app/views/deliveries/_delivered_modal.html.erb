@@ -13,7 +13,7 @@
                 <div class="form-floating mb-2">
                   <%= number_field_tag :completion_pin, nil, class: 'form-control', max_length: 4, min_length: 4, required: true %>
                   <%= label_tag :completion_pin, t("delivery.delivered-modal.completion-pin.label") %>
-                  <%= hidden_field_tag :id, @delivery.id %>
+                  <%= hidden_field_tag :id, @delivery&.id, id: "modal-hidden-delivery-id" %>
                 </div>
                 <%= submit_tag t("delivery.delivered-modal.completion-pin.submit-button-label"), class: "btn btn-success col-12 semi-bold", data: { turbo: false } %>
               <% end %>

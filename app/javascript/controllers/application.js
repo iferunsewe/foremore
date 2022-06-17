@@ -152,6 +152,19 @@ function padTo2Digits(num) {
   return String(num).padStart(2, '0');
 }
 
+function updateModalDeliveryId() {
+  const deliveredButtons = document.querySelectorAll('.delivered-button')
+  if(deliveredButtons == []) return;
+  deliveredButtons.forEach(function(button) {
+    button.addEventListener('click', function(e) {
+      const deliveryId = e.target.getAttribute('data-delivery-id')
+      const modalHiddenDeliveryId = document.getElementById('modal-hidden-delivery-id')
+      if(!modalHiddenDeliveryId) return;
+      modalHiddenDeliveryId.setAttribute('value', deliveryId)
+    })
+  })
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initMapsAutocomplete();
 
@@ -162,4 +175,5 @@ document.addEventListener('DOMContentLoaded', () => {
   onDeliveryAddressChange()
   onDeliveryTypeChange()
   onScheduleDateChange()
+  updateModalDeliveryId()
 })

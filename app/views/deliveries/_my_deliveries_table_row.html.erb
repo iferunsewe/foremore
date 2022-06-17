@@ -12,7 +12,7 @@
         Picked up?
       <% end %>
     <% elsif delivery.delivering? %>
-      <%= button_tag data: { turbo: false, bs_toggle: "modal", bs_target: "#deliveredModal"}, class: 'btn btn-primary mb-2 col-12' do %>
+      <%= button_tag data: { turbo: false, bs_toggle: "modal", bs_target: "#deliveredModal", delivery_id: delivery.id}, class: 'btn btn-primary mb-2 col-12 delivered-button' do %>
         <i class="bi bi-check2-circle"></i>
         Delivered?
       <% end %>
