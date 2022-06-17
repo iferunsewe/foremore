@@ -115,6 +115,13 @@ en:
       delivered-message: "The rider has delivered your materials"
       edit-button-label: "Edit"
       contact-button-label: "Raise issue"
+    delivered-modal:
+      heading: "Delivery completed"
+      completion-pin:
+        heading: "Delivery completed"
+        label: "PIN"
+        explainer: "Your customer will have been given a PIN. Use this to confirm the delivery."
+        submit-button-label: "Confirm"
   team:
     list-link: 'Teams'
     single-link: 'Team'
@@ -134,7 +141,7 @@ en:
     rider-new-delivery: "Hi %{first_name}. A new delivery has been booked on foremore. Get this show on the road as soon as possible by choosing deliver it %{delivery_url}."
     ready-to-pickup: "The delivery #%{reference} is ready to pick up at %{address}. Go Go Go. See more details at %{delivery_url}."
     confirmed: "The delivery #%{reference} for %{address} has been confirmed. Please start preparing the order and let us know when the order is ready to be picked up %{edit_delivery_url}."
-    delivering: "Hi %{recipient_name}, the delivery #%{reference} is on its way to you from %{company_name}. To contact & track the rider you can whatsapp them on %{phone_number}."
+    delivering: "Hi %{recipient_name}, the delivery #%{reference} is on its way to you from %{company_name}. To contact & track the rider you can whatsapp them on %{phone_number}. Give the pin %{completion_pin} to the rider."
     delivered: "The delivery #%{reference} has been successfully delivered to %{recipient_name}. We look forward to handling your next order %{new_delivery_url}."
   user:
     sms-opt-in:

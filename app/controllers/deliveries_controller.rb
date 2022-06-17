@@ -36,7 +36,9 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries/1/edit
   def edit
-    if !current_user.admin? && @delivery.ineditable?
+    if current_user.rider?
+      redirect_to root_path, alert: "Whoops! You can't access this page."
+    elsif !current_user.admin? && @delivery.ineditable?
       redirect_to @delivery, alert: "This delivery is on it's way or has been delivered so it can't be edited."
     end
   end
@@ -96,6 +98,16 @@ class DeliveriesController < ApplicationController
       @deliveries = @deliveries&.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(updated_at: :desc).page params[:page]
     else
       @deliveries = @deliveries&.order(updated_at: :desc).page params[:page]
+    end
+  end
+
+  def complete
+    @delivery = Delivery.find(params[:id])
+    if @delivery.completion_pin == params[:completion_pin].to_i
+      @delivery.update(status: "delivered")
+      redirect_to @delivery, notice: "Delivery was successfully delivered."
+    else
+      redirect_to @delivery, alert: "Incorrect completion pin."
     end
   end
 

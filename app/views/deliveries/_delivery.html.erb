@@ -150,7 +150,7 @@
             Picked up?
           <% end %>
         <% elsif current_user.rider? && @delivery.delivering? %>
-          <%= button_to delivery_path(@delivery, delivery: {status: "delivered"}), data: { turbo: false }, method: :patch, class: 'btn btn-primary col-12' do %>
+          <%= button_tag data: { turbo: false, bs_toggle: "modal", bs_target: "#deliveredModal"}, class: 'btn btn-primary col-12' do %>
             <i class="bi bi-check2-circle"></i>
             Delivered?
           <% end %>

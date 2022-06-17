@@ -39,4 +39,5 @@ Rails.application.routes.draw do
   get 'edit-my-user', to: 'users#edit', as: :edit_my_user
   get 'pending-deliveries', to: 'deliveries#pending', as: :pending_deliveries
   get 'my-deliveries', to: 'deliveries#my', as: :my_deliveries
+  post 'complete-delivery', to: 'deliveries#complete', as: :complete_delivery
 end

@@ -1,55 +1,54 @@
-
-  <div class="modal" id="quickActionsModal" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title semi-bold"><%=  t("delivery.form.quick-actions.heading") %></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-md-12">
-                <%= form_tag deliveries_csvs_path, multipart: true do %>
-                  <div class="form-text mb-2">
-                    <%=  t("delivery.form.quick-actions.csv.explainer") %>
-                    <%= link_to t("delivery.form.quick-actions.csv.template-link"), deliveries_csvs_template_path, target: "_blank"%>
-                  </div>
-                  <div class="mb-2">
-                    <%= file_field_tag :csv_file, accept: '.csv', class: "form-control col-8" %>
-                  </div>
-                  <%= submit_tag t("delivery.form.quick-actions.csv.submit-button-label"), class: "btn btn-primary col-6" %>
-                <% end %>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-md-12">
-                <%= form_tag new_delivery_path, method: :get do %>
-                  <div class="form-text mb-2"><%=  t("delivery.form.quick-actions.rebook.explainer") %></div>
-                  <div class="mb-2">
-                    <%= text_field_tag :old_delivery_id, nil, class: "form-control", placeholder: "Enter delivery id", required: true %>
-                  </div>
-                  <%= submit_tag t("delivery.form.quick-actions.rebook.submit-button-label"), class: "btn btn-primary col-6", data: { turbo: false } %>
-                <% end %>
-              </div>
-            </div>
-            <hr>
-             <div class="row">
-                <div class="col-md-12">
-                  <%= form_tag find_order_path, method: :get do %>
-                    <div class="form-text mb-2"><%=  t("delivery.form.quick-actions.integrations.explainer") %></div>
-                    <div class="mb-2">
-                      <%= number_field_tag :order_number, nil, class: "form-control", placeholder: "Enter the order number from your ERP", required: true %>
-                    </div>
-                    <%= submit_tag t("delivery.form.quick-actions.integrations.submit-button-label"), class: 'btn btn-primary semi-bold col-6', data: { turbo: false } %>
-                  <% end %>
-                </div>
-             </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
+<div class="modal" id="quickActionsModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title semi-bold"><%=  t("delivery.form.quick-actions.heading") %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <%= form_tag deliveries_csvs_path, multipart: true do %>
+                <div class="form-text mb-2">
+                  <%=  t("delivery.form.quick-actions.csv.explainer") %>
+                  <%= link_to t("delivery.form.quick-actions.csv.template-link"), deliveries_csvs_template_path, target: "_blank"%>
+                </div>
+                <div class="mb-2">
+                  <%= file_field_tag :csv_file, accept: '.csv', class: "form-control col-8" %>
+                </div>
+                <%= submit_tag t("delivery.form.quick-actions.csv.submit-button-label"), class: "btn btn-primary col-6" %>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-12">
+              <%= form_tag new_delivery_path, method: :get do %>
+                <div class="form-text mb-2"><%=  t("delivery.form.quick-actions.rebook.explainer") %></div>
+                <div class="mb-2">
+                  <%= text_field_tag :old_delivery_id, nil, class: "form-control", placeholder: "Enter delivery id", required: true %>
+                </div>
+                <%= submit_tag t("delivery.form.quick-actions.rebook.submit-button-label"), class: "btn btn-primary col-6", data: { turbo: false } %>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-12">
+              <%= form_tag find_order_path, method: :get do %>
+                <div class="form-text mb-2"><%=  t("delivery.form.quick-actions.integrations.explainer") %></div>
+                <div class="mb-2">
+                  <%= number_field_tag :order_number, nil, class: "form-control", placeholder: "Enter the order number from your ERP", required: true %>
+                </div>
+                <%= submit_tag t("delivery.form.quick-actions.integrations.submit-button-label"), class: 'btn btn-primary semi-bold col-6', data: { turbo: false } %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
     </div>
   </div>
+</div>

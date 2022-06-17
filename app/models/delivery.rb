@@ -14,7 +14,7 @@ class Delivery < ApplicationRecord
   after_validation :geocode
   after_update :send_delivered_sms_and_update_delivered_at, if: :status_changed_to_delivered?
   after_update :send_confirmed_sms, if: :status_changed_to_confirmed?
-  after_update :send_delivering_sms, if: :status_changed_to_delivering?
+  after_update :delivering_handler, if: :status_changed_to_delivering?
   after_update :confirmed!, if: :no_rider_to_rider?
 
   scope :pending_and_in_the_future, -> { where(status: "pending", rider_id: nil).where("(delivery_type = 0 AND created_at > ?) OR (delivery_type = 1 AND scheduled_date > ?)", DateTime.now.beginning_of_day, DateTime.now) }
@@ -84,6 +84,11 @@ class Delivery < ApplicationRecord
 
   def send_delivering_sms
     Sms::SendDeliveringSms.new(self).enqueue!
+  end
+
+  def delivering_handler
+    update(completion_pin: SecureRandom.random_number(9999))
+    send_delivering_sms
   end
 
   def send_delivered_sms

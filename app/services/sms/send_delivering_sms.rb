@@ -14,7 +14,8 @@ module Sms
              company_name: delivery.company_name,
              reference: delivery.order_reference,
              phone_number: delivery.rider.phone_number,
-             recipient_name: delivery.recipient_name)
+             recipient_name: delivery.recipient_name,
+             completion_pin: delivery.completion_pin)
     end
 
     def phone_number

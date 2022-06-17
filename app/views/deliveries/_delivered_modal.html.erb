@@ -1,0 +1,29 @@
+<div class="modal" id="deliveredModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title semi-bold"><%=  t("delivery.delivered-modal.heading") %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <%= form_tag complete_delivery_path, method: :post do %>
+                <div class="form-text mb-4"><%=  t("delivery.delivered-modal.completion-pin.explainer") %></div>
+                <div class="form-floating mb-2">
+                  <%= number_field_tag :completion_pin, nil, class: 'form-control', max_length: 4, min_length: 4, required: true %>
+                  <%= label_tag :completion_pin, t("delivery.delivered-modal.completion-pin.label") %>
+                  <%= hidden_field_tag :id, @delivery.id %>
+                </div>
+                <%= submit_tag t("delivery.delivered-modal.completion-pin.submit-button-label"), class: "btn btn-success col-12 semi-bold", data: { turbo: false } %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+  </div>
+</div>
