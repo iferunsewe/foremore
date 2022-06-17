@@ -29,7 +29,7 @@
                   <div class="mb-2">
                     <%= text_field_tag :old_delivery_id, nil, class: "form-control", placeholder: "Enter delivery id", required: true %>
                   </div>
-                  <%= submit_tag t("delivery.form.quick-actions.rebook.submit-button-label"), class: "btn btn-primary col-6" %>
+                  <%= submit_tag t("delivery.form.quick-actions.rebook.submit-button-label"), class: "btn btn-primary col-6", data: { turbo: false } %>
                 <% end %>
               </div>
             </div>
@@ -41,7 +41,7 @@
                     <div class="mb-2">
                       <%= number_field_tag :order_number, nil, class: "form-control", placeholder: "Enter the order number from your ERP", required: true %>
                     </div>
-                    <%= submit_tag t("delivery.form.quick-actions.integrations.submit-button-label"), class: 'btn btn-primary semi-bold col-6' %>
+                    <%= submit_tag t("delivery.form.quick-actions.integrations.submit-button-label"), class: 'btn btn-primary semi-bold col-6', data: { turbo: false } %>
                   <% end %>
                 </div>
              </div>
@@ -49,7 +49,6 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            
           </div>
       </div>
     </div>
