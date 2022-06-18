@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  before_action :redirect_guest
   before_action :set_company, only: %i[ show edit update destroy ]
   before_action :authenticate_current_user_can_edit_company!, only: %i[ show edit update destroy ]
 

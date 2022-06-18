@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_action :redirect_guest
   before_action :set_team, only: %i[ show edit update destroy ]
   before_action :authenticate_current_user_can_edit_team!, only: %i[ show edit update destroy ]
 

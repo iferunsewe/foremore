@@ -1,4 +1,5 @@
 class DeliveriesController < ApplicationController
+  before_action :redirect_guest
   before_action :set_delivery, only: %i[ show edit update destroy ]
   before_action :location
   before_action :redirect_to_pending_deliveries, only: [:new, :edit]

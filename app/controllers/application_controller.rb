@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
     edit_my_user_path
   end
 
+  def redirect_guest
+    redirect_to edit_my_user_path, alert: "Whoops! You can't access this page." if current_user.guest?
+  end
+
   protected
 
   def configure_permitted_parameters

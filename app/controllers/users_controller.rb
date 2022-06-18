@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :redirect_guest, only: [:index]
   before_action :set_user, only: %i[ edit update ]
   before_action :authenticate_current_user_can_edit_user!, only: %i[ edit update ]
 
