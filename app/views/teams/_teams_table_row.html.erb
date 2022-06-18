@@ -6,7 +6,7 @@
     <% end %>
   </td>
   <% if current_user.admin? %>
-    <td><%= team.company.name %></td>
+    <td><%= link_to team.company.name, company_path(team.company) %></td>
   <% end %>
   <td><%= team.employees_count %></td>
   <td>
