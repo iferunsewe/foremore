@@ -85,7 +85,7 @@ class TeamsController < ApplicationController
 
     def my_or_a_path
       if current_user.admin? || current_user.company_admin?
-        team_path(@company)
+        team_path(@team)
       else
         my_team_path
       end
