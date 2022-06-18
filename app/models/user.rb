@@ -23,7 +23,7 @@ class User < ApplicationRecord
   after_commit :assign_team_and_company
 
   def guest?
-    persisted?
+    normal? && team_id.nil? && company_id.nil?
   end
 
   def full_name
