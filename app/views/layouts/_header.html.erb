@@ -15,7 +15,7 @@
         <% end %>
       </div>
       <div class="d-flex justify-content-end">
-        <p class="overflow-ellipsis company-address"><%= current_user.team.address.one_line %></p>
+        <p class="overflow-ellipsis company-address"><%= current_user.team&.address&.one_line %></p>
       </div>
     </li>
   <% end %>
