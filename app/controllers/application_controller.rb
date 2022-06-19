@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if current_user.completed_user_account? && current_user.has_team?
+    if current_user.admin? && current_user.completed_user_account? || current_user.completed_user_account? && current_user.has_team?
       authenticated_root_path
     elsif current_user.completed_user_account? && current_user.company_admin? && !current_user.has_team?
       flash[:notice] = "You should create a team first."
