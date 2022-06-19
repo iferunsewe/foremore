@@ -35,6 +35,10 @@ class User < ApplicationRecord
     first_name.present? && last_name.present? && phone_number.present?
   end
 
+  def has_team?
+    team_id.present?
+  end
+
   private
 
   def joining_a_team?
