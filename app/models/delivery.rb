@@ -5,8 +5,8 @@ class Delivery < ApplicationRecord
 
   enum status: [:draft, :pending, :confirmed, :ready, :delivering, :delivered]
   enum delivery_type: [:instant, :scheduled]
-  enum weight_class: ["< 15", "15 - 300", "300 - 800"]
-  enum length_class: ["< 1.4", "1.4 - 2.2", "2.2 - 3.4", "3.4 - 4.4"]
+  enum weight_class: ["< 20", "< 120", "< 750"]
+  enum length_class: ["< 1.4", "< 2.2", "< 3.4", "< 4.4"]
 
   validates_presence_of :pickup_address, :delivery_address, :delivery_type, :weight_class, :length_class, :status
 
@@ -24,9 +24,9 @@ class Delivery < ApplicationRecord
   end
 
   def self.weight_i_to_weight_class(weight_i)
-    return "< 15" if weight_i < 15
-    return "15 - 300" if weight_i < 300
-    return "300 - 800" if weight_i < 800
+    return "< 20" if weight_i < 20
+    return "< 120" if weight_i < 300
+    return "< 750" if weight_i < 800
   end
 
   def to_coordinates_s

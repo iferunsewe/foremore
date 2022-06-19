@@ -142,17 +142,17 @@
               <%= form.label :weight_class, t("delivery.form.item-details.weight-label"),  style: "display: block", class: 'form-label semi-bold' %>
               <div class="d-flex justify-content-around" role="group">
                 <% if delivery.persisted? %>
-                  <%= form.radio_button :weight_class, Delivery.weight_classes["< 15"], class: "btn-check", checked: delivery.weight_class == "< 15" %>
+                  <%= form.radio_button :weight_class, Delivery.weight_classes["< 20"], class: "btn-check", checked: delivery.weight_class == "< 20" %>
                 <% else %>
-                  <%= form.radio_button :weight_class, Delivery.weight_classes["< 15"], class: "btn-check", checked: true %>
+                  <%= form.radio_button :weight_class, Delivery.weight_classes["< 20"], class: "btn-check", checked: true %>
                 <% end %>
-                <%= form.label :weight_class_0, "< 15", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+                <%= form.label :weight_class_0, "< 20", class: 'btn btn-outline-primary btn-radio semi-bold' %>
 
-                <%= form.radio_button :weight_class, Delivery.weight_classes["15 - 300"], class: "btn-check", checked: delivery.weight_class == "15 - 300" %>
-                <%= form.label :weight_class_1, "15 - 300", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+                <%= form.radio_button :weight_class, Delivery.weight_classes["< 120"], class: "btn-check", checked: delivery.weight_class == "< 120" %>
+                <%= form.label :weight_class_1, "< 120", class: 'btn btn-outline-primary btn-radio semi-bold' %>
 
-                <%= form.radio_button :weight_class, Delivery.weight_classes["300 - 800"], class: "btn-check", checked: delivery.weight_class == "300 - 800" %>
-                <%= form.label :weight_class_2, "300 - 800", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+                <%= form.radio_button :weight_class, Delivery.weight_classes["< 750"], class: "btn-check", checked: delivery.weight_class == "< 750" %>
+                <%= form.label :weight_class_2, "< 750", class: 'btn btn-outline-primary btn-radio semi-bold' %>
               </div>
             </div>
 
@@ -166,14 +166,14 @@
                 <% end %>
                 <%= form.label :length_class_0, "< 1.4", class: 'btn btn-outline-primary btn-radio semi-bold' %>
 
-                <%= form.radio_button :length_class, Delivery.length_classes["1.4 - 2.2"], class: "btn-check", checked: delivery.length_class == "1.4 - 2.2" %>
-                <%= form.label :length_class_1, "1.4 - 2.2", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+                <%= form.radio_button :length_class, Delivery.length_classes["< 2.2"], class: "btn-check", checked: delivery.length_class == "< 2.2" %>
+                <%= form.label :length_class_1, "< 2.2", class: 'btn btn-outline-primary btn-radio semi-bold' %>
 
-                <%= form.radio_button :length_class, Delivery.length_classes["2.2 - 3.4"], class: "btn-check", checked: delivery.length_class == "2.2 - 3.4" %>
-                <%= form.label :length_class_2, "2.2 - 3.4", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+                <%= form.radio_button :length_class, Delivery.length_classes["< 3.4"], class: "btn-check", checked: delivery.length_class == "< 3.4" %>
+                <%= form.label :length_class_2, "< 3.4", class: 'btn btn-outline-primary btn-radio semi-bold' %>
 
-                <%= form.radio_button :length_class, Delivery.length_classes["3.4 - 4.4"], class: "btn-check", checked: delivery.length_class == "3.4 - 4.4" %>
-                <%= form.label :length_class_3, "3.4 - 4.4", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+                <%= form.radio_button :length_class, Delivery.length_classes["< 4.4"], class: "btn-check", checked: delivery.length_class == "< 4.4" %>
+                <%= form.label :length_class_3, "< 4.4", class: 'btn btn-outline-primary btn-radio semi-bold' %>
               </div>
             </div>  
           </div>
