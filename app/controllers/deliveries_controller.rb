@@ -74,16 +74,6 @@ class DeliveriesController < ApplicationController
     end
   end
 
-  # DELETE /deliveries/1 or /deliveries/1.json
-  def destroy
-    @delivery.destroy
-
-    respond_to do |format|
-      format.html { redirect_to deliveries_url, notice: "Delivery was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
-
   def pending
     @deliveries = Delivery.pending_and_in_the_future.where(pickup_address: current_user.team.address)
     if params[:query].present?

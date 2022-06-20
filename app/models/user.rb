@@ -23,7 +23,7 @@ class User < ApplicationRecord
   after_commit :assign_team_and_company
 
   def guest?
-    normal? && team_id.nil? && company_id.nil?
+    role.nil? && team_id.nil? && company_id.nil?
   end
 
   def full_name
@@ -63,8 +63,8 @@ class User < ApplicationRecord
 
   def assign_team_and_company
     return false if !invited_by || (team.present? || company.present?)
-    team_id = invited_by.team.id
-    company_id = invited_by.company.id
+    team_id = invited_by.team&.id
+    company_id = invited_by.company&.id
     update_attribute(:team_id, team_id)
     update_attribute(:company_id, company_id)
     update_attribute(:role, "normal")
