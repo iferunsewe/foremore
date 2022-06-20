@@ -12,12 +12,12 @@
 
   <% if current_user.admin? %>
     <div class="form-floating col-md-3 col-sm-12 mb-2">
-      <%= f.select :company_id, Company.all.map { |company| [company.name, company.id] }, {prompt: "Select company"}, class: "form-control" %>
+      <%= f.select :company_id, Company.all.map { |company| [company.name, company.id] }, {prompt: "Select company", selected: params[:company_id].to_i}, {class: "form-control form-select", required: true} %>
       <%= f.label :company_id, class: "form-label" %>
     </div>
 
     <div class="form-floating col-md-3 col-sm-12 mb-2">
-      <%= f.select :team_id, Team.all.map { |team| [team.address.one_line, team.id] }, {prompt: "Select team"}, class: "form-control" %>
+      <%= f.select :team_id, Team.all.map { |team| [team.address.one_line, team.id] }, {prompt: "Select team", selected: params[:team_id].to_i}, {class: "form-control form-select", required: true} %>
       <%= f.label :team_id, class: "form-label" %>
     </div>
 
