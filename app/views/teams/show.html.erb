@@ -7,7 +7,7 @@
     <% end %>
   </div>
   <div class="col-12 col-md-3 mb-2 mb-md-0">
-    <%= link_to new_user_invitation_path(team_id: @team.id, company_id: @team.company_id), class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" do %>
+    <%= link_to new_user_invitation_path, class: "btn btn-secondary semi-bold w-100 overflow-ellipsis" do %>
       <i class="bi bi-person-plus-fill"></i>
       <%= t("team.show.invite-button-label") %>
     <% end %>
