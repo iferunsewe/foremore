@@ -75,7 +75,7 @@ class DeliveriesController < ApplicationController
   end
 
   def pending
-    @deliveries = Delivery.where(pickup_address: current_user.team.address)
+    @deliveries = Delivery.pending_and_in_the_future.where(pickup_address: current_user.team.address)
     if params[:query].present?
       @deliveries = @deliveries&.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(updated_at: :desc).page params[:page]
     else
@@ -84,7 +84,7 @@ class DeliveriesController < ApplicationController
   end
 
   def my
-    @deliveries = Delivery.pending_and_in_the_future.where(rider: current_user)
+    @deliveries = Delivery.where(rider: current_user)
     if params[:query].present?
       @deliveries = @deliveries&.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(updated_at: :desc).page params[:page]
     else
