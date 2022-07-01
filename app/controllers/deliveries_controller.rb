@@ -137,7 +137,8 @@ class DeliveriesController < ApplicationController
         Sms::SendNewDeliverySms.new(@delivery, admin).enqueue!
       end
       User.rider.each do |rider|
-        Sms::SendRiderNewDeliverySms.new(@delivery, rider).enqueue!
+        # TODO Replace if condition with query
+        Sms::SendRiderNewDeliverySms.new(@delivery, rider).enqueue! if @delivery.pickup_address == rider.team.address
       end
     end
 
