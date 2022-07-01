@@ -51,15 +51,15 @@
 
           <div class="d-flex justify-content-around mb-3" role="group">
             <% if delivery.persisted? %>
-              <%= form.radio_button :delivery_type, Delivery.delivery_types["instant"], class: "btn-check", checked: delivery.delivery_type == "instant" %>  
+              <%= form.radio_button :delivery_type, "instant", class: "btn-check", checked: delivery.delivery_type == "instant" %>  
             <% else %>
-              <%= form.radio_button :delivery_type, Delivery.delivery_types["instant"], class: "btn-check", checked: true %>
+              <%= form.radio_button :delivery_type, "instant", class: "btn-check", checked: true %>
             <% end %>
             <%= form.label :delivery_type_0, class: 'btn btn-outline-primary btn-radio col-4 semi-bold', data: {bs_toggle: "collapse", bs_target: "#collapseExample.show"}, aria: { expanded: "false", controls: "collapseExample"} do %>
               <%= t("delivery.form.delivery-type.instant-label") %>
               <i class="bi bi-lightning-charge-fill"></i>
             <% end %>
-            <%= form.radio_button :delivery_type, Delivery.delivery_types["scheduled"], class: "btn-check", checked: delivery.delivery_type == "scheduled" %>
+            <%= form.radio_button :delivery_type, "scheduled", class: "btn-check", checked: delivery.delivery_type == "scheduled" %>
             <%= form.label :delivery_type_1, class: 'btn btn-outline-primary btn-radio col-4 semi-bold', data: {bs_toggle: "collapse", bs_target: "#collapseExample:not(.show)"}, aria: { expanded: "false", controls: "collapseExample"} do %>
               <%= t("delivery.form.delivery-type.scheduled-label") %>
               <i class="bi bi-calendar-week"></i>
@@ -142,16 +142,16 @@
               <%= form.label :weight_class, t("delivery.form.item-details.weight-label"),  style: "display: block", class: 'form-label semi-bold' %>
               <div class="d-flex justify-content-around" role="group">
                 <% if delivery.persisted? %>
-                  <%= form.radio_button :weight_class, Delivery.weight_classes["< 20"], class: "btn-check", checked: delivery.weight_class == "< 20" %>
+                  <%= form.radio_button :weight_class, "< 20", class: "btn-check", checked: delivery.weight_class == "< 20" %>
                 <% else %>
-                  <%= form.radio_button :weight_class, Delivery.weight_classes["< 20"], class: "btn-check", checked: true %>
+                  <%= form.radio_button :weight_class, "< 20", class: "btn-check", checked: true %>
                 <% end %>
                 <%= form.label :weight_class_0, "< 20", class: 'btn btn-outline-primary btn-radio semi-bold' %>
 
-                <%= form.radio_button :weight_class, Delivery.weight_classes["< 120"], class: "btn-check", checked: delivery.weight_class == "< 120" %>
+                <%= form.radio_button :weight_class, "< 120", class: "btn-check", checked: delivery.weight_class == "< 120" %>
                 <%= form.label :weight_class_1, "< 120", class: 'btn btn-outline-primary btn-radio semi-bold' %>
 
-                <%= form.radio_button :weight_class, Delivery.weight_classes["< 750"], class: "btn-check", checked: delivery.weight_class == "< 750" %>
+                <%= form.radio_button :weight_class, "< 750", class: "btn-check", checked: delivery.weight_class == "< 750" %>
                 <%= form.label :weight_class_2, "< 750", class: 'btn btn-outline-primary btn-radio semi-bold' %>
               </div>
             </div>
@@ -160,19 +160,19 @@
               <%= form.label :length_class, t("delivery.form.item-details.length-label"),  style: "display: block", class: 'form-label semi-bold' %>
               <div class="d-flex justify-content-around" role="group">
                 <% if delivery.persisted? %>
-                  <%= form.radio_button :length_class, Delivery.length_classes["< 1.4"], class: "btn-check", checked: delivery.length_class == "< 1.4" %>
+                  <%= form.radio_button :length_class, "< 1.4", class: "btn-check", checked: delivery.length_class == "< 1.4" %>
                 <% else %>
-                  <%= form.radio_button :length_class, Delivery.length_classes["< 1.4"], class: "btn-check", checked: true %>
+                  <%= form.radio_button :length_class, "< 1.4", class: "btn-check", checked: true %>
                 <% end %>
                 <%= form.label :length_class_0, "< 1.4", class: 'btn btn-outline-primary btn-radio semi-bold' %>
 
-                <%= form.radio_button :length_class, Delivery.length_classes["< 2.2"], class: "btn-check", checked: delivery.length_class == "< 2.2" %>
+                <%= form.radio_button :length_class, "< 2.2", class: "btn-check", checked: delivery.length_class == "< 2.2" %>
                 <%= form.label :length_class_1, "< 2.2", class: 'btn btn-outline-primary btn-radio semi-bold' %>
 
-                <%= form.radio_button :length_class, Delivery.length_classes["< 3.4"], class: "btn-check", checked: delivery.length_class == "< 3.4" %>
+                <%= form.radio_button :length_class, "< 3.4", class: "btn-check", checked: delivery.length_class == "< 3.4" %>
                 <%= form.label :length_class_2, "< 3.4", class: 'btn btn-outline-primary btn-radio semi-bold' %>
 
-                <%= form.radio_button :length_class, Delivery.length_classes["< 4.4"], class: "btn-check", checked: delivery.length_class == "< 4.4" %>
+                <%= form.radio_button :length_class, "< 4.4", class: "btn-check", checked: delivery.length_class == "< 4.4" %>
                 <%= form.label :length_class_3, "< 4.4", class: 'btn btn-outline-primary btn-radio semi-bold' %>
               </div>
             </div>  

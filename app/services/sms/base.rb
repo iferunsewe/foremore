@@ -3,7 +3,7 @@ module Sms
     def initialize; end
 
     def enqueue!
-      Sms::Sender.new(phone_number, message).send! if sms_opt_in?
+      Sms::Sender.new(phone_number, message).send! if Rails.env.production? && sms_opt_in?
     end
 
     private

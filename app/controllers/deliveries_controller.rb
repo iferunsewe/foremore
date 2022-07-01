@@ -75,7 +75,7 @@ class DeliveriesController < ApplicationController
   end
 
   def pending
-    @deliveries = Delivery.pending_and_in_the_future.where(pickup_address: current_user.team.address)
+    @deliveries = Delivery.where(pickup_address: current_user.team.address)
     if params[:query].present?
       @deliveries = @deliveries&.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(updated_at: :desc).page params[:page]
     else
@@ -122,9 +122,6 @@ class DeliveriesController < ApplicationController
 
     def delivery_params_to_i
       delivery_params.merge(
-        delivery_type: delivery_params[:delivery_type].to_i,
-        weight_class: delivery_params[:weight_class].to_i,
-        length_class: delivery_params[:length_class].to_i,
         user_id: current_user.id,
         status: toggle_status_or_status
       )
