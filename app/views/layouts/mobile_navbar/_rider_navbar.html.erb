@@ -7,7 +7,7 @@
   </li>
 <li class="nav-item <%= is_pending_deliveries_path_active? ? "active" : "" %>">
     <%= link_to(pending_deliveries_path, class: 'nav-link d-flex') do %>
-      <i class="bi bi-truck"></i>
+      <i class="bi bi-hourglass-split"></i>
       <span class="overflow-ellipsis"><%=  t("delivery.pending-link") %></span>
     <% end %>
   </li>
