@@ -6,7 +6,7 @@
   <td><%= delivery.delivered_at&.strftime('%Y-%m-%d %H:%M') %></td>
   <td></td>
   <td>
-    <% if delivery.ready? %>
+    <% if delivery.confirmed? || delivery.ready? %>
       <%= button_to delivery_path(delivery, delivery: {status: "delivering"}), data: { turbo: false }, method: :patch, class: 'btn btn-primary mb-2 col-12' do %>
         <i class="bi bi-truck"></i>
         Picked up?
