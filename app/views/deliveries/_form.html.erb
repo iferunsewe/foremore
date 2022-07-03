@@ -21,7 +21,7 @@
             </div>
           <% elsif @delivery.persisted? %>
             <div class="form-check form-switch form-switch-lg">
-              <%= form.check_box :status, {class: "form-check-input", checked: @delivery.ready? } %>
+              <%= form.check_box :status, {class: "form-check-input", checked: @delivery.ready? }, 'ready', @delivery.status %>
               <div class="form-check-label-explainer">
                 <%= form.label :status, t("delivery.form.ready-label"),  class: 'form-check-label semi-bold' %>
                 <div class="form-text"><%=  t("delivery.form.ready-label-explainer") %></div>
