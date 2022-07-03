@@ -54,7 +54,7 @@
       </thead>
       <tbody id="deliveries-tbody">
         <% @deliveries&.each do |delivery| %>
-          <%= render partial: "deliveries/my_deliveries_table_row", locals: { delivery: delivery } %>
+          <%= render partial: "deliveries/my/table_row", locals: { delivery: delivery } %>
         <% end %>
       </tbody>
     </table>

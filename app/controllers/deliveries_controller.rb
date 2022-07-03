@@ -74,15 +74,6 @@ class DeliveriesController < ApplicationController
     end
   end
 
-  def my
-    @deliveries = Delivery.where(rider: current_user)
-    if params[:query].present?
-      @deliveries = @deliveries&.where("delivery_address ILIKE ?", "%#{params[:query]}%").order(updated_at: :desc).page params[:page]
-    else
-      @deliveries = @deliveries&.order(updated_at: :desc).page params[:page]
-    end
-  end
-
   def complete
     @delivery = Delivery.find(params[:id])
     if @delivery.completion_pin == params[:completion_pin].to_i
