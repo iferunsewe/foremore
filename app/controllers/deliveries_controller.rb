@@ -63,7 +63,7 @@ class DeliveriesController < ApplicationController
   # PATCH/PUT /deliveries/1 or /deliveries/1.json
   def update
     respond_to do |format|
-      if @delivery.update(custom_delivery_params)
+      if @delivery.update(delivery_params)
         format.html { redirect_to delivery_url(@delivery), notice: "Delivery was successfully updated." }
         format.json { render :show, status: :ok, location: @delivery }
         send_ready_to_pickup_sms
