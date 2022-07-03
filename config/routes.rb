@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   get 'edit-my-team', to: 'teams#edit', as: :edit_my_team
   get 'edit-my-company', to: 'companies#edit', as: :edit_my_company
   get 'edit-my-user', to: 'users#edit', as: :edit_my_user
-  get 'pending-deliveries', to: 'deliveries#pending', as: :pending_deliveries
+  get 'pending-deliveries', to: 'deliveries/pending#index', as: :pending_deliveries
   get 'my-deliveries', to: 'deliveries#my', as: :my_deliveries
   post 'complete-delivery', to: 'deliveries#complete', as: :complete_delivery
 end

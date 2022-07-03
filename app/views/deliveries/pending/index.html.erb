@@ -44,7 +44,7 @@
       </thead>
       <tbody id="deliveries-tbody">
         <% @deliveries&.each do |delivery| %>
-          <%= render partial: "deliveries/pending_deliveries_table_row", locals: { delivery: delivery } %>
+          <%= render partial: "deliveries/pending/table_row", locals: { delivery: delivery } %>
         <% end %>
       </tbody>
     </table>
