@@ -12,9 +12,10 @@ class Delivery < ApplicationRecord
 
   geocoded_by :delivery_address, latitude: :delivery_latitude, longitude: :delivery_longitude
   after_validation :geocode
-  after_update :send_delivered_sms_and_update_delivered_at, if: :status_changed_to_delivered?
-  after_update :send_confirmed_sms, if: :status_changed_to_confirmed?
+  after_update :delivered_handler, if: :status_changed_to_delivered?
+  after_update :confirmed_handler, if: :status_changed_to_confirmed?
   after_update :delivering_handler, if: :status_changed_to_delivering?
+  after_update :ready_handler, if: :status_changed_to_ready?
   after_update :confirmed!, if: :no_rider_to_rider?
 
   scope :pending_and_in_the_future, -> { where(status: "pending", rider_id: nil).where("(delivery_type = 0 AND created_at > ?) OR (delivery_type = 1 AND scheduled_date > ?)", DateTime.now.beginning_of_day, DateTime.now) }
@@ -78,6 +79,10 @@ class Delivery < ApplicationRecord
     !saved_change_to_status.nil? && saved_change_to_status[1] == "delivering"
   end
 
+  def status_changed_to_ready?
+    !saved_change_to_status.nil? && saved_change_to_status[1] == "ready"
+  end
+
   def send_confirmed_sms
     Sms::SendConfirmedSms.new(self).enqueue!
   end
@@ -87,7 +92,7 @@ class Delivery < ApplicationRecord
   end
 
   def delivering_handler
-    update(completion_pin: SecureRandom.random_number(9999))
+    update(completion_pin: SecureRandom.random_number(9999), delivering_at: DateTime.now)
     send_delivering_sms
   end
 
@@ -95,9 +100,18 @@ class Delivery < ApplicationRecord
     Sms::SendDeliveredSms.new(self).enqueue!
   end
 
-  def send_delivered_sms_and_update_delivered_at
+  def delivered_handler
     send_delivered_sms
-    update_delivered_at
+    update(delivered_at: DateTime.now)
+  end
+
+  def confirmed_handler
+    send_confirmed_sms
+    update(confirmed_at: DateTime.now)
+  end
+
+  def ready_handler
+    update(ready_at: DateTime.now)
   end
 
   def no_rider_to_rider?
