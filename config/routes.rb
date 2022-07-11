@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :edit, :update]
   resources :addresses
   resources :deliveries
+  resources :products, only:[:index, :edit, :update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -40,4 +41,6 @@ Rails.application.routes.draw do
   get 'pending-deliveries', to: 'deliveries/pending#index', as: :pending_deliveries
   get 'my-deliveries', to: 'deliveries/my#index', as: :my_deliveries
   post 'complete-delivery', to: 'deliveries#complete', as: :complete_delivery
+  post 'add-to-delivery', to: 'products#add_to_delivery', as: :add_to_delivery
+  post 'remove-from-delivery', to: 'products#remove_from_delivery', as: :remove_from_delivery
 end

@@ -134,7 +134,15 @@
           </div>
 
           <div class="form-floating mb-2">
-            <%= form.text_area :description, placeholder: t("delivery.form.item-details.description-placeholder"), class: 'form-control mb-2', required: true %>
+            <div class="d-grid gap-2 col-12 col-md-6 mb-2">
+              <%= button_tag "Find products", data: {bs_toggle: "modal", bs_target: "#productsModal"}, type: 'button', class: 'btn btn-primary semi-bold' %>
+            </div>
+            <div class="form-text mb-2"><%=  t("delivery.form.quick-actions.explainer") %></div>
+          </div>
+
+          <div class="form-floating mb-2">
+            <%= form.text_area :description, class: 'form-control mb-2', required: true %>
+            <%= form.label :description, t("delivery.form.item-details.description-placeholder") %>
           </div>
 
           <div class="row">
@@ -190,9 +198,9 @@
 
         <div class="row d-md-none d-flex justify-content-center mb-3">
           <% if @delivery.persisted? %>
-              <%= render "submit_button", {button_label: t("delivery.form.edit-submit-button-label")} %>
+              <%= render "deliveries/submit_button", {button_label: t("delivery.form.edit-submit-button-label")} %>
             <% else %>
-              <%= render "submit_button", {button_label: t("delivery.form.submit-button-label")} %>
+              <%= render "deliveries/submit_button", {button_label: t("delivery.form.submit-button-label")} %>
             <% end %>
         </div>
       </div>
@@ -217,9 +225,9 @@
 
           <div class="row d-none d-md-flex justify-content-center">
             <% if @delivery.persisted? %>
-              <%= render "submit_button", {button_label: t("delivery.form.edit-submit-button-label")} %>
+              <%= render "deliveries/submit_button", {button_label: t("delivery.form.edit-submit-button-label")} %>
             <% else %>
-              <%= render "submit_button", {button_label: t("delivery.form.submit-button-label")} %>
+              <%= render "deliveries/submit_button", {button_label: t("delivery.form.submit-button-label")} %>
             <% end %>
           </div>
         </div>

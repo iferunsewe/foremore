@@ -33,6 +33,8 @@ class DeliveriesController < ApplicationController
     else
       @delivery = session[:delivery] || Delivery.new
     end
+    @products = Product.first(6)
+    @added_products = Product.where(id: session[:added_product_ids])
   end
 
   # GET /deliveries/1/edit

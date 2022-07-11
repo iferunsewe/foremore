@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_03_164925) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_08_134910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -55,6 +55,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_03_164925) do
     t.integer "team_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "tax_id"
@@ -91,6 +97,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_03_164925) do
     t.datetime "confirmed_at"
     t.datetime "ready_at"
     t.index ["user_id"], name: "index_deliveries_on_user_id"
+  end
+
+  create_table "delivery_items", force: :cascade do |t|
+    t.integer "delivery_id"
+    t.integer "product_id"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.string "ean"
+    t.float "weight"
+    t.float "volume"
+    t.string "url"
+    t.string "image_url"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "sessions", force: :cascade do |t|

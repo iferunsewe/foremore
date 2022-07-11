@@ -165,15 +165,46 @@ function updateModalDeliveryId() {
   })
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  initMapsAutocomplete();
+function addDeliveryItemsToDelivery() {
+  const addDeliveryItemsButton = document.getElementById('add-delivery-items-button')
+  if(!addDeliveryItemsButton) return;
+  addDeliveryItemsButton.addEventListener('click', function(e) {
+    const deliveryItemsIds = Array.from(document.getElementById('added-products-tbody').querySelectorAll('.product-id')).map((e) => e.innerText)
+    const deliveryItemsQuantities = Array.from(document.getElementById('added-products-tbody').querySelectorAll('.product-quantity')).map((e) => e.value)
+    if(!deliveryItemsIds || !deliveryItemsQuantities) return;
+    
+    const idsWithQuantities = zip(deliveryItemsIds, deliveryItemsQuantities)
+    const deliveryForm = document.getElementById('delivery-form')
+    if(!deliveryForm) return;
+    idsWithQuantities.forEach(function(idAndQuantity) {
+      const input = document.createElement('input')
+      input.setAttribute('type', 'hidden')
+      input.setAttribute('name', 'delivery[delivery_items_attributes][][product_id]')
+      input.setAttribute('value', idAndQuantity[0])
+      deliveryForm.appendChild(input)
+      const input2 = document.createElement('input')
+      input2.setAttribute('type', 'hidden')
+      input2.setAttribute('name', 'delivery[delivery_items_attributes][][quantity]')
+      input2.setAttribute('value', idAndQuantity[1])
+      deliveryForm.appendChild(input2)
+    })
+  })
+}
 
-  updateMap()
-  getTravelTime()
-  calculateExpectedTime()
-  showScheduledDate()
-  onDeliveryAddressChange()
-  onDeliveryTypeChange()
-  onScheduleDateChange()
-  updateModalDeliveryId()
+const zip = (a, b) => a.map((k, i) => [k, b[i]]);
+
+document.addEventListener('DOMContentLoaded', () => {
+  if(document.getElementById('delivery-form')) {
+    initMapsAutocomplete();
+
+    updateMap()
+    getTravelTime()
+    calculateExpectedTime()
+    showScheduledDate()
+    onDeliveryAddressChange()
+    onDeliveryTypeChange()
+    onScheduleDateChange()
+    updateModalDeliveryId()
+  }
+  
 })
