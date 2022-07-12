@@ -145,36 +145,7 @@
             <%= form.label :description, t("delivery.form.item-details.description-placeholder") %>
           </div>
 
-          <div id="delivery-items">
-            <table class="table table-hover table-borderless table-responsive">
-              <tbody>
-                <% if @delivery_items&.empty? %>
-                  <tr>
-                    <td colspan="8" class="text-center">
-                      <%= "No products added" %>
-                    </td>
-                  </tr>
-                <% else %>
-                  <% @delivery_items&.each do |delivery_item| %>
-                    <tr>
-                      <td style="display:none;">
-                        <div class="product-id"><%= delivery_item.product.id %></div>
-                      </td>
-                      <td>
-                        <%= delivery_item.product.name.capitalize %>
-                      </td>
-                      <td>
-                        <%= number_field_tag 'quantity', delivery_item.quantity, class: "form-control product-quantity" %>
-                      </td>
-                      <td>
-                        <%= link_to "Remove", delivery_item_path(delivery_item, delivery_item: {product_id: delivery_item.product.id, active: false}), data: { turbo_method: :patch }, class: 'btn btn-secondary' %>
-                      </td>
-                    </tr>
-                  <% end %>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
+          <%= render "deliveries/delivery_items_form", {delivery_items: @delivery_items} %>
 
           <%= render "deliveries/dimensions_form", { form: form, delivery: delivery } %>
 
