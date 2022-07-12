@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  include CartsHelper
+
   # Helps to give a default location in development
   # See: http://hankstoever.com/posts/11-Pro-Tips-for-Using-Geocoder-with-Rails
   def location

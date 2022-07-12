@@ -193,6 +193,37 @@ function addDeliveryItemsToDelivery() {
 
 const zip = (a, b) => a.map((k, i) => [k, b[i]]);
 
+function addProductToDeliveryDescription() {
+  const productsModal = document.getElementById('products-modal')
+  if(!productsModal) return;
+  const productForms = Array.from(productsModal.getElementsByClassName('product-form'))
+  if(productForms == []) return;
+  const deliveryForm = document.getElementById('delivery-form')
+  productForms.forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault()
+      const productQuantity = form.querySelector('.product-quantity').value
+      const productName = form.previousElementSibling.innerText
+      const productId = form.querySelector('.product-id').innerText
+
+      deliveryForm.appendChild(createHiddenInput('delivery[delivery_items_attributes][][product_id]', productId))
+      deliveryForm.appendChild(createHiddenInput(`delivery[delivery_items_attributes][][product_id][${productId}][quantity]`, productQuantity))
+      
+      const deliveryDescription = document.getElementById('delivery_description')
+      deliveryDescription.value += `${productQuantity} x ${productName}\n`
+      
+    })
+  })
+}
+
+function createHiddenInput(name, value) {
+  const input = document.createElement('input')
+  input.setAttribute('type', 'hidden')
+  input.setAttribute('name', name)
+  input.setAttribute('value', value)
+  return input
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   if(document.getElementById('delivery-form')) {
     initMapsAutocomplete();
