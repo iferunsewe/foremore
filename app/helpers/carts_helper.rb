@@ -1,12 +1,12 @@
 module CartsHelper
   def current_cart
-    return if !user_signed_in? || current_user.guest?
     @current_cart ||= cart_for_user
   end
 
   private
 
   def cart_for_user
+    return if !user_signed_in? || current_user.guest?
     if cookies.permanent[:cart_id].present?
       Cart.find(cookies.permanent[:cart_id])
     else

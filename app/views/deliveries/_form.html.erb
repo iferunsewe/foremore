@@ -155,7 +155,7 @@
                     </td>
                   </tr>
                 <% else %>
-                  <% @delivery_item_products.each do |product| %>
+                  <% @delivery_item_products&.each do |product| %>
                     <tr>
                       <td style="display:none;">
                         <div class="product-id"><%= product.id %></div>
@@ -165,11 +165,6 @@
                       </td>
                       <td>
                         <%= number_field_tag 'quantity', '1', class: "form-control product-quantity" %>
-                      </td>
-                      <td>
-                        <%= form_with url: remove_from_delivery_path(product_id: product.id), method: :post do |form| %>
-                          <%= form.submit "Remove", class: "btn btn-secondary" %>
-                        <% end %>
                       </td>
                     </tr>
                   <% end %>
