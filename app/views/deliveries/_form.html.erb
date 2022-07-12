@@ -155,16 +155,19 @@
                     </td>
                   </tr>
                 <% else %>
-                  <% @delivery_item_products&.each do |product| %>
+                  <% @delivery_items&.each do |delivery_item| %>
                     <tr>
                       <td style="display:none;">
-                        <div class="product-id"><%= product.id %></div>
+                        <div class="product-id"><%= delivery_item.product.id %></div>
                       </td>
                       <td>
-                        <%= product.name.capitalize %>
+                        <%= delivery_item.product.name.capitalize %>
                       </td>
                       <td>
-                        <%= number_field_tag 'quantity', '1', class: "form-control product-quantity" %>
+                        <%= number_field_tag 'quantity', delivery_item.quantity, class: "form-control product-quantity" %>
+                      </td>
+                      <td>
+                        <%= link_to "Remove", delivery_item_path(delivery_item, delivery_item: {product_id: delivery_item.product.id, active: false}), data: { turbo_method: :patch }, class: 'btn btn-secondary' %>
                       </td>
                     </tr>
                   <% end %>

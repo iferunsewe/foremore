@@ -110,6 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_12_055128) do
     t.integer "product_id"
     t.integer "quantity"
     t.integer "cart_id"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

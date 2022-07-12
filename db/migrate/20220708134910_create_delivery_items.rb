@@ -5,6 +5,7 @@ class CreateDeliveryItems < ActiveRecord::Migration[7.0]
       t.integer :product_id
       t.integer :quantity
       t.integer :cart_id
+      t.boolean :active, default: true
 
       t.timestamps
     end

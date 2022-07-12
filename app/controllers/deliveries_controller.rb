@@ -34,7 +34,7 @@ class DeliveriesController < ApplicationController
       @delivery = session[:delivery] || Delivery.new
     end
     @products = Product.first(6)
-    @delivery_items = current_cart.delivery_items
+    @delivery_items = current_cart.delivery_items.where(active: true)
     @delivery_item_products = current_cart.products
   end
 
