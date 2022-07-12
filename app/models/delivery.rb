@@ -3,6 +3,7 @@ class Delivery < ApplicationRecord
   belongs_to :user
   belongs_to :rider, class_name: 'User', optional: true
   has_many :delivery_items
+  belongs_to :cart, optional: true
 
   enum status: [:draft, :pending, :confirmed, :ready, :delivering, :delivered]
   enum delivery_type: [:instant, :scheduled]

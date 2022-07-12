@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_one_attached :image do |attachable|
     attachable.variant :small_avatar, resize_to_fit: [50, 50]
   end
+  has_one :cart, dependent: :destroy
 
   enum role: [:normal, :team_admin, :company_admin, :admin, :rider]
 
