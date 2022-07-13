@@ -100,8 +100,13 @@ class Delivery < ApplicationRecord
     Sms::SendDeliveredSms.new(self).enqueue!
   end
 
+  def send_recipient_delivered_sms
+    Sms::SendRecipientDeliveredSms.new(self).enqueue!
+  end
+
   def delivered_handler
     send_delivered_sms
+    send_recipient_delivered_sms
     update(delivered_at: DateTime.now)
   end
 
