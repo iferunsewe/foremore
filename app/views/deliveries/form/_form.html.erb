@@ -27,8 +27,7 @@
         <%= render "deliveries/form/recipient", { form: form, delivery: delivery } %>
 
         <div class="form-group mb-3">
-          <h4><%= t("delivery.form.item-details.heading") %></h4>
-          <%= render "deliveries/form/order_details", { form: form, delivery: delivery } %>
+        <%= render "deliveries/form/order_details", { form: form, delivery: delivery } %>
 
           <%= render "deliveries/form/dimensions", { form: form, delivery: delivery } %>
         </div>
