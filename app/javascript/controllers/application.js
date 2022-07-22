@@ -137,7 +137,9 @@ function showScheduledDate() {
   if(!scheduleDate || !expectedTime) return;
   const timeToDisplay = new Date(scheduleDate)
   expectedTime.innerText = `${padTo2Digits(timeToDisplay.getHours())}:${padTo2Digits(timeToDisplay.getMinutes())}`
-  if (timeToDisplay.getDate() == new Date().getDate() + 1) {
+  if (timeToDisplay.getDate() == new Date().getDate()) {
+    expectedDay.innerText = 'Today'
+  } else if (timeToDisplay.getDate() == new Date().getDate() + 1) {
     expectedDay.innerText = 'Tomorrow'
   } else {
     expectedDay.innerText = `${padTo2Digits(timeToDisplay.getDate())}/${padTo2Digits(timeToDisplay.getMonth() + 1)}/${timeToDisplay.getFullYear()}`
