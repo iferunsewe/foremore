@@ -13,10 +13,6 @@
       </div>
     </div>
   <% else %>
-    <div class="d-grid gap-2 col-12 col-md-6 mb-2">
-      <%= button_tag t("delivery.form.quick-actions.heading"), data: {bs_toggle: "modal", bs_target: "#quickActionsModal"}, type: 'button', class: 'btn btn-primary semi-bold' %>
-    </div>
-    <div class="form-text mb-2"><%=  t("delivery.form.quick-actions.explainer") %></div>
     <%= form.hidden_field :status, value: "pending" %>
   <% end %>
 </div>
