@@ -1,0 +1,17 @@
+<div class="form-group mb-3">
+  <div class="row">
+    <div class="d-inline-block">
+    
+      <h4><%=  t("delivery.form.contact-information.heading") %></h4>
+      <div class="form-text mb-4"><%=  t("delivery.form.contact-information.explainer") %></div>
+      <div class="form-floating mb-2">
+        <%= form.text_field :recipient_name, class: 'form-control', required: true %>
+        <%= form.label :recipient_name, t("delivery.form.contact-information.name-placeholder") %>
+      </div>
+      <div class="form-floating mb-2">
+        <%= form.telephone_field :recipient_phone, class: 'form-control' %>
+        <%= form.label :recipient_phone, t("delivery.form.contact-information.phone-placeholder") %>
+      </div>
+    </div>
+  </div>
+</div>

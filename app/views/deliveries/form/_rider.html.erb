@@ -1,0 +1,6 @@
+<div class="form-group mb-3">
+  <div class="form-floating">
+    <%= form.select :rider_id, User.where(role: ["admin", "rider"]).map { |u| [u.full_name, u.id] }, {prompt: "Assign rider"}, {class: "form-control form-select"} %>
+    <%= form.label :rider_id, t("delivery.form.rider-label"),  style: "display: block", class: 'form-label semi-bold' %>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="form-group mb-4">
+  <h4 class="mb-1"><%= t("delivery.form.delivery-type.heading") %></h4>
+  <div class="form-text mb-4"><%=  t("delivery.form.delivery-type.explainer") %></div>
+
+  <div class="d-flex justify-content-around mb-3" role="group">
+    <% if delivery.persisted? %>
+      <%= form.radio_button :delivery_type, "instant", class: "btn-check", checked: delivery.delivery_type == "instant" %>  
+    <% else %>
+      <%= form.radio_button :delivery_type, "instant", class: "btn-check", checked: true %>
+    <% end %>
+    <%= form.label :delivery_type_instant, class: 'btn btn-outline-primary btn-radio col-4 semi-bold', data: {bs_toggle: "collapse", bs_target: "#collapseExample.show"}, aria: { expanded: "false", controls: "collapseExample"} do %>
+      <%= t("delivery.form.delivery-type.instant-label") %>
+      <i class="bi bi-lightning-charge-fill"></i>
+    <% end %>
+    <%= form.radio_button :delivery_type, "scheduled", class: "btn-check", checked: delivery.delivery_type == "scheduled" %>
+    <%= form.label :delivery_type_scheduled, class: 'btn btn-outline-primary btn-radio col-4 semi-bold', data: {bs_toggle: "collapse", bs_target: "#collapseExample:not(.show)"}, aria: { expanded: "false", controls: "collapseExample"} do %>
+      <%= t("delivery.form.delivery-type.scheduled-label") %>
+      <i class="bi bi-calendar-week"></i>
+    <% end %>
+  </div>
+
+  <div class="collapse <%= delivery&.delivery_type == "scheduled" ? "show" : "" %>" id="collapseExample">
+    <%= form.label :scheduled_date, t("delivery.form.delivery-type.scheduled-date.heading"), style: "display: block", class: 'form-label semi-bold' %>
+    <%= form.datetime_local_field :scheduled_date, value: value_for_scheduled_date(delivery).strftime('%Y-%m-%dT%H:%M'), class: 'form-control mb-2' %>
+  </div>
+</div>

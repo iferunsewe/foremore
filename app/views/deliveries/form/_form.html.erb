@@ -1,0 +1,67 @@
+<%= form_with(model: delivery, id: "delivery-form") do |form| %>
+  <% if delivery.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(delivery.errors.count, "error") %> prohibited this delivery from being saved:</h2>
+
+      <ul>
+        <% delivery.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-12 order-2 order-md-1">
+        <%= render "deliveries/form/status", delivery: delivery, form: form %>
+
+        <% if current_user.admin? %>
+          <%= render "deliveries/form/rider", delivery: delivery, form: form %>
+        <% end %>
+
+        <%= render "deliveries/form/delivery_type", { form: form, delivery: delivery } %>
+
+        <% pickup_address = pickup_address_to_use(delivery) %>
+        <%= render "deliveries/form/address", { form: form, delivery: delivery, pickup_address: pickup_address } %>
+
+        <%= render "deliveries/form/recipient", { form: form, delivery: delivery } %>
+
+        <div class="form-group mb-3">
+          <h4><%= t("delivery.form.item-details.heading") %></h4>
+          <%= render "deliveries/form/order_details", { form: form, delivery: delivery } %>
+
+          <%= render "deliveries/form/dimensions", { form: form, delivery: delivery } %>
+        </div>
+
+        <div class="form-group mb-3">
+          <h4 class="mb-4"><%= t("delivery.form.other-notes.heading") %></h4>
+          <%= form.text_area :other_notes, placeholder: t("delivery.form.other-notes.placeholder"), class: 'form-control mb-2' %>
+        </div>
+
+        <div class="row d-md-none d-flex justify-content-center mb-3">
+          <% if @delivery.persisted? %>
+              <%= render "deliveries/form/submit_button", {button_label: t("delivery.form.edit-submit-button-label")} %>
+            <% else %>
+              <%= render "deliveries/form/submit_button", {button_label: t("delivery.form.submit-button-label")} %>
+            <% end %>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12 order-1 order-md-2 mb-md-0 mb-3">
+        <div class="sticky-top">
+          <%= render "deliveries/form/map", { form: form, delivery: delivery, pickup_address: pickup_address } %>
+
+          <%= render "deliveries/form/delivery_time", { form: form, delivery: delivery } %>
+          
+
+          <div class="row d-none d-md-flex justify-content-center">
+            <% if @delivery.persisted? %>
+              <%= render "deliveries/form/submit_button", {button_label: t("delivery.form.edit-submit-button-label")} %>
+            <% else %>
+              <%= render "deliveries/form/submit_button", {button_label: t("delivery.form.submit-button-label")} %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

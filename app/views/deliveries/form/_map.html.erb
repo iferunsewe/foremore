@@ -1,0 +1,10 @@
+<div class="form-group map-container">
+  <iframe
+    class="map"
+    id="google-embed-map"
+    src=<%= iframe_source(delivery: @delivery, alt_pickup_address: pickup_address) %>
+    data-fallback-url=<%= google_map_fallback_url(pickup_address: pickup_address) %>
+    data-google-api-key=<%= ENV['GOOGLE_API_KEY'] %>
+    >
+  </iframe>
+</div>

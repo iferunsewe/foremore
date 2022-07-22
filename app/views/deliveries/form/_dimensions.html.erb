@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-6 col-sm-12 mb-3 mb-md-2">
+    <%= form.label :weight_class, t("delivery.form.item-details.weight-label"),  style: "display: block", class: 'form-label semi-bold' %>
+    <div class="d-flex justify-content-around" role="group">
+      <% if delivery.persisted? %>
+        <%= form.radio_button :weight_class, "< 20", class: "btn-check", checked: delivery.weight_class == "< 20" %>
+      <% else %>
+        <%= form.radio_button :weight_class, "< 20", class: "btn-check", checked: true %>
+      <% end %>
+      <%= form.label :weight_class__20, "< 20", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+
+      <%= form.radio_button :weight_class, "< 120", class: "btn-check", checked: delivery.weight_class == "< 120" %>
+      <%= form.label :weight_class__120, "< 120", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+
+      <%= form.radio_button :weight_class, "< 750", class: "btn-check", checked: delivery.weight_class == "< 750" %>
+      <%= form.label :weight_class__750, "< 750", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-sm-12 mb-3 mb-md-2">
+    <%= form.label :length_class, t("delivery.form.item-details.length-label"),  style: "display: block", class: 'form-label semi-bold' %>
+    <div class="d-flex justify-content-around" role="group">
+      <% if delivery.persisted? %>
+        <%= form.radio_button :length_class, "< 1.4", class: "btn-check", checked: delivery.length_class == "< 1.4" %>
+      <% else %>
+        <%= form.radio_button :length_class, "< 1.4", class: "btn-check", checked: true %>
+      <% end %>
+      <%= form.label :length_class__1_4, "< 1.4", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+
+      <%= form.radio_button :length_class, "< 2.2", class: "btn-check", checked: delivery.length_class == "< 2.2" %>
+      <%= form.label :length_class__2_2, "< 2.2", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+
+      <%= form.radio_button :length_class, "< 3.4", class: "btn-check", checked: delivery.length_class == "< 3.4" %>
+      <%= form.label :length_class__3_4, "< 3.4", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+
+      <%= form.radio_button :length_class, "< 4.4", class: "btn-check", checked: delivery.length_class == "< 4.4" %>
+      <%= form.label :length_class__4_4, "< 4.4", class: 'btn btn-outline-primary btn-radio semi-bold' %>
+    </div>
+  </div>  
+</div>
+
+<div class="row">
+  <div class="form-text mb-2"><%= t("delivery.form.item-details.dimensions-explainer") %></div>
+</div>
